@@ -66,6 +66,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/modules/dpram.ko | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/lib/modules/multipdp.ko
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/modules/multipdp.ko | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # Proprietary etc
 file := $(TARGET_OUT)/etc/rtecdc.bin
 ALL_PREBUILT += $(file)
@@ -100,11 +105,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/lib/hw/sensors.samsung.so | $(ACP)
 	$(transform-prebuilt-to-target)
 
-# Proprietary modules
-file := $(TARGET_OUT)/lib/modules/multipdp.ko
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/modules/multipdp.ko | $(ACP)
-	$(transform-prebuilt-to-target)
 
 
 
