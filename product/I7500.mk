@@ -55,7 +55,7 @@ PRODUCT_PACKAGES := \
     GoogleSearch \
     HTMLViewer \
     IM \
-    Launcher2 \
+    Launcher \
     MediaProvider \
     Mms \
     Music \
