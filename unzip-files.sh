@@ -34,7 +34,6 @@ unzip -j -o $ZIP system/etc/rtecdc.bin -d proprietary/etc/
 
 (cd qcom/android-open/libopencorehw && ./unzip-files.sh $ZIP)
 (cd qcom/android-open/loc_api && ./unzip-files.sh $ZIP)
-(cd qcom/android-open/pvomx && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/libqcamera && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/mm && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/libaudioeq && ./unzip-files.sh $ZIP)
