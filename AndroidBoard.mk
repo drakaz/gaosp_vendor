@@ -67,11 +67,6 @@ $(file) : $(LOCAL_PATH)/open/modules/dpram.ko | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # Proprietary etc
-file := $(TARGET_OUT)/etc/rilproductinfo.ini
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/etc/rilproductinfo.ini | $(ACP)
-	$(transform-prebuilt-to-target)
-
 file := $(TARGET_OUT)/etc/rtecdc.bin
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/etc/rtecdc.bin | $(ACP)
