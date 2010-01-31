@@ -52,10 +52,14 @@ PRODUCT_PACKAGES := \
     Gallery3D \
     FieldTest \
     GlobalSearch \
+    GoogleContactsProvider \
     GoogleSearch \
+    GoogleSubscribedFeedsProvider \
     HTMLViewer \
     IM \
+    ImProvider \
     Launcher \
+    LatinIME \
     MediaProvider \
     Mms \
     Music \

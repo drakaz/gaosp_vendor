@@ -378,6 +378,7 @@ service dumpstate /system/bin/dumpstate -s
     oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dwext -i eth0 -c /data/misc/wifi/bcm_supp.conf
+   user root
    disabled
    oneshot
 
@@ -397,8 +398,3 @@ service ifcfg_eth0 /system/bin/ifconfig eth0 up
 
 service multipdp_module /system/bin/toolbox insmod /system/lib/modules/multipdp.ko
     oneshot
-
-service logradio /system/bin/radio.sh
-    oneshot
-
-
