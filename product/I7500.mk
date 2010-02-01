@@ -43,6 +43,7 @@ PRODUCT_PACKAGES := \
     Camera \
     CertInstaller \
     Contacts \
+    ContactsProvider \
     CustomLocale \
     DownloadProvider \
     DrmProvider \
@@ -51,7 +52,7 @@ PRODUCT_PACKAGES := \
     Gallery3D \
     FieldTest \
     GlobalSearch \
-    GoogleContactsProvider \
+#    GoogleContactsProvider \
     GoogleSearch \
     GoogleSubscribedFeedsProvider \
     HTMLViewer \
