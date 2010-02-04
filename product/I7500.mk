@@ -29,6 +29,7 @@ include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 include external/svox/pico/lang/PicoLangItItInSystem.mk
 
 # Packages
+#    GoogleContactsProvider \
 PRODUCT_PACKAGES := \
     framework-res \
     AlarmClock \
@@ -52,7 +53,6 @@ PRODUCT_PACKAGES := \
     Gallery3D \
     FieldTest \
     GlobalSearch \
-#    GoogleContactsProvider \
     GoogleSearch \
     GoogleSubscribedFeedsProvider \
     HTMLViewer \
