@@ -380,6 +380,9 @@ service dumpstate /system/bin/dumpstate -s
     disabled
     oneshot
 
+service akmd2 /system/bin/akmd2
+   oneshot
+
 service wpa_supplicant /system/bin/wpa_supplicant -Dwext -i eth0 -c /data/misc/wifi/bcm_supp.conf
    user root
    disabled
