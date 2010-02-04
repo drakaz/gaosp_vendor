@@ -29,7 +29,7 @@ include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 include external/svox/pico/lang/PicoLangItItInSystem.mk
 
 # Packages
-#    GoogleContactsProvider \
+#    GoogleContactsProvider
 PRODUCT_PACKAGES := \
     framework-res \
     AlarmClock \
