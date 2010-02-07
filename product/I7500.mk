@@ -83,7 +83,8 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     VisualizationWallpapers \
     LiveWallpapersPicker \
-    LiveWallpapers
+    LiveWallpapers \
+    Superuser
 
 # Locales
 PRODUCT_LOCALES := \

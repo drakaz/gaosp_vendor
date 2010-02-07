@@ -129,12 +129,15 @@ loglevel 3
     mkdir /data/app 0771 system system
     mkdir /data/property 0700 root root
 
-# devices chmod
+    # devices chmod
     chmod 0771 /dev/dpram0
     chmod 0771 /dev/dpram1
     chmod 0771 /dev/dpramerr
     chmod 0777 /dev/max9877
     chmod 0777 /dev/graphics/fb0
+
+    # Compatibility
+    symlink /system/lib/modules /system/libmodules
 
     # create dalvik-cache and double-check the perms
     mkdir /data/dalvik-cache 0771 system system
