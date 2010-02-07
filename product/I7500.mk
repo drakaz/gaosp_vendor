@@ -90,6 +90,26 @@ PRODUCT_PACKAGES := \
 PRODUCT_LOCALES := \
 mdpi \
 hdpi \
+ar_IL \
+ca_ES \
+de_DE \
+en_GB \
+en_US \
+fr_FR \
+he_IL \
+it_IT \
+iw_IL \
+nl_NL \
+pl_PL \
+pt_PT \
+ru_RU \
+sv_SE \
+tr_TR
+
+# all Locales \
+PRODUCT_LOCALES := \
+mdpi \
+hdpi \
 ar_EG \
 ar_IL \
 bg_BG \
@@ -148,4 +168,5 @@ uk_UA \
 vi_VN \
 zh_CN \
 zh_TW
+ 
  
