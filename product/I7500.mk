@@ -3,9 +3,9 @@ PRODUCT_BRAND := I7500
 PRODUCT_NAME := I7500
 PRODUCT_DEVICE := I7500
 PRODUCT_MANUFACTURER := Samsung
-BUILD_ID := BETA
+BUILD_ID := BETA2
 
-PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
+#PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
 
 PRODUCT_POLICY := android.policy_phone
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -29,7 +29,6 @@ include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 include external/svox/pico/lang/PicoLangItItInSystem.mk
 
 # Packages
-#    GoogleContactsProvider
 PRODUCT_PACKAGES := \
     framework-res \
     AlarmClock \
@@ -40,7 +39,6 @@ PRODUCT_PACKAGES := \
     Bugreport \
     Calculator \
     Calendar \
-    CalendarProvider \
     Camera \
     CertInstaller \
     Contacts \
@@ -50,7 +48,7 @@ PRODUCT_PACKAGES := \
     DrmProvider \
     DeskClock \
     Email \
-    Gallery3D \
+    Gallery \
     FieldTest \
     GlobalSearch \
     GoogleSearch \
@@ -60,6 +58,7 @@ PRODUCT_PACKAGES := \
     ImProvider \
     Launcher \
     LatinIME \
+    ManagementProvider \
     MediaProvider \
     Mms \
     Music \
@@ -82,9 +81,14 @@ PRODUCT_PACKAGES := \
     VoiceDialer \
     VpnServices \
     WebSearchProvider \
+    VisualizationWallpapers \
+    LiveWallpapersPicker \
+    LiveWallpapers
 
 # Locales
 PRODUCT_LOCALES := \
+mdpi \
+hdpi \
 ar_EG \
 ar_IL \
 bg_BG \
