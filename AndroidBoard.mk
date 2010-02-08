@@ -82,6 +82,34 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/dropbearkey | $(ACP)
 	$(transform-prebuilt-to-target)
 
+###########
+# busybox #
+###########
+
+file := $(TARGET_OUT)/xbin/busybox
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/busybox | $(ACP)
+	$(transform-prebuilt-to-target)
+
+links := $(shell cat $(LOCAL_PATH)/busybox.links)
+exclude := nc
+SYMLINKS := $(addprefix $(TARGET_OUT)/xbin/,$(filter-out $(exclude),$(notdir $(links))))
+$(SYMLINKS): BUSYBOX_BINARY := busybox
+$(SYMLINKS): $(TARGET_OUT)/xbin/busybox
+	@echo "Symlink: $@ -> $(BUSYBOX_BINARY)"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf $(BUSYBOX_BINARY) $@
+ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
+ 
+# We need this so that the installed files could be picked up based on the
+# local module name
+ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
+    $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
+
+###############
+# end busybox #
+###############
 
 # Proprietary etc
 file := $(TARGET_OUT)/etc/rtecdc.bin
