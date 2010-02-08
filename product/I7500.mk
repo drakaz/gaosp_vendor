@@ -28,8 +28,11 @@ include external/svox/pico/lang/PicoLangEsEsInSystem.mk
 include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 include external/svox/pico/lang/PicoLangItItInSystem.mk
 
+
 # Packages
 PRODUCT_PACKAGES := \
+    libRS \
+    librs_jni \
     framework-res \
     AlarmClock \
     AlarmProvider \
