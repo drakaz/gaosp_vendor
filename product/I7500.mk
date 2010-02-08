@@ -19,7 +19,7 @@ PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 		      vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold
 
 # Sounds
-include frameworks/base/data/sounds/AudioPackage2.mk
+include frameworks/base/data/sounds/AudioPackage4.mk
 # TTS languages
 include external/svox/pico/lang/PicoLangDeDeInSystem.mk
 include external/svox/pico/lang/PicoLangEnGBInSystem.mk
@@ -36,26 +36,25 @@ PRODUCT_PACKAGES := \
     framework-res \
     AlarmClock \
     AlarmProvider \
+    AccountAndSyncSettings \
     ApplicationsProvider \
     Bluetooth \
     Browser \
     Bugreport \
     Calculator \
     Calendar \
+    CalendarProvider \
     Camera \
     CertInstaller \
     Contacts \
     ContactsProvider \
     CustomLocale \
     DownloadProvider \
-    DrmProvider \
     DeskClock \
     Email \
-    Gallery \
-    FieldTest \
+    Gallery3D \
     GlobalSearch \
     GoogleSearch \
-    GoogleSubscribedFeedsProvider \
     HTMLViewer \
     IM \
     ImProvider \
@@ -73,8 +72,6 @@ PRODUCT_PACKAGES := \
     SettingsProvider \
     SoundRecoder \
     SubscribedFeedsProvider \
-    Sync \
-    SyncProvider \
     Stk \
     TelephonyProvider \
     Term \
