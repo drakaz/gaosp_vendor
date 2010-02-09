@@ -21,12 +21,12 @@ PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
 # TTS languages
-include external/svox/pico/lang/PicoLangDeDeInSystem.mk
-include external/svox/pico/lang/PicoLangEnGBInSystem.mk
-include external/svox/pico/lang/PicoLangEnUsInSystem.mk
-include external/svox/pico/lang/PicoLangEsEsInSystem.mk
-include external/svox/pico/lang/PicoLangFrFrInSystem.mk
-include external/svox/pico/lang/PicoLangItItInSystem.mk
+#include external/svox/pico/lang/PicoLangDeDeInSystem.mk
+#include external/svox/pico/lang/PicoLangEnGBInSystem.mk
+#include external/svox/pico/lang/PicoLangEnUsInSystem.mk
+#include external/svox/pico/lang/PicoLangEsEsInSystem.mk
+#include external/svox/pico/lang/PicoLangFrFrInSystem.mk
+#include external/svox/pico/lang/PicoLangItItInSystem.mk
 
 
 # Packages
@@ -86,27 +86,7 @@ PRODUCT_PACKAGES := \
     LiveWallpapers \
     Superuser
 
-# Locales
-PRODUCT_LOCALES := \
-mdpi \
-hdpi \
-ar_IL \
-ca_ES \
-de_DE \
-en_GB \
-en_US \
-fr_FR \
-he_IL \
-it_IT \
-iw_IL \
-nl_NL \
-pl_PL \
-pt_PT \
-ru_RU \
-sv_SE \
-tr_TR
-
-# all Locales \
+# Locales \
 PRODUCT_LOCALES := \
 mdpi \
 hdpi \
