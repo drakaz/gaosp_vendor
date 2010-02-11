@@ -86,7 +86,7 @@ PRODUCT_PACKAGES := \
     LiveWallpapers \
     Superuser
 
-# Locales \
+# Locales
 PRODUCT_LOCALES := \
 mdpi \
 hdpi \
