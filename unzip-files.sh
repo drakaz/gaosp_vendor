@@ -12,6 +12,7 @@ mkdir -p tmp/system/
 mkdir proprietary
 mkdir proprietary/modules
 mkdir proprietary/bin
+mkdir proprietary/keychars
 mkdir proprietary/lib
 mkdir proprietary/lib/hw
 
@@ -31,6 +32,7 @@ unzip -j -o $ZIP system/lib/hw/copybit.samsung.so -d proprietary/lib/hw/
 unzip -j -o $ZIP system/lib/hw/lights.samsung.so -d proprietary/lib/hw/
 unzip -j -o $ZIP system/lib/hw/sensors.samsung.so -d proprietary/lib/hw/
 unzip -j -o $ZIP system/etc/rtecdc.bin -d proprietary/etc/
+unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychars/
 
 (cd qcom/android-open/libopencorehw && ./unzip-files.sh $ZIP)
 (cd qcom/android-open/loc_api && ./unzip-files.sh $ZIP)
