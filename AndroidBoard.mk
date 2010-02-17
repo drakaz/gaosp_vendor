@@ -148,7 +148,7 @@ $(file) : $(LOCAL_PATH)/proprietary/lib/hw/sensors.samsung.so | $(ACP)
 # Keylayouts
 file := $(TARGET_OUT)/usr/keychars/I7500_keypad.kcm.bin
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/I7500_keypad.kcm.bin | $(ACP)
+$(file) : $(LOCAL_PATH)/proprietary/keychars/I7500_keypad.kcm.bin | $(ACP)
 	$(transform-prebuilt-to-target)
 
 
