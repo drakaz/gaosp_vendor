@@ -28,3 +28,6 @@ USE_CAMERA_STUB := true
 
 TARGET_PROVIDES_INIT_RC := true
 
+PRIVATE_BUILD_DESC := passion-user 2.1-update1 ERE27 24178 release-keys
+BUILD_FINGERPRINT := google/passion/passion/mahimahi:2.1-update1/ERE27/24178:user/release-keys
+

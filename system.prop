@@ -1,11 +1,7 @@
-ro.build.description=umts_sholes-user 2.0.1 SHOLS_U2_01.15.0 1261187275 rel-keys
-ro.build.fingerprint=MOTO_FRRT/umts_sholes/umts_sholes/sholes:2.0.1/SHOLS_U2_01.15.0/1261187275:user/rel-keys
-
 # Telephony
 rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.telephony.default_network = 0
-net.dns1 = 8.8.8.8
 
 # Others
 ro.com.google.locationfeatures=1
