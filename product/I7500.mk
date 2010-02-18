@@ -88,8 +88,6 @@ PRODUCT_PACKAGES := \
 
 # Locales
 PRODUCT_LOCALES := \
-mdpi \
-hdpi \
 ar_EG \
 ar_IL \
 bg_BG \
@@ -147,6 +145,8 @@ tr_TR \
 uk_UA \
 vi_VN \
 zh_CN \
-zh_TW
+zh_TW \
+mdpi \
+hdpi
  
  
