@@ -82,6 +82,18 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/dropbearkey | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/xbin/usb-tether
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/usb-tether | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/xbin/shutdown
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/shutdown | $(ACP)
+	$(transform-prebuilt-to-target)
+
+
+
 ###########
 # busybox #
 ###########

@@ -23,7 +23,7 @@ loglevel 3
     mkdir /sdcard 0000 system system
     mkdir /system
     mkdir /data 0771 system system
-    mkdir /cache 0770 system cache
+    mkdir /cache 0777 system cache
     mkdir /config 0500 root root
     mkdir /sqlite_stmt_journals 01777 root root
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
@@ -99,11 +99,11 @@ loglevel 3
     # Same reason as /data above
     mount yaffs2 mtd@cache /cache nosuid nodev
     chown system cache /cache
-    chmod 0770 /cache
+    chmod 0777 /cache
 
     # This may have been created by the recovery system with odd permissions
     chown system system /cache/recovery
-    chmod 0770 /cache/recovery
+    chmod 0771 /cache/recovery
 
     #change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
@@ -158,9 +158,12 @@ loglevel 3
     symlink /system/lib/modules /system/libmodules
 
     # create dalvik-cache and double-check the perms
-    mkdir /data/dalvik-cache 0771 system system
+    mkdir /data/dalvik-cache 0777 system system
     chown system system /data/dalvik-cache
-    chmod 0771 /data/dalvik-cache
+    chmod 0777 /data/dalvik-cache
+    mkdir /data/dalvik-cache 0777 system system
+    chown system system /data/dalvik-cache
+    chmod 0777 /data/dalvik-cache
 
     # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
@@ -173,7 +176,6 @@ loglevel 3
     chmod 0770 /cache/lost+found
 
     setprop wifi.interface "eth0"
-    setprop net.dns1 "8.8.8.8"
 
 on boot
 # basic network init
@@ -424,5 +426,28 @@ service ifcfg_eth0 /system/bin/ifconfig eth0 up
     disabled
     oneshot
 
+# Clean shutdown from cyanogen
+service reboot /system/xbin/shutdown -r
+    disabled
+    oneshot
+
+service poweroff /system/xbin/shutdown
+    disabled
+
+# USB internet sharing from cyanogen
+service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -d
+    disabled
+
+service tether_on /system/bin/logwrapper /system/bin/sh /system/xbin/usb-tether start
+    disabled
+    oneshot
+
+service tether_off /system/bin/logwrapper /system/bin/sh /system/xbin/usb-tether stop
+    disabled
+    oneshot
+
+# Insert multipdp module after boot 
 service multipdp_module /system/bin/toolbox insmod /system/lib/modules/multipdp.ko
     oneshot
+
+
