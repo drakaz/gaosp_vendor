@@ -12,7 +12,7 @@ key 11    0
 key 158   BACK              
 key 230   SOFT_RIGHT        
 key 60    SOFT_RIGHT        
-key 107   ENDCALL           WAKE_DROPPED
+key 107   ENDCALL           
 key 62    ENDCALL           
 key 229   MENU              
 key 139   MENU              
@@ -86,5 +86,5 @@ key 155   ENVELOPE
 key 12    MINUS
 key 13    EQUALS
 key 215   AT
-key 152 HOLD
+key 152   POWER WAKE_DROPPED
 
