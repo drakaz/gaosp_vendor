@@ -136,6 +136,13 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/bin/akmd2 | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/BCM4325D1_004[1][1].002.004.0085.0097.hcd
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/bin/BCM4325D1_004[1][1].002.004.0085.0097.hcd | $(ACP)
+	$(transform-prebuilt-to-target)
+
+
+
 # Proprietary lib
 file := $(TARGET_OUT)/lib/libsec-ril.so
 ALL_PREBUILT += $(file)

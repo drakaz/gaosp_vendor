@@ -26,6 +26,7 @@ fi
 cd tmp/system/ && tar -xvf ../../$TAR system -C . && ../../$UNYAFFS_BIN system && rm system && cd ../ && zip -r ../$ZIP system && cd ../ && rm -rf tmp/
 unzip -j -o $ZIP system/bin/akmd2 -d proprietary/bin/
 unzip -j -o $ZIP system/bin/vold -d proprietary/bin/
+unzip -j -o $ZIP system/bin/BCM4325D1* -d proprietary/bin/
 unzip -j -o $ZIP system/lib/libsec-ril.so -d proprietary/lib/
 unzip -j -o $ZIP system/lib/libloc_api.so -d proprietary/lib/
 unzip -j -o $ZIP system/lib/hw/copybit.samsung.so -d proprietary/lib/hw/
