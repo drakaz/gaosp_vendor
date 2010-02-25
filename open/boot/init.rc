@@ -105,6 +105,10 @@ loglevel 3
     chown system system /cache/recovery
     chmod 0771 /cache/recovery
 
+    # Create cache for dalvik-cache
+    mkdir /cache/dalvik-cache
+    chmod 0777 /cache/dalvik-cache
+
     #change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
     chmod 0440 /proc/vmallocinfo
