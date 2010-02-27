@@ -15,6 +15,9 @@ sync;
 if [ "$1" = "-r" ]; 
 then
 	toolbox reboot -f;
+elif [ "$1" = "-e" ];
+then
+	toolbox reboot recovery;
 else
 	toolbox reboot -fp;
 fi

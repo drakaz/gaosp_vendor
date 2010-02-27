@@ -444,6 +444,10 @@ service reboot /system/xbin/shutdown -r
 service poweroff /system/xbin/shutdown
     disabled
 
+service rebootRecovery /system/xbin/shutdown -e
+    disabled
+    oneshot
+
 # USB internet sharing from cyanogen
 service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -d
     disabled
