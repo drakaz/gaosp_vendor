@@ -8,6 +8,8 @@ TARGET_CPU_ABI := armeabi
 # JIT
 # WITH_JIT := true
 
+BUILD_OLD_SU := false
+
 BOARD_HAVE_BLUETOOTH    := true
 BOARD_HAVE_BLUETOOTH_BCM    := true
 USE_QEMU_GPS_HARDWARE   := false
