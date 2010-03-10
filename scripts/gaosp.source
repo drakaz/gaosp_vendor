@@ -1,0 +1,41 @@
+# Source
+source $PWD/build/envsetup.sh
+
+# Lunch 
+lunch I7500-eng
+
+# Function
+function gaosp_help {
+echo " "
+echo "-----------------------------------------------------------"
+echo "-------------------------- HELP ---------------------------"
+echo "-----------------------------------------------------------"
+echo " "
+echo "$ update_repo : update the google and gaosp repositories with latest manifest (step 1 on build process)"
+echo "$ build_repo : build gaosp (step 2 of build process, produce system.img image)"
+echo "$ mkupdate : make and update.zip with the latest builded system.img (step 3 on build process)"
+echo "$ clean : clean gaosp build"
+echo "$ build_all All in one (step 1, 2, 3 in one command)"
+echo "$ gaosp_help : print this help"
+echo " "
+echo " "
+} 
+
+function welcome {
+echo "-----------------------------------------------------------"
+echo "-------------------- Welcome to GAOSP ---------------------"
+echo "-- Please take a look at http://code.google.com/p/gaosp/ --"
+echo "-----------------------------------------------------------"
+
+}
+
+# Alias
+alias update_repo='vendor/Samsung/I7500/scripts/update_repo.sh'
+alias build_repo='vendor/Samsung/I7500/scripts/build_repo.sh'
+alias mkupdate='vendor/Samsung/I7500/scripts/mkupdate.sh'
+alias clean='vendor/Samsung/I7500/scripts/clean.sh'
+alias build_all='vendor/Samsung/I7500/scripts/update_repo.sh; vendor/Samsung/I7500/scripts/build_repo.sh; vendor/Samsung/I7500/scripts/mkupdate.sh '
+
+
+welcome
+gaosp_help
