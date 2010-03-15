@@ -18,3 +18,4 @@ ro.setupwizard.mode=DISABLED
 net.bt.name=Android
 ro.config.sync=yes
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+ro.modversion=gaosp-beta
