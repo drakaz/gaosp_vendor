@@ -1,3 +1,6 @@
+#################################
+########### On init #############
+################################# 
 
 on init
 
@@ -5,7 +8,7 @@ sysclktz 0
 
 loglevel 3
 
-# setup the global environment
+# Setup the global environment
     export PATH /system/xbin:/sbin:/system/sbin:/system/bin
     export LD_LIBRARY_PATH /system/lib
     export ANDROID_BOOTLOGO 1
@@ -14,7 +17,10 @@ loglevel 3
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar
-
+    export TERMINFO /system/etc/terminfo
+    export HOME /root/
+    export TMPDIR /data/local/tmp
+    
 # Backward compatibility
     symlink /system/etc /etc
     symlink /sys/kernel/debug /d
@@ -28,8 +34,10 @@ loglevel 3
     mkdir /sqlite_stmt_journals 01777 root root
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
 
+# Mount rootfs
     mount rootfs rootfs / ro remount
 
+# Kernel configuration
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
     write /proc/cpu/alignment 4
@@ -45,12 +53,10 @@ loglevel 3
     chown system system /dev/cpuctl/tasks
     chmod 0777 /dev/cpuctl/tasks
     write /dev/cpuctl/cpu.shares 1024
-
     mkdir /dev/cpuctl/fg_boost
     chown system system /dev/cpuctl/fg_boost/tasks
     chmod 0777 /dev/cpuctl/fg_boost/tasks
     write /dev/cpuctl/fg_boost/cpu.shares 1024
-
     mkdir /dev/cpuctl/bg_non_interactive
     chown system system /dev/cpuctl/bg_non_interactive/tasks
     chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
@@ -65,51 +71,43 @@ loglevel 3
     mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev
     mount yaffs2 mtd@data /dbdata nosuid nodev
 
-    # We chown/chmod /data again so because mount is run as root + defaults
+# We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
     chmod 0771 /data
 
-    # modules
+# Modules
     insmod /system/lib/modules/dpram.ko
 
-    # Create dump dir and collect dumps.
-    # Do this before we mount cache so eventually we can use cache for
-    # storing dumps on platforms which do not have a dedicated dump partition.
+# Create dump dir and collect dumps.
+# Do this before we mount cache so eventually we can use cache for
+# storing dumps on platforms which do not have a dedicated dump partition.
    
     mkdir /data/dontpanic
     chown root log /data/dontpanic
     chmod 0750 /data/dontpanic
-
     # Collect apanic data, free resources and re-arm trigger
     copy /proc/apanic_console /data/dontpanic/apanic_console
     chown root log /data/dontpanic/apanic_console
     chmod 0640 /data/dontpanic/apanic_console
-
     copy /proc/apanic_threads /data/dontpanic/apanic_threads
     chown root log /data/dontpanic/apanic_threads
     chmod 0640 /data/dontpanic/apanic_threads
-
     write /proc/apanic_console 1
-
     # Collect ramconsole data
     copy /proc/last_kmsg /data/dontpanic/last_kmsg
     chown root log /data/dontpanic/last_kmsg
     chmod 0640 /data/dontpanic/last_kmsg
 
-    # Same reason as /data above
+# Same reason as /data above
     mount yaffs2 mtd@cache /cache nosuid nodev
     chown system cache /cache
     chmod 0777 /cache
 
-    # This may have been created by the recovery system with odd permissions
+# This may have been created by the recovery system with odd permissions
     chown system system /cache/recovery
     chmod 0771 /cache/recovery
 
-    # Create cache for dalvik-cache
-    mkdir /cache/dalvik-cache
-    chmod 0777 /cache/dalvik-cache
-
-    #change permissions on vmallocinfo so we can grab it from bugreports
+#change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
     chmod 0440 /proc/vmallocinfo
 
@@ -133,14 +131,14 @@ loglevel 3
     mkdir /data/app 0771 system system
     mkdir /data/property 0700 root root
 
-    # devices chmod
+# Devices chmod
     chmod 0771 /dev/dpram0
     chmod 0771 /dev/dpram1
     chmod 0771 /dev/dpramerr
     chmod 0777 /dev/max9877
     chmod 0777 /dev/graphics/fb0
 
-    # Permissions for btld_testmode
+# Permissions for btld_testmode
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /dev/uinput
     chmod 0666 /dev/uinput
@@ -153,15 +151,15 @@ loglevel 3
     chmod 0666 /dev/msm_snd
     chown system system /dev/smb380
     chmod 0777 /dev/smb380
-    # Permissions for the drexe
+# Permissions for the drexe
     chmod 0777 /sys/class/power_supply/battery/capacity
     chmod 0777 /sys/power/state
     chmod 0777 /sys/class/sec/param/download_mode
 
-    # Compatibility
+# For Compatibility
     symlink /system/lib/modules /system/libmodules
 
-    # create dalvik-cache and double-check the perms
+# create dalvik-cache and double-check the perms
     mkdir /data/dalvik-cache 0777 system system
     chown system system /data/dalvik-cache
     chmod 0777 /data/dalvik-cache
@@ -169,18 +167,23 @@ loglevel 3
     chown system system /data/dalvik-cache
     chmod 0777 /data/dalvik-cache
 
-    # create the lost+found directories, so as to enforce our permissions
+# create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
     mkdir /cache/lost+found 0770
 
-    # double check the perms, in case lost+found already exists, and set owner
+# double check the perms, in case lost+found already exists, and set owner
     chown root root /data/lost+found
     chmod 0770 /data/lost+found
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
+# Wifi interface
     setprop wifi.interface "eth0"
 
+#################################
+########### On boot #############
+################################# 
+    
 on boot
 # basic network init
     ifup lo
@@ -215,20 +218,62 @@ on boot
 # Write value must be consistent with the above properties.
 # Note that the driver only supports 6 slots, so we have HOME_APP at the
 # same memory level as services.
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,7,14,15
 
+# @drakaz : tunning
+    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,7,14,15
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
-    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,5120,5632,6144
-
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,2560,3072,3584,5632
+    #write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,5120,5632,6144
     # Set init its forked children's oom_adj.
     write /proc/1/oom_adj -16
-
     # Tweak background writeout
     write /proc/sys/vm/dirty_expire_centisecs 200
     write /proc/sys/vm/dirty_background_ratio  5
 
-    # Permissions for System Server and daemons.
+# @drakaz : EXPERIMENTAL : other tweaks kernel
+# Nombre de page à ecrire en swap 
+     write /proc/sys/vm/page-cluster 0
+# Groupe les ecriture sur ssd par block (defaut : 0 : desactive)
+     write /proc/sys/vm/laptop_mode 0
+# Delais d'attente pour l'ecriture des anciennes données sur disque (defaut : 3000, 500)
+     write /proc/sys/vm/dirty_expire_centisecs 0
+     write /proc/sys/vm/dirty_writeback_centisecs 0
+# % memoire avant ecriture par les apps (defaut : 10)
+     write /proc/sys/vm/dirty_ratio 95
+# % memoire avant ecriture par pdflush (defaut : 5)
+     write /proc/sys/vm/dirty_background_ratio 60
+# Kill en cas de depassement memoire 
+     write /proc/sys/vm/panic_on_oom 0
+# Purge page_cache, dentrie, inode (default : 0 uniquement pagechache. 3 : all)  - Dangeureux
+     write /proc/sys/vm/drop_caches 3
+# Memoire minimal dispo (si < valeur, oom) (Defaut : 1249)
+     write /proc/sys/vm/min_free_kbytes 1249
+# Oom
+     write /proc/sys/vm/oom_kill_allocating_task 1
+# Crache pressure
+     write /proc/sys/vm/vfs_cache_pressure 10
+# Swapiness 
+     write /proc/sys/vm/swappiness 0
+
+# @drakaz : Changement des droits sur les changements de frequences cpu
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+# @drakaz : changement de la règle de scaling cpu par défaut
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+# @drakaz : tuning scaling
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 528000
+
+
+# Permissions for System Server and daemons.
     chown radio system /sys/android_power/state
     chown radio system /sys/android_power/request_state
     chown radio system /sys/android_power/acquire_full_wake_lock

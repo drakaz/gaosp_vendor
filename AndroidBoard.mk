@@ -28,10 +28,15 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := /open/keylayout/azerty.kcm
 include $(BUILD_KEY_CHAR_MAP)
 
-# init.rc
+# boot files
 file := $(TARGET_ROOT_OUT)/init.rc
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/boot/init.rc | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_ROOT_OUT)/logo.rle
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/boot/logo.rle | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # open etc
