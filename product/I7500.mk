@@ -3,7 +3,7 @@ PRODUCT_BRAND := I7500
 PRODUCT_NAME := I7500
 PRODUCT_DEVICE := I7500
 PRODUCT_MANUFACTURER := Samsung
-BUILD_ID := BETA2
+BUILD_ID := PUBLIC_BETA1
 
 #PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
 
@@ -88,6 +88,7 @@ PRODUCT_PACKAGES := \
 
 # Locales
 PRODUCT_LOCALES := \
+en_GB \
 ar_EG \
 ar_IL \
 bg_BG \
@@ -101,7 +102,6 @@ de_LI \
 el_GR \
 en_AU \
 en_CA \
-en_GB \
 en_IE \
 en_IN \
 en_NZ \
