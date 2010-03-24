@@ -75,6 +75,12 @@ loglevel 3
     chown system system /data
     chmod 0771 /data
 
+# other chmod
+    mount yaffs2 mtd@system /system rw remount
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-run-hooks
+    chmod 7777 /system/xbin/su
+    mount yaffs2 mtd@system /system ro remount
+
 # Modules
     insmod /system/lib/modules/dpram.ko
 
@@ -489,7 +495,7 @@ service reboot /system/xbin/shutdown -r
 service poweroff /system/xbin/shutdown
     disabled
 
-service rebootRecovery /system/xbin/shutdown -e
+service RebootRecovery /system/xbin/shutdown -e
     disabled
     oneshot
 

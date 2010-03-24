@@ -52,7 +52,7 @@ PRODUCT_PACKAGES := \
     DownloadProvider \
     DeskClock \
     Email \
-    Gallery3D \
+    Gallery \
     GlobalSearch \
     GoogleSearch \
     HTMLViewer \
