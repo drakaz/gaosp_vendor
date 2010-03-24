@@ -39,6 +39,12 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/boot/logo.rle | $(ACP)
 	$(transform-prebuilt-to-target)
 
+# bootanimation
+file := $(TARGET_OUT)/media/bootanimation.zip
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/boot/bootanimation.zip | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # open etc
 file := $(TARGET_OUT)/etc/gps.conf
 ALL_PREBUILT += $(file)
