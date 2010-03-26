@@ -78,6 +78,9 @@ loglevel 3
 # other chmod
     mount yaffs2 mtd@system /system rw remount
     chmod 0777 /system/etc/dhcpcd/dhcpcd-run-hooks
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/01-test
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/20-dns.conf
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/95-configured
     chmod 7777 /system/xbin/su
     mount yaffs2 mtd@system /system ro remount
 
