@@ -28,12 +28,16 @@ loglevel 3
 # create mountpoints and mount tmpfs on sqlite_stmt_journals
     mkdir /sdcard 0000 system system
     mkdir /system
+    mkdir /system/media
     mkdir /data 0771 system system
     mkdir /cache 0777 system cache
     mkdir /config 0500 root root
     mkdir /sqlite_stmt_journals 01777 root root
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
 
+# Create dbdata
+    mkdir /dbdata
+    
 # Mount rootfs
     mount rootfs rootfs / ro remount
 
@@ -66,10 +70,16 @@ loglevel 3
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
+     chmod 6777 /system/bin/wlservice
+         chown root root /system/bin/brcm_dutMode
+         chmod 6777 /system/bin/brcm_dutMode
+	 chmod 0777 /system/etc/galaxo.conf
+	 chmod 0777 /system/etc/
     mount yaffs2 mtd@system /system ro remount
-    mount yaffs2 mtd@userdata /userdata nosuid nodev
-    mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev
-    mount yaffs2 mtd@data /dbdata nosuid nodev
+# drakaz : mount in noatime for perfs
+    mount yaffs2 mtd@userdata /userdata nosuid nodev noatime
+    mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev noatime
+    mount yaffs2 mtd@data /dbdata nosuid nodev noatime
 
 # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
@@ -83,6 +93,12 @@ loglevel 3
     chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/95-configured
     chmod 7777 /system/xbin/su
     mount yaffs2 mtd@system /system ro remount
+    
+# Databases
+   mkdir /dbdata/databases
+   chown system system /data
+   chown system system /dbdata
+   chown system system /dbdata/databases
 
 # Modules
     insmod /system/lib/modules/dpram.ko
@@ -106,7 +122,8 @@ loglevel 3
     copy /proc/last_kmsg /data/dontpanic/last_kmsg
     chown root log /data/dontpanic/last_kmsg
     chmod 0640 /data/dontpanic/last_kmsg
-
+  
+    
 # Same reason as /data above
     mount yaffs2 mtd@cache /cache nosuid nodev
     chown system cache /cache
@@ -146,6 +163,34 @@ loglevel 3
     chmod 0771 /dev/dpramerr
     chmod 0777 /dev/max9877
     chmod 0777 /dev/graphics/fb0
+    
+# Divers
+    chmod 0771 /data
+    chmod 0771 /dbdata
+    chmod 0777 /dbdata/databases
+    chmod 0666 /dev/log/radio
+    chmod 0666 /dev/log/main
+    chmod 0662 /dev/log/events
+    chmod 0666 /dev/graphics/fb0
+    chmod 0666 /dev/msm_camera0
+    chown system system /cache/recovery
+    chmod 0770 /cache/recovery
+
+    mount yaffs2 mtd@cache /cache nosuid nodev noatime
+    chown system cache /cache
+    chmod 0770 /cache
+    
+# Sensor HAL
+    chown system system /dev/bma150
+    chown system system /dev/akm8973_daemon
+    chown system system /dev/akm8973_aot
+#   chown system system /dev/bma020
+#   chown system system /dev/proximity
+    chmod 0777 /dev/bma150
+    chmod 0777 /dev/akm8973_daemon
+    chmod 0777 /dev/akm8973_aot
+#   chmod 0777 /dev/bma020
+#   chmod 0777 /dev/proximity
 
 # Permissions for btld_testmode
     chmod 0660 /dev/ttyHS0
@@ -167,7 +212,21 @@ loglevel 3
 
 # For Compatibility
     symlink /system/lib/modules /system/libmodules
-
+    
+#  fs on /data
+    mkdir /data/misc 01771 system misc
+    mkdir /data/misc/hcid 0770 bluetooth bluetooth
+    mkdir /data/local 0771 shell shell
+    mkdir /data/local/tmp 0771 shell shell
+    mkdir /data/data 0771 system system
+    mkdir /data/app-private 0771 system system
+    mkdir /data/app 0771 system system
+    mkdir /data/property 0700 root root
+    mkdir /data/misc/keystore 0770 keystore keystore
+    mkdir /data/misc/vpn 0770 system system
+    mkdir /data/misc/vpn/profiles 0770 system system
+    
+    
 # create dalvik-cache and double-check the perms
     mkdir /data/dalvik-cache 0777 system system
     chown system system /data/dalvik-cache
@@ -188,6 +247,12 @@ loglevel 3
 
 # Wifi interface
     setprop wifi.interface "eth0"
+    
+# wifi
+    chmod 0777 /system/etc/
+    mkdir /data/misc/wifi 0777 wifi wifi
+    mkdir /data/misc/dhcp 0777 dhcp dhcp
+    mkdir /data/misc/wifi/sockets 0777 wifi wifi
 
 #################################
 ########### On boot #############
@@ -201,6 +266,13 @@ on boot
 
 # set RLIMIT_NICE to allow priorities from 19 to -20
     setrlimit 13 40 40
+    
+# @drakaz : cpu ondemand scaling tweak
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 35
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/down_threshold 15
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 100000
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias 0
 
 # Define the oom_adj values for the classes of processes that can be
 # killed by the kernel.  These are used in ActivityManagerService.
@@ -265,7 +337,8 @@ on boot
 # Swapiness 
      write /proc/sys/vm/swappiness 0
 
-# @drakaz : Changement des droits sur les changements de frequences cpu
+     
+# CPU scaling permissions
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
@@ -273,14 +346,25 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
-# @drakaz : changement de la règle de scaling cpu par défaut
+# @drakaz : scaling definition
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 # @drakaz : tuning scaling
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 19200
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 528000
+     
+     
 
+# Mass Storage
+    write /sys/devices/platform/mass_storage/lun0/file /dev/block/mmcblk0p2
+    write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.1/polling 1
+    write /sys/devices/platform/mass_storage/lun1/file /dev/block/mmcblk1p1
+    write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.3/polling 0
+
+# Init
+    write /proc/1/oom_adj -16
 
 # Permissions for System Server and daemons.
     chown radio system /sys/android_power/state
@@ -320,6 +404,35 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
+    chown system system /dev/smb380
+    chmod 0777 /dev/smb380
+    chmod 0777 /sys/class/power_supply/battery/capacity
+    chmod 0777 /sys/power/state
+    chmod 0777 /sys/class/sec/param/download_mode
+    chown root radio /proc/cmdline
+    chown bluetooth bluetooth /dev/ttyHS0
+    chown system system /dev/bma150
+    chown system system /dev/akm8973_daemon
+    chown system system /dev/akm8973_aot
+    chown system system /dev/proximity
+    chmod 0777 /dev/bma150
+    chmod 0777 /dev/akm8973_daemon
+    chmod 0777 /dev/akm8973_aot
+    chmod 0777 /dev/proximity
+    chmod 0660 /dev/ttyHS0
+    chown bluetooth bluetooth /dev/uinput
+    chmod 0666 /dev/uinput
+    chmod 0777 /sys/class/rfkill/rfkill0/state
+    chmod 0777 /sys/class/rfkill/rfkill1/state
+    chmod 0666 /dev/msm_snd
+    
+    # audioTuning
+	chmod 0666 /sys/etc/stream_speaker.txt
+	chmod 0666 /sys/etc/stream_headset.txt
+	chmod 0666 /sys/etc/situation.txt
+	chmod 0777 /data/stream_speaker.txt
+        chmod 0777 /data/stream_headset.txt
+        chmod 0777 /data/situation.txt
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -408,6 +521,24 @@ service bluetoothd /system/bin/bluetoothd -n
     group bluetooth net_bt_admin misc
     disabled
 
+#btld
+service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -lpm 1
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+# DTUN HCID
+# service hcid /system/bin/hcid -s -n -f /etc/bluez/hcid.conf
+service hcid /system/bin/logwrapper /system/bin/hcid
+    socket bluetooth stream 660 bluetooth bluetooth
+    socket dbus_bluetooth stream 660 bluetooth bluetooth
+    # init.rc does not yet support applying capabilities, so run as root and
+    # let hcid drop uid to bluetooth with the right linux capabilities
+    group bluetooth net_bt_admin misc
+    disabled
+    oneshot    
+    
 service hfag /system/bin/sdptool add --channel=10 HFAG
     user bluetooth
     group bluetooth net_bt_admin
