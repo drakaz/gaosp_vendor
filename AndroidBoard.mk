@@ -177,7 +177,7 @@ $(file) : $(LOCAL_PATH)/proprietary/lib/hw/lights.samsung.so | $(ACP)
 
 file := $(TARGET_OUT)/lib/hw/sensors.samsung.so
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/lib/hw/sensors.samsung.so | $(ACP)
+$(file) : $(LOCAL_PATH)/open/lib/hw/sensors.samsung.so | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # Keylayouts

@@ -31,7 +31,6 @@ unzip -j -o $ZIP system/lib/libsec-ril.so -d proprietary/lib/
 unzip -j -o $ZIP system/lib/libloc_api.so -d proprietary/lib/
 unzip -j -o $ZIP system/lib/hw/copybit.samsung.so -d proprietary/lib/hw/
 unzip -j -o $ZIP system/lib/hw/lights.samsung.so -d proprietary/lib/hw/
-unzip -j -o $ZIP system/lib/hw/sensors.GT-I7500.so -d proprietary/lib/hw/ && mv proprietary/lib/hw/sensors.GT-I7500.so proprietary/lib/hw/sensors.samsung.so
 unzip -j -o $ZIP system/etc/rtecdc.bin -d proprietary/etc/
 unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychars/
 
