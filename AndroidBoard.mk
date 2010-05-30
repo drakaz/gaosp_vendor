@@ -39,6 +39,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/boot/logo.rle | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_ROOT_OUT)/init
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/boot/init | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # bootanimation
 file := $(TARGET_OUT)/media/bootanimation.zip
 ALL_PREBUILT += $(file)

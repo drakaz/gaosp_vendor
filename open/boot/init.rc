@@ -29,8 +29,9 @@ loglevel 3
     mkdir /sdcard 0000 system system
     mkdir /system
     mkdir /system/media
-    mkdir /data 0771 system system
-    mkdir /cache 0777 system cache
+    mkdir /data 0000 system system
+    mkdir /userdata 0000 system system
+    mkdir /cache 0000 system cache
     mkdir /config 0500 root root
     mkdir /sqlite_stmt_journals 01777 root root
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
@@ -50,23 +51,6 @@ loglevel 3
     write /proc/sys/kernel/sched_compat_yield 1
     write /proc/sys/kernel/sched_child_runs_first 0
 
-# Create cgroup mount points for process groups
-    mkdir /dev/cpuctl
-    mount cgroup none /dev/cpuctl cpu
-    chown sytem system /dev/cpuctl
-    chown system system /dev/cpuctl/tasks
-    chmod 0777 /dev/cpuctl/tasks
-    write /dev/cpuctl/cpu.shares 1024
-    mkdir /dev/cpuctl/fg_boost
-    chown system system /dev/cpuctl/fg_boost/tasks
-    chmod 0777 /dev/cpuctl/fg_boost/tasks
-    write /dev/cpuctl/fg_boost/cpu.shares 1024
-    mkdir /dev/cpuctl/bg_non_interactive
-    chown system system /dev/cpuctl/bg_non_interactive/tasks
-    chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
-    # 5.0 %
-    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
-
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
@@ -76,6 +60,11 @@ loglevel 3
 	 chmod 0777 /system/etc/galaxo.conf
 	 chmod 0777 /system/etc/
     mount yaffs2 mtd@system /system ro remount
+    
+    
+# Modules
+    insmod /system/lib/modules/dpram.ko
+    
 # drakaz : mount in noatime for perfs
     mount yaffs2 mtd@userdata /userdata nosuid nodev noatime
     mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev noatime
@@ -99,9 +88,6 @@ loglevel 3
    chown system system /data
    chown system system /dbdata
    chown system system /dbdata/databases
-
-# Modules
-    insmod /system/lib/modules/dpram.ko
 
 # Create dump dir and collect dumps.
 # Do this before we mount cache so eventually we can use cache for
@@ -133,6 +119,23 @@ loglevel 3
     chown system system /cache/recovery
     chmod 0771 /cache/recovery
 
+# Create cgroup mount points for process groups
+    mkdir /dev/cpuctl
+    mount cgroup none /dev/cpuctl cpu
+    chown sytem system /dev/cpuctl
+    chown system system /dev/cpuctl/tasks
+    chmod 0777 /dev/cpuctl/tasks
+    write /dev/cpuctl/cpu.shares 1024
+    mkdir /dev/cpuctl/fg_boost
+    chown system system /dev/cpuctl/fg_boost/tasks
+    chmod 0777 /dev/cpuctl/fg_boost/tasks
+    write /dev/cpuctl/fg_boost/cpu.shares 1024
+    mkdir /dev/cpuctl/bg_non_interactive
+    chown system system /dev/cpuctl/bg_non_interactive/tasks
+    chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
+    # 5.0 %
+    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
+    
 #change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
     chmod 0440 /proc/vmallocinfo
