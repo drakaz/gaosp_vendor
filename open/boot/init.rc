@@ -619,7 +619,7 @@ service ifcfg_eth0 /system/bin/ifconfig eth0 up
     oneshot
 
 # Bluetooth
-service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --patchram /system/bin/BCM4325D1_004[1][1].002.004.0085.0097.hcd /dev/ttyHS0
+service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --patchram /system/bin/BCM4325D1_004.002.004.0153.0156.hcd /dev/ttyHS0
     user bluetooth
     group bluetooth net_bt_admin
     disabled
