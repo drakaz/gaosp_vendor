@@ -81,6 +81,57 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/fstab | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/etc/bash.bashrc
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/bash.bashrc | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/gshadow
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/gshadow | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/passwd
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/passwd | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/profile
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/profile | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/shadow
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/shadow | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/group
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/group | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/shells
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/shells | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/zshrc
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/zshrc | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/terminfo/l/linux
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/terminfo/l/linux | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/terminfo/u/unknown
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/terminfo/u/unknown | $(ACP)
+	$(transform-prebuilt-to-target)
+
+
 # open modules
 file := $(TARGET_OUT)/lib/modules/bcm4325.ko
 ALL_PREBUILT += $(file)

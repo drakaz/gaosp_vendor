@@ -1,0 +1,119 @@
+##### ZSHRC ######
+##################
+
+echo '  ____       _                  ' 
+echo ' / ___| __ _| | __ ___  ___   _ '
+echo '| |  _ / _` | |/ _` \ \/ / | | |'
+echo '| |_| | (_| | | (_| |>  <| |_| |'
+echo ' \____|\__,_|_|\__,_/_/\_\\__, |'
+echo '                          |___/ ..... by drakaz'
+echo ' '
+
+
+
+##########################
+## Paramètres généraux ###
+##########################
+# nombre de lignes à conserver dans l'historique
+export HISTSIZE=1000
+# nombre de lignes enregistrées après que vous quittez le shell
+export SAVEHIST=1000
+# emplacement de l'historique
+export HISTFILE=~/.zhistory
+# ajout de la commande au fichier historique une fois exécutée
+setopt inc_append_history
+# Je ne veux JAMAIS de beeps
+unsetopt beep
+unsetopt hist_beep
+unsetopt list_beep
+# Demande confirmation pour 'rm *'
+unsetopt rm_star_silent
+# Ctrl+D est équivalent à 'logout'
+unsetopt ignore_eof
+# Un vrai editeur
+export EDITOR=/system/xbin/vim
+
+
+
+##########################
+###### Alias #############
+##########################
+
+# Raccourcis pour 'ls'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
+# Quelques alias pratiques
+alias c='clear'
+alias less='less --quiet'
+alias s='cd ..'
+alias df='df -h'
+alias du='du -h'
+
+
+#########################
+###### Completion #######
+#########################
+
+# Crée un cache des complétion possibles
+# très utile pour les complétion qui demandent beaucoup de temps
+# comme la recherche d'un paquet aptitude install moz<tab>
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh_cache
+# des couleurs pour la complétion
+# faites un kill -9 <tab><tab> pour voir :)
+zmodload zsh/complist
+setopt extendedglob
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
+# Correction des commandes
+setopt correctall
+
+
+# Style de la completion
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
+zstyle ':completion:*' max-errors 3 numeric
+zstyle ':completion:*' use-compctl false
+
+# Traite les liens symboliques comme il faut
+setopt chase_links
+# Quand l'utilisateur commence sa commande par '!' pour faire de la
+# complétion historique, il n'exécute pas la commande immédiatement
+# mais il écrit la commande dans le prompt
+setopt hist_verify
+# Si la commande est invalide mais correspond au nom d'un sous-répertoire
+# exécuter 'cd sous-répertoire'
+setopt auto_cd
+# L'exécution de "cd" met le répertoire d'où l'on vient sur la pile
+setopt auto_pushd
+# Ignore les doublons dans la pile
+setopt pushd_ignore_dups
+# N'affiche pas la pile après un "pushd" ou "popd"
+setopt pushd_silent
+# "pushd" sans argument = "pushd $HOME"
+setopt pushd_to_home
+
+
+
+##########################
+######### Bind ###########
+##########################
+
+# Un charset français
+export LESSCHARSET="latin1"
+
+# Correspondance touches-fonction
+bindkey '^A'    beginning-of-line       # Home
+bindkey '^E'    end-of-line             # End 
+bindkey '^D'    delete-char             # Del 
+bindkey '^[[3~' delete-char             # Del 
+bindkey '^[[2~' overwrite-mode          # Insert
+bindkey '^[[5~' history-search-backward # PgUp  
+bindkey '^[[6~' history-search-forward  # PgDn  
+
+##########################
+####### Prompt ###########
+##########################
+
+PROMPT="[root@galaxy:%/]"
