@@ -108,6 +108,10 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/shutdown | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/rc
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/rc | $(ACP)
+	$(transform-prebuilt-to-target)
 
 
 ###########
