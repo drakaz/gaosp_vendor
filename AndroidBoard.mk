@@ -76,6 +76,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/wpa_supplicant.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/etc/fstab
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/fstab | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # open modules
 file := $(TARGET_OUT)/lib/modules/bcm4325.ko
 ALL_PREBUILT += $(file)
