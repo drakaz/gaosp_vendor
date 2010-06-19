@@ -148,6 +148,16 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/modules/multipdp.ko | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/lib/modules/ramzswap.ko
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/modules/ramzswap.ko | $(ACP)
+	$(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/lib/modules/tun.ko
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/modules/tun.ko | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # open bin
 file := $(TARGET_OUT)/xbin/dropbear
 ALL_PREBUILT += $(file)

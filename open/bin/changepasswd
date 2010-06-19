@@ -1,0 +1,5 @@
+#!/system/bin/sh
+
+remountrw
+passwd $1
+remountro
