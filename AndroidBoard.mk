@@ -199,9 +199,9 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/rmmod | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/xbin/rzcontrol
+file := $(TARGET_OUT)/xbin/rzscontrol
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/rzcontrol | $(ACP)
+$(file) : $(LOCAL_PATH)/open/bin/rzscontrol | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/xbin/scp
