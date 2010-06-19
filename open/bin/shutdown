@@ -7,7 +7,7 @@ toolbox stop dhcpcd;
 
 sleep 1;
 
-for i in `cat /proc/mounts | cut -f 2 -d " "`;
+for i in `cat /proc/mounts | grep -v rootfs | cut -f 2 -d " "`;
 do
 	/system/bin/logwrapper echo "Reboot : umounting $i"
 	busybox mount -o remount,ro $i 2>&1 > /dev/null;
