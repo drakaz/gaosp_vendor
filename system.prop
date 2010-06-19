@@ -3,6 +3,9 @@ rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.telephony.default_network = 0
 
+# Wifi
+wifi.interface=eth0
+
 # Others
 ro.com.google.locationfeatures=1
 ro.sf.lcd_density = 160
