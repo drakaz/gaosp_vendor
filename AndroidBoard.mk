@@ -229,6 +229,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/zsh | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/bash
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/bash | $(ACP)
+	$(transform-prebuilt-to-target)
+
 ###########
 # busybox #
 ###########
