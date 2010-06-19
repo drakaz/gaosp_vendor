@@ -3,7 +3,7 @@ PRODUCT_BRAND := I7500
 PRODUCT_NAME := I7500
 PRODUCT_DEVICE := I7500
 PRODUCT_MANUFACTURER := Samsung
-BUILD_ID := PUBLIC_BETA1
+BUILD_ID := PUBLIC_BETA2
 
 #PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
 
@@ -52,7 +52,7 @@ PRODUCT_PACKAGES := \
     DownloadProvider \
     DeskClock \
     Email \
-    Gallery \
+    Gallery3D \
     GlobalSearch \
     GoogleSearch \
     HTMLViewer \
@@ -81,9 +81,7 @@ PRODUCT_PACKAGES := \
     VoiceDialer \
     VpnServices \
     WebSearchProvider \
-    VisualizationWallpapers \
     LiveWallpapersPicker \
-    LiveWallpapers \
     Superuser
 
 # Locales

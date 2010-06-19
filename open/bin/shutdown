@@ -1,15 +1,15 @@
 #!/system/bin/sh
 
-/system/bin/logwrapper echo "Reboot : start"
+/system/bin/logwrapper echo "Reboot : start" &
 
 toolbox stop;
 toolbox stop dhcpcd;
 
 sleep 1;
 
-for i in `cat /proc/mounts | grep -v rootfs | cut -f 2 -d " "`;
+for i in `cat /proc/mounts | cut -f 2 -d " "`;
 do
-	/system/bin/logwrapper echo "Reboot : umounting $i"
+	/system/bin/logwrapper echo "Reboot : umounting $i" &
 	busybox mount -o remount,ro $i 2>&1 > /dev/null;
 done
 
@@ -19,7 +19,7 @@ if [ "$1" = "-r" ];
 then
 	while true
 	do
-		/system/bin/logwrapper echo "Reboot : shutdown"
+		/system/bin/logwrapper echo "Reboot : shutdown" &
 		toolbox reboot -f;
 		sleep 10
 	done
@@ -27,15 +27,16 @@ elif [ "$1" = "-e" ];
 then
 	while true
 	do
-		/system/bin/logwrapper echo "Reboot : recovery mode"
+		/system/bin/logwrapper echo "Reboot : recovery mode" &
 		toolbox reboot -f recovery;
 		sleep 10
 	done
 else
 	while true
 	do
-		/system/bin/logwrapper echo "Reboot : reboot"
+		/system/bin/logwrapper echo "Reboot : reboot" &
 		toolbox reboot -fp;
 		sleep 10
 	done
 fi
+
