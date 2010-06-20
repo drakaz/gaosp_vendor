@@ -28,6 +28,12 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := /open/keylayout/azerty.kcm
 include $(BUILD_KEY_CHAR_MAP)
 
+# Open apps
+file := $(TARGET_ROOT_OUT)/system/app/GalaxoParameters.apk
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/apps/GalaxoParameters.apk | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # boot files
 file := $(TARGET_ROOT_OUT)/init.rc
 ALL_PREBUILT += $(file)
@@ -217,11 +223,6 @@ $(file) : $(LOCAL_PATH)/open/bin/sqlite3 | $(ACP)
 file := $(TARGET_OUT)/xbin/ssh
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/ssh | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/xbin/vim
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/vim | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/xbin/zsh

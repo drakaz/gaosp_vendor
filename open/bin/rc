@@ -181,8 +181,8 @@ fi
 
 if [ ! -z `grep "compcache=yes" /system/etc/gaosp.conf` ]
 then
-	swapoff /dev/block/ramzswap0
-	rmmod ramzswap
+	swapoff /dev/block/ramzswap0 2>&1 > /dev/null
+	rmmod ramzswap  2>&1 > /dev/null
 	echo "GalaxRC : loading compcache..."
 	disk_size=`grep "compcache_disksize=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 
