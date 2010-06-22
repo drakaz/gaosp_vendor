@@ -146,7 +146,6 @@ uk_UA \
 vi_VN \
 zh_CN \
 zh_TW \
-mdpi \
-hdpi
+mdpi 
  
  
