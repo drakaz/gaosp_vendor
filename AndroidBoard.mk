@@ -45,11 +45,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/boot/logo.rle | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_ROOT_OUT)/init
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/boot/init | $(ACP)
-	$(transform-prebuilt-to-target)
-
 # bootanimation
 file := $(TARGET_OUT)/media/bootanimation.zip
 ALL_PREBUILT += $(file)
@@ -208,16 +203,6 @@ $(file) : $(LOCAL_PATH)/open/bin/rmmod | $(ACP)
 file := $(TARGET_OUT)/xbin/rzscontrol
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/rzscontrol | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/xbin/scp
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/scp | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/xbin/ssh
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/ssh | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/xbin/zsh
