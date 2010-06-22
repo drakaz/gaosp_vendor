@@ -2,7 +2,7 @@
 # 
 # Product-specific compile-time definitions.
 #
-TARGET_BOARD_PLATFORM := I7500
+TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
 TARGET_ARCH_VARIANT := armv5te
