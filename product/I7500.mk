@@ -18,7 +18,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Files
 PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
-		      vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold
++                     vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold \
++                     vendor/Samsung/I7500/open/boot/init:root/init
 
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
