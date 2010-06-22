@@ -41,6 +41,7 @@ PRODUCT_PACKAGES := \
     AlarmProvider \
     AccountAndSyncSettings \
     ApplicationsProvider \
+    ADWLauncher \
     Bluetooth \
     Browser \
     Bugreport \
@@ -61,7 +62,6 @@ PRODUCT_PACKAGES := \
     HTMLViewer \
     IM \
     ImProvider \
-    Launcher \
     LatinIME \
     ManagementProvider \
     MediaProvider \
