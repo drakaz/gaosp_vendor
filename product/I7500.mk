@@ -12,7 +12,9 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.config.notification_sound=OnTheHunt.ogg \
     ro.config.alarm_alert=Alarm_Classic.ogg \
     keyguard.no_require_sim=true \
-    ro.com.android.dateformat=MM-dd-yyyy 
+    ro.com.android.dateformat=MM-dd-yyyy \
+    dalvik.vm.dexopt-data-only=1
+
 
 # Files
 PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
