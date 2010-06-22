@@ -215,11 +215,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/scp | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/xbin/sqlite3
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/sqlite3 | $(ACP)
-	$(transform-prebuilt-to-target)
-
 file := $(TARGET_OUT)/xbin/ssh
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/ssh | $(ACP)
