@@ -7,14 +7,29 @@ BUILD_ID := PUBLIC_BETA2
 
 #PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
 
+NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
 PRODUCT_PROPERTY_OVERRIDES := \
-    ro.config.notification_sound=OnTheHunt.ogg \
+    ro.config.ringtone=DonMessWivIt.ogg \
+    ro.config.notification_sound=pixiedust.ogg \
     ro.config.alarm_alert=Alarm_Classic.ogg \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=MM-dd-yyyy \
-    dalvik.vm.dexopt-data-only=1
-
+    dalvik.vm.dexopt-data-only=1 \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dataroaming=false \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-google \
+    ro.setupwizard.mode=OPTIONAL \
+    net.bt.name=Android \
+    ro.com.google.locationfeatures=1 \
+    ro.com.google.gmsversion=2.1_r1 \
+    ro.config.sync=yes \
+    dalvik.vm.stack-trace-file=/data/anr/traces.txt \
+    ro.media.dec.aud.wma.enabled=1 \
+    ro.media.dec.vid.wmv.enabled=1
 
 # Files
 PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
