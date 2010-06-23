@@ -7,6 +7,7 @@ else
 TAR=$1
 fi
 ZIP="I7500-PDA.zip"
+ZIP2="CM.zip"
 
 mkdir -p tmp/system/
 mkdir proprietary
@@ -37,7 +38,7 @@ unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychar
 (cd qcom/android-open/libopencorehw && ./unzip-files.sh $ZIP)
 (cd qcom/android-open/loc_api && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/libqcamera && ./unzip-files.sh $ZIP)
-(cd qcom/proprietary-open/dsp/mm && ./unzip-files.sh $ZIP)
+(cd qcom/proprietary-open/dsp/mm && ./unzip-files.sh $ZIP2)
 (cd qcom/proprietary-open/libaudioeq && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/libgps && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/libhgl && ./unzip-files.sh $ZIP)
