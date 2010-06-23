@@ -42,3 +42,4 @@ unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychar
 (cd qcom/proprietary-open/libaudioeq && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/libgps && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/libhgl && ./unzip-files.sh $ZIP)
+(cd qcom/proprietary-open/libegl && ./unzip-files.sh $ZIP2)
