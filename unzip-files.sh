@@ -35,8 +35,7 @@ unzip -j -o $ZIP system/lib/hw/lights.samsung.so -d proprietary/lib/hw/
 unzip -j -o $ZIP system/etc/rtecdc.bin -d proprietary/etc/
 unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychars/
 
-(cd qcom/android-open/libopencorehw && ./unzip-files.sh $ZIP)
-(cd qcom/android-open/loc_api && ./unzip-files.sh $ZIP)
+(cd qcom/proprietary-open/loc_api && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/libqcamera && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/mm && ./unzip-files.sh $ZIP2)
 (cd qcom/proprietary-open/libaudioeq && ./unzip-files.sh $ZIP)
