@@ -215,6 +215,13 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/bash | $(ACP)
 	$(transform-prebuilt-to-target)
 
+# open lib
+
+file := $(TARGET_OUT)/lib/librun.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/lib/librun.so | $(ACP)
+	$(transform-prebuilt-to-target)
+
 ###########
 # busybox #
 ###########
