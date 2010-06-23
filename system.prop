@@ -5,6 +5,7 @@ ro.telephony.default_network = 0
 
 # Wifi
 wifi.interface=eth0
+wifi.supplicant_scan_interval=15
 
 # Others
 ro.com.google.locationfeatures=1
@@ -22,3 +23,15 @@ net.bt.name=Android
 ro.config.sync=yes
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
 ro.modversion=GAOSP Public BETA 2
+
+# Media settings
+ro.media.enc.file.format = 3gp,mp4
+ro.media.enc.vid.codec = m4v,h263
+ro.media.enc.vid.h263.width = 176,352
+ro.media.enc.vid.h263.height = 144,288
+ro.media.enc.vid.h263.bps = 64000,800000
+ro.media.enc.vid.h263.fps = 1,30
+ro.media.enc.vid.m4v.width = 176,352
+ro.media.enc.vid.m4v.height = 144,288
+ro.media.enc.vid.m4v.bps = 64000,800000
+ro.media.enc.vid.m4v.fps = 1,30
