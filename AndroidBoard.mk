@@ -67,9 +67,9 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/vold.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/etc/gaosp.conf
+file := $(TARGET_OUT)/etc/galaxo.conf
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/etc/gaosp.conf | $(ACP)
+$(file) : $(LOCAL_PATH)/open/etc/galaxo.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/etc/wifi/wpa_supplicant.conf
