@@ -34,6 +34,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/apps/GalaxoParameters.apk | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_ROOT_OUT)/system/app/GalaxoConf.apk
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/apps/GalaxoConf.apk | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # boot files
 file := $(TARGET_ROOT_OUT)/init.rc
 ALL_PREBUILT += $(file)
