@@ -1,10 +1,10 @@
 LOCAL_PATH := $(call my-dir)
 
 # Kernel
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
-endif
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
+#endif
+#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
 
 file := $(INSTALLED_KERNEL_TARGET)
 ALL_PREBUILT += $(file)
