@@ -137,6 +137,10 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/terminfo/u/unknown | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/etc/dhcpcd/dhcpcd.conf
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/dhcpcd.conf | $(ACP)
+	$(transform-prebuilt-to-target)
 
 # open modules
 file := $(TARGET_OUT)/lib/modules/bcm4325.ko
