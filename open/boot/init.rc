@@ -39,7 +39,7 @@ device /dev/multidp 0640 radio radio
     mkdir /system/media
     mkdir /data 0000 system system
     mkdir /userdata 0000 system system
-    mkdir /cache 0000 system cache
+    mkdir /cache 0777 system cache
     mkdir /config 0500 root root
     mkdir /sqlite_stmt_journals 01777 root root
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
@@ -206,10 +206,6 @@ device /dev/multidp 0640 radio radio
     chmod 0666 /dev/msm_camera0
     chown system system /cache/recovery
     chmod 0770 /cache/recovery
-
-    mount yaffs2 mtd@cache /cache nosuid nodev noatime
-    chown system cache /cache
-    chmod 0770 /cache
     
 # Sensor HAL
     chown system system /dev/bma150
@@ -259,12 +255,12 @@ device /dev/multidp 0640 radio radio
     
     
 # create dalvik-cache and double-check the perms
-    mkdir /data/dalvik-cache 0777 system system
+    mkdir /cache/dalvik-cache 0777 system system
     chown system system /data/dalvik-cache
-    chmod 0777 /data/dalvik-cache
-    mkdir /data/dalvik-cache 0777 system system
-    chown system system /data/dalvik-cache
-    chmod 0777 /data/dalvik-cache
+    chmod 0777 /cache/dalvik-cache
+    mkdir /cache/dalvik-cache 0777 system system
+    chown system system /cache/dalvik-cache
+    chmod 0777 /cache/dalvik-cache
 
 # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
