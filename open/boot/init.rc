@@ -8,6 +8,13 @@ sysclktz 0
 
 loglevel 3
 
+#
+# Need for I7500
+#
+devwait /dev/block/mmcblk0p1
+device /dev/dpram* 0770 radio radio
+device /dev/multidp 0640 radio radio
+
 # Setup the global environment
     export PATH /system/xbin:/sbin:/system/sbin:/system/bin
     export LD_LIBRARY_PATH /system/lib
