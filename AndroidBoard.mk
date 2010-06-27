@@ -286,11 +286,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/lib/libsec-ril.so | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/lib/libloc_api.so
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/lib/libloc_api.so | $(ACP)
-	$(transform-prebuilt-to-target)
-
 file := $(TARGET_OUT)/lib/hw/lights.samsung.so
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/lib/hw/lights.samsung.so | $(ACP)
