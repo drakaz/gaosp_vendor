@@ -34,9 +34,9 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/apps/GalaxoParameters.apk | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/app/GalaxoConf.apk
+file := $(TARGET_OUT)/app/GaospConf.apk
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/apps/GalaxoConf.apk | $(ACP)
+$(file) : $(LOCAL_PATH)/open/apps/GaospConf.apk | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # boot files
@@ -72,9 +72,9 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/vold.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/etc/galaxo.conf
+file := $(TARGET_OUT)/etc/gaosp.conf
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/etc/galaxo.conf | $(ACP)
+$(file) : $(LOCAL_PATH)/open/etc/gaosp.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/etc/wifi/wpa_supplicant.conf
