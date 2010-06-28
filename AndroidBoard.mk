@@ -224,6 +224,12 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/bash | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/fbvncserver
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/fbvncserver | $(ACP)
+	$(transform-prebuilt-to-target)
+
+
 # open lib
 
 file := $(TARGET_OUT)/lib/librun.so
