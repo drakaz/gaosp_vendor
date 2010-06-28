@@ -31,7 +31,6 @@ device /dev/multidp 0640 radio radio
 # Backward compatibility
     symlink /system/etc /etc
     symlink /sys/kernel/debug /d
-    symlink /system/lib/modules /system/libmodules
 
 # create mountpoints and mount tmpfs on sqlite_stmt_journals
     mkdir /sdcard 0000 system system
@@ -67,9 +66,10 @@ device /dev/multidp 0640 radio radio
          chmod 6777 /system/bin/brcm_dutMode
 	 chmod 0777 /system/etc/galaxo.conf
 	 chmod 0777 /system/etc/
+# Backward compatibility for libmodules
+   	 symlink /system/lib/modules /system/libmodules
     mount yaffs2 mtd@system /system ro remount
-    
-    
+
 # Modules
     insmod /system/lib/modules/dpram.ko
     
