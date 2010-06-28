@@ -31,10 +31,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.media.dec.aud.wma.enabled=1 \
     ro.media.dec.vid.wmv.enabled=1
 
-# Files
-PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
-                     vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold
-
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
 # TTS languages
