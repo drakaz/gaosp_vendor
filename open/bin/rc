@@ -4,7 +4,7 @@
 sleep 5
 
 # Montage en rw
-echo "GalaxRC : Remount in RW..."
+echo "GaospRC : Remount in RW..."
 /system/bin/bash /system/xbin/remountrw
 
 
@@ -12,7 +12,7 @@ echo "GalaxRC : Remount in RW..."
 ##### SSHD #######
 ##################
 
-if [ ! -z `grep "sshd=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "sshd=yes" /system/etc/gaosp.conf` ]
 then
 	kill -9 `pidof dropbear`
 # Verification du necessaire pour dropbear et lancement du serveur sshd
@@ -32,7 +32,7 @@ then
 	
 
 # Execution du serveur SSHD
-	echo "GalaxRC : Starting SSHD server..."
+	echo "GaospRC : Starting SSHD server..."
 	/system/bin/logwrapper /system/xbin/dropbear &
 
 else
@@ -43,12 +43,12 @@ fi
 ##### inadyn ######
 ###################
 
-if [ ! -z `grep "inadyn=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "inadyn=yes" /system/etc/gaosp.conf` ]
 then
-	echo "GalaxRC : inadyn activated, starting..."
+	echo "GaospRC : inadyn activated, starting..."
 	/system/bin/logwrapper /system/xbin/inadyn &
 else
-	echo "GalaxRC : inadyn deactivated, not started"
+	echo "GaospRC : inadyn deactivated, not started"
 
 fi
 
@@ -56,10 +56,10 @@ fi
 ###### Prov #######
 ###################
 
-if [ ! -z `grep "provisionned=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "provisionned=yes" /system/etc/gaosp.conf` ]
 then
 # Modification de la valeur de provisioning sim
-	echo "GalaxRC : Provisionning sim..."
+	echo "GaospRC : Provisionning sim..."
 	if [ ! $(/system/xbin/sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select * from system where name='device_provisioned';" ) ]
 	then
 		/system/xbin/sqlite3 /data/data/com.android.providers.settings/databases/settings.db "INSERT INTO system (name, value) VALUES ('device_provisioned', 1);"
@@ -70,13 +70,13 @@ fi
 ###### VNC Server #######
 #########################
 
-if [ ! -z `grep "vnc=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "vnc=yes" /system/etc/gaosp.conf` ]
 then
 	kill -9 `pidof fbvncserver`
-	echo "GalaxRC : Starting VNC server..."
+	echo "GaospRC : Starting VNC server..."
 		/system/bin/logwrapper /system/xbin/fbvncserver &
 else
-	echo "GalaxRC : Vnc server deactivated, not started"
+	echo "GaospRC : Vnc server deactivated, not started"
 	kill -9 `pidof fbvncserver`
 fi
 
@@ -86,24 +86,24 @@ fi
 ##########################
 
 
-echo "GalaxRC : Applying CpuFreq sampling rule..."
-if [ ! -z `grep "overclocking=yes" /system/etc/galaxo.conf` ]
+echo "GaospRC : Applying CpuFreq sampling rule..."
+if [ ! -z `grep "overclocking=yes" /system/etc/gaosp.conf` ]
 then
 	step1=true;
-	echo "GalaxRC : overclocking CPU to 614Mhz..."
+	echo "GaospRC : overclocking CPU to 614Mhz..."
 		echo 614400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 fi
 
-if [ ! -z `grep "overclocking2=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "overclocking2=yes" /system/etc/gaosp.conf` ]
 then
 	step2=true;
-	echo "GalaxRC : overclocking CPU to 710Mhz..."
+	echo "GaospRC : overclocking CPU to 710Mhz..."
 		echo 710000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 fi
 
 if [ ! $step1 ] && [ ! $step2 ]
 then
-echo "GalaxRC : overclocking deactivated"
+echo "GaospRC : overclocking deactivated"
 		echo 528000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 fi
 
@@ -112,30 +112,30 @@ fi
 ##### Tweaks #######
 ####################
 
-echo "GalaxRC : Applying CPU sampling..."
-if [ ! -z `grep "cpu_sampling=" /system/etc/galaxo.conf` ]
+echo "GaospRC : Applying CPU sampling..."
+if [ ! -z `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
 	then
-	cpu_sampling=`grep "cpu_sampling=" /system/etc/galaxo.conf | awk -F"=" '{print $2'}`
+	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 	case $cpu_sampling in
  	0)
-		echo "GalaxRC : setting cpufreq sampling to eco mode..."
+		echo "GaospRC : setting cpufreq sampling to eco mode..."
   		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
   	;;
  	1)
-		echo "GalaxRC : setting cpufreq sampling to mixte mode..."
+		echo "GaospRC : setting cpufreq sampling to mixte mode..."
   		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
  	;;
  	2)
-		echo "GalaxRC : setting cpufreq sampling to performance mode..."
+		echo "GaospRC : setting cpufreq sampling to performance mode..."
   		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
   	;;
  	*)
-		echo "GalaxRC : setting cpufreq sampling to default mode (mixte)..."
+		echo "GaospRC : setting cpufreq sampling to default mode (mixte)..."
   		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
   	;;
 	esac
 	else
-		echo "GalaxRC : setting cpufreq sampling to default mode (eco)..."
+		echo "GaospRC : setting cpufreq sampling to default mode (eco)..."
   		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
 fi
 
@@ -145,7 +145,7 @@ fi
 ##### Renice #######
 ####################
 
-if [ ! -z `grep "renice=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "renice=yes" /system/etc/gaosp.conf` ]
 then
 	renice -20 `pidof com.android.mms`
 	renice -19 `pidof com.android.phone`
@@ -160,7 +160,7 @@ fi
 # Now managed by a-swapper
 
 # Gestion de la swap
-#echo "GalaxRC : Mouting swap..."
+#echo "GaospRC : Mouting swap..."
 #if [ ! -r /dev/block/mmcblk1p2 ]
 #then
 #	if [ ! -f /data/swapfile ]
@@ -179,12 +179,12 @@ fi
 ### Compcache ####
 ##################
 
-if [ ! -z `grep "compcache=yes" /system/etc/galaxo.conf` ]
+if [ ! -z `grep "compcache=yes" /system/etc/gaosp.conf` ]
 then
 	swapoff /dev/block/ramzswap0 2>&1 > /dev/null
 	rmmod ramzswap  2>&1 > /dev/null
-	echo "GalaxRC : loading compcache..."
-	disk_size=`grep "compcache_disksize=" /system/etc/galaxo.conf | awk -F"=" '{print $2'}`
+	echo "GaospRC : loading compcache..."
+	disk_size=`grep "compcache_disksize=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 
 	if [ -r /dev/block/mmcblk1p2 ]
 	then	
@@ -212,7 +212,7 @@ else
 fi
 
 # remontage en ro
-echo "GalaxRC : Remount in RO..."
+echo "GaospRC : Remount in RO..."
 /system/bin/bash /system/xbin/remountro &
 
 
