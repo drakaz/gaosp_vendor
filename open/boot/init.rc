@@ -256,11 +256,12 @@ device /dev/multidp 0640 radio radio
     
 # create dalvik-cache and double-check the perms
     mkdir /cache/dalvik-cache 0777 system system
+    mkdir /data/dalvik-cache/ 0777 system system
+    chown system system /cache/dalvik-cache
     chown system system /data/dalvik-cache
     chmod 0777 /cache/dalvik-cache
-    mkdir /cache/dalvik-cache 0777 system system
-    chown system system /cache/dalvik-cache
-    chmod 0777 /cache/dalvik-cache
+    chmod 0777 /data/dalvik-cache
+
 
 # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
