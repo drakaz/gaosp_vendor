@@ -3,9 +3,12 @@ PRODUCT_BRAND := I7500
 PRODUCT_NAME := I7500
 PRODUCT_DEVICE := I7500
 PRODUCT_MANUFACTURER := Samsung
-BUILD_ID := PUBLIC_BETA2
+BUILD_ID := PUBLIC_BETA3
 
-#PRODUCT_PACKAGE_OVERLAYS := vendor/Samsung/I7500/overlay
+DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
+
+# Enable root on userdebug
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
 NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
@@ -29,7 +32,23 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.config.sync=yes \
     dalvik.vm.stack-trace-file=/data/anr/traces.txt \
     ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1
+    ro.media.dec.vid.wmv.enabled=1 \
+    ro.media.dec.jpeg.memcap=10000000 \
+    wifi.supplicant_scan_interval=15 \
+    ro.telephony.default_network=0 \
+    ro.sf.lcd_density=160 \
+    # dalvik.vm.execution-mode=int:fast
+
+# Other Files
+PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
+                    vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold \
+		    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+		    frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+		    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+		    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+		    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+		    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+		    device/samsung/I7500/media_profiles.xml:/system/etc/media_profiles.xml
 
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
@@ -41,6 +60,11 @@ include frameworks/base/data/sounds/AudioPackage4.mk
 #include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 #include external/svox/pico/lang/PicoLangItItInSystem.mk
 
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+LOCAL_KERNEL := device/samsung/I7500/open/boot/kernel
+else
+LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
 
 # Packages
 PRODUCT_PACKAGES := \

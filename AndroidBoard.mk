@@ -1,11 +1,5 @@
 LOCAL_PATH := $(call my-dir)
 
-# Kernel
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
-#endif
-#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/open/boot/kernel
-
 file := $(INSTALLED_KERNEL_TARGET)
 ALL_PREBUILT += $(file)
 $(file): $(TARGET_PREBUILT_KERNEL) | $(ACP)
@@ -312,10 +306,6 @@ file := $(TARGET_OUT)/usr/keychars/I7500_keypad.kcm.bin
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/keychars/I7500_keypad.kcm.bin | $(ACP)
 	$(transform-prebuilt-to-target)
-
-# Other Files
-PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
-                     vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold
 
 
 

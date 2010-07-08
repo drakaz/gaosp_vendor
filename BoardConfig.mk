@@ -10,7 +10,7 @@ TARGET_KERNEL_CONFIG := gaosp_msm_defconfig
 TARGET_KERNEL_DIR := gaosp-kernel
 
 # JIT
-# WITH_JIT := true
+WITH_JIT := true
 
 BUILD_OLD_SU := false
 
