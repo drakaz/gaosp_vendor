@@ -40,8 +40,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
     # dalvik.vm.execution-mode=int:fast
 
 # Other Files
-PRODUCT_COPY_FILES += vendor/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
-                    vendor/Samsung/I7500/proprietary/bin/vold:system/bin/vold \
+PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
+                    device/Samsung/I7500/proprietary/bin/vold:system/bin/vold \
 		    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 		    frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 		    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
