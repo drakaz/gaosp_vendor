@@ -12,7 +12,7 @@ TARGET_KERNEL_DIR := gaosp-kernel
 # JIT
 WITH_JIT := true
 
-BUILD_OLD_SU := false
+BUILD_OLD_SU := true
 
 BOARD_HAVE_BLUETOOTH    := true
 BOARD_HAVE_BLUETOOTH_BCM    := true
