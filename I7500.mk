@@ -74,7 +74,6 @@ PRODUCT_PACKAGES := \
     AlarmProvider \
     AccountAndSyncSettings \
     ApplicationsProvider \
-    ADWLauncher \
     Bluetooth \
     Browser \
     Bugreport \
@@ -83,6 +82,7 @@ PRODUCT_PACKAGES := \
     CalendarProvider \
     Camera \
     CertInstaller \
+    CMParts \
     Contacts \
     ContactsProvider \
     CustomLocale \
@@ -91,10 +91,12 @@ PRODUCT_PACKAGES := \
     Email \
     Gallery3D \
     GlobalSearch \
+    GoogleContactsProvider \
     GoogleSearch \
     HTMLViewer \
     IM \
     ImProvider \
+    Launcher2 \
     LatinIME \
     ManagementProvider \
     MediaProvider \
@@ -103,12 +105,15 @@ PRODUCT_PACKAGES := \
     PackageInstaller \
     Phone \
     PicoTts \
+    Protips \
     Provision \
+    QuickSearchBox \
     Settings \
     SettingsProvider \
     SoundRecoder \
     SubscribedFeedsProvider \
     Stk \
+    SpeechRecorder \
     TelephonyProvider \
     Term \
     TtsService \
