@@ -10,8 +10,8 @@ set_perm_recursive 0 2000 0755 0755 SYSTEM:xbin
 set_perm 0 2000 0550 SYSTEM:etc/init.goldfish.sh
 set_perm 1002 1002 0440 SYSTEM:etc/dbus.conf
 
-set_perm_recursive 1002 1002 0755 0440 SYSTEM:etc/bluez
-set_perm 0 0 0755 SYSTEM:etc/bluez
+set_perm_recursive 1002 1002 0755 0440 SYSTEM:etc/bluetooth/
+set_perm 0 0 0755 SYSTEM:etc/bluetooth/
 
 set_perm 0 2000 0755 SYSTEM:xbin/busybox
 
