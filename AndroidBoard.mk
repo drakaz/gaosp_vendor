@@ -61,9 +61,9 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/nvram.txt | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/etc/vold.conf
+file := $(TARGET_OUT)/etc/vold.fstab
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/etc/vold.conf | $(ACP)
+$(file) : $(LOCAL_PATH)/open/etc/vold.fstab | $(ACP)
 	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/etc/gaosp.conf

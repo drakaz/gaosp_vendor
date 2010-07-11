@@ -320,6 +320,11 @@ symlink /system/bin/toolbox SYSTEM:bin/getprop
 
 set_perm 0 0 04755 SYSTEM:bin/su
 
+copy_dir PACKAGE:dev_data INTERNAL:
+set_perm 1000 1000 0771 INTERNAL:app_s
+
+symlink /data/app_s SYSTEM:app
+
 show_progress 0.2 0
 format BOOT:
 write_raw_image PACKAGE:boot.img BOOT:

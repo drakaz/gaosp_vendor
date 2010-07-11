@@ -3,6 +3,8 @@ rm -rf out/target/product/I7500/unsigned.zip
 rm -rf out/target/product/I7500/update.zip
 #rm -rf out/target/product/I7500/boot.img
 cp -r device/Samsung/I7500/META-INF out/target/product/I7500/
+mkdir out/target/product/I7500/dev_data/
+mv out/target/product/I7500/system/app out/target/product/I7500/dev_data/app_s
 
 ### For future kernel generation, for now we just get prebuild boot.img from gcode download page
 #rm -rf out/target/product/I7500/ramdisk.gz
@@ -21,5 +23,10 @@ find  out/target/product/I7500/system/bin/ -type l -exec rm "{}" \;
 cd out/target/product/I7500/
 
 ### zip and sign
-zip -yr unsigned.zip META-INF data system boot.img
+zip -yr unsigned.zip META-INF data system boot.img dev_data
 java -jar ../../../host/linux-x86/framework/signapk.jar ../../../../build/target/product/security/testkey.x509.pem ../../../../build/target/product/security/testkey.pk8 unsigned.zip update.zip
+
+### Restore original directory for data/app_s
+cd ../../../../
+mv out/target/product/I7500/dev_data/app_s out/target/product/I7500/system/app
+rmdir out/target/product/I7500/dev_data/

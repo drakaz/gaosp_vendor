@@ -73,6 +73,7 @@ PRODUCT_PACKAGES := \
     AlarmClock \
     AlarmProvider \
     AccountAndSyncSettings \
+    ADWLauncher \
     ApplicationsProvider \
     Bluetooth \
     Browser \
@@ -96,7 +97,6 @@ PRODUCT_PACKAGES := \
     HTMLViewer \
     IM \
     ImProvider \
-    Launcher2 \
     LatinIME \
     ManagementProvider \
     MediaProvider \
