@@ -137,29 +137,10 @@ $(file) : $(LOCAL_PATH)/open/etc/dhcpcd.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # open modules
-file := $(TARGET_OUT)/lib/modules/bcm4325.ko
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/modules/bcm4325.ko | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/lib/modules/dpram.ko
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/modules/dpram.ko | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/lib/modules/multipdp.ko
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/modules/multipdp.ko | $(ACP)
-	$(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/lib/modules/ramzswap.ko
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/modules/ramzswap.ko | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/lib/modules/tun.ko
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/modules/tun.ko | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # open bin
