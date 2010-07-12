@@ -22,7 +22,7 @@ ro.setupwizard.mode=DISABLED
 net.bt.name=Android
 ro.config.sync=yes
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
-ro.modversion=GAOSP Public BETA 2
+ro.modversion=GAOSP Public BETA 3
 
 # Media settings
 ro.media.enc.file.format = 3gp,mp4
