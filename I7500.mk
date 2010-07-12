@@ -87,6 +87,7 @@ PRODUCT_PACKAGES := \
     Contacts \
     ContactsProvider \
     CustomLocale \
+    DefaultContainerService \
     DownloadProvider \
     DeskClock \
     Email \
