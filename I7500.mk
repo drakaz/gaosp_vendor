@@ -59,12 +59,6 @@ include frameworks/base/data/sounds/AudioPackage4.mk
 #include external/svox/pico/lang/PicoLangFrFrInSystem.mk
 #include external/svox/pico/lang/PicoLangItItInSystem.mk
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/samsung/I7500/open/boot/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
 # Packages
 PRODUCT_PACKAGES := \
     libRS \
