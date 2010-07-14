@@ -74,6 +74,7 @@
     <string-array translatable="false" name="config_tether_upstream_regexs">
         <item>"rmnet\\d"</item>
         <item>"tiwlan\\d"</item>
+        <item>"eth0\\d"</item>
     </string-array>
 
     <!-- Boolean indicating if we require the use of DUN on mobile for tethering -->
