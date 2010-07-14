@@ -20,8 +20,8 @@ loglevel 3
     export TERMINFO /system/etc/terminfo
     export HOME /root/
     export TMPDIR /data/local/tmp
-    export EXTERNAL_STORAGE /mnt/sdcard
     export ASEC_MOUNTPOINT /mnt/asec
+    export EXTERNAL_STORAGE /mnt/sdcard
     export EXTERNAL_SDCARD /mnt/sdcard2
     
 # Backward compatibility
@@ -29,6 +29,7 @@ loglevel 3
     symlink /sys/kernel/debug /d
     symlink /mnt/sdcard /sdcard
     symlink /mnt/sdcard2 /sdcard2
+    symlink /mnt/sdcard2 /sdcard/sd
 
 # create mountpoints and mount tmpfs on sqlite_stmt_journals
     mkdir /sdcard 0000 system system
@@ -73,6 +74,26 @@ loglevel 3
     write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
     write /proc/sys/kernel/sched_compat_yield 1
     write /proc/sys/kernel/sched_child_runs_first 0
+    
+# Create cgroup mount points for process groups
+    mkdir /dev/cpuctl
+    mount cgroup none /dev/cpuctl cpu
+    chown sytem system /dev/cpuctl
+    chown system system /dev/cpuctl/tasks
+    chmod 0777 /dev/cpuctl/tasks
+    write /dev/cpuctl/cpu.shares 1024
+    mkdir /dev/cpuctl/fg_boost
+    chown system system /dev/cpuctl/fg_boost/tasks
+    chmod 0777 /dev/cpuctl/fg_boost/tasks
+    write /dev/cpuctl/fg_boost/cpu.shares 1024
+    mkdir /dev/cpuctl/bg_non_interactive
+    mkdir /acct
+    mount cgroup none /acct cpuacct
+    mkdir /acct/uid
+    chown system system /dev/cpuctl/bg_non_interactive/tasks
+    chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
+    # 5.0 %
+    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
 
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
@@ -80,7 +101,7 @@ loglevel 3
      chmod 6777 /system/bin/wlservice
          chown root root /system/bin/brcm_dutMode
          chmod 6777 /system/bin/brcm_dutMode
-	 chmod 0777 /system/etc/galaxo.conf
+	 chmod 0777 /system/etc/gaosp.conf
 	 chmod 0777 /system/etc/
 # Backward compatibility for libmodules
    	 symlink /system/lib/modules /system/libmodules
@@ -168,26 +189,6 @@ loglevel 3
 # This may have been created by the recovery system with odd permissions
     chown system system /cache/recovery
     chmod 0771 /cache/recovery
-
-# Create cgroup mount points for process groups
-    mkdir /dev/cpuctl
-    mount cgroup none /dev/cpuctl cpu
-    chown sytem system /dev/cpuctl
-    chown system system /dev/cpuctl/tasks
-    chmod 0777 /dev/cpuctl/tasks
-    write /dev/cpuctl/cpu.shares 1024
-    mkdir /dev/cpuctl/fg_boost
-    chown system system /dev/cpuctl/fg_boost/tasks
-    chmod 0777 /dev/cpuctl/fg_boost/tasks
-    write /dev/cpuctl/fg_boost/cpu.shares 1024
-    mkdir /dev/cpuctl/bg_non_interactive
-    mkdir /acct
-    mount cgroup none /acct cpuacct
-    mkdir /acct/uid
-    chown system system /dev/cpuctl/bg_non_interactive/tasks
-    chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
-    # 5.0 %
-    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
     
 #change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
@@ -340,13 +341,6 @@ on boot
 
 # set RLIMIT_NICE to allow priorities from 19 to -20
     setrlimit 13 40 40
-    
-# @drakaz : cpu ondemand scaling tweak
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 35
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/down_threshold 15
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 100000
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias 0
 
 # Define the oom_adj values for the classes of processes that can be
 # killed by the kernel.  These are used in ActivityManagerService.
@@ -374,12 +368,19 @@ on boot
 # Note that the driver only supports 6 slots, so we have HOME_APP at the
 # same memory level as services.
 
+    
+# @drakaz : cpu ondemand scaling tweak
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 35
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/down_threshold 15
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 100000
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias 0
+
 # @drakaz : tunning
     write /sys/module/lowmemorykiller/parameters/adj 0,1,2,7,14,15
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
-    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,2560,3072,3584,5632
-    #write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,5120,5632,6144
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,5120,5632,6144
     # Set init its forked children's oom_adj.
     write /proc/1/oom_adj -16
     # Tweak background writeout
@@ -388,37 +389,34 @@ on boot
 
 # @drakaz : EXPERIMENTAL : other tweaks kernel
 # Nombre de page à ecrire en swap 
-     write /proc/sys/vm/page-cluster 0
+#     write /proc/sys/vm/page-cluster 0
 # Groupe les ecriture sur ssd par block (defaut : 0 : desactive)
-     write /proc/sys/vm/laptop_mode 0
+#     write /proc/sys/vm/laptop_mode 0
 # Delais d'attente pour l'ecriture des anciennes données sur disque (defaut : 3000, 500)
-     write /proc/sys/vm/dirty_expire_centisecs 0
-     write /proc/sys/vm/dirty_writeback_centisecs 0
+#     write /proc/sys/vm/dirty_expire_centisecs 0
+#     write /proc/sys/vm/dirty_writeback_centisecs 0
 # % memoire avant ecriture par les apps (defaut : 10)
-     write /proc/sys/vm/dirty_ratio 95
+#     write /proc/sys/vm/dirty_ratio 95
 # % memoire avant ecriture par pdflush (defaut : 5)
-     write /proc/sys/vm/dirty_background_ratio 60
+#     write /proc/sys/vm/dirty_background_ratio 60
 # Kill en cas de depassement memoire 
-     write /proc/sys/vm/panic_on_oom 0
+#     write /proc/sys/vm/panic_on_oom 0
 # Purge page_cache, dentrie, inode (default : 0 uniquement pagechache. 3 : all)  - Dangeureux
-     write /proc/sys/vm/drop_caches 3
+#     write /proc/sys/vm/drop_caches 3
 # Memoire minimal dispo (si < valeur, oom) (Defaut : 1249)
-     write /proc/sys/vm/min_free_kbytes 1249
+#     write /proc/sys/vm/min_free_kbytes 1249
 # Oom
-     write /proc/sys/vm/oom_kill_allocating_task 1
+#     write /proc/sys/vm/oom_kill_allocating_task 1
 # Crache pressure
-     write /proc/sys/vm/vfs_cache_pressure 10
+#     write /proc/sys/vm/vfs_cache_pressure 10
 # Swapiness 
-     write /proc/sys/vm/swappiness 0
+#     write /proc/sys/vm/swappiness 0
 
 # Mass Storage
     write /sys/devices/platform/mass_storage/lun0/file /dev/block/mmcblk0p2
     write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.1/polling 1
     write /sys/devices/platform/mass_storage/lun1/file /dev/block/mmcblk1p1
     write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.3/polling 0
-
-# Init
-    write /proc/1/oom_adj -16
 
 # Permissions for System Server and daemons.
     chown radio system /sys/android_power/state
@@ -525,6 +523,7 @@ service servicemanager /system/bin/servicemanager
 
 service vold /system/bin/vold
     socket vold stream 0660 root mount
+    ioprio be 2
 
 service nexus /system/bin/nexus
     socket nexus stream 0660 root system
@@ -548,8 +547,8 @@ service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-sys
     onrestart restart media
 
 service media /system/bin/mediaserver
-    user media
-    group system audio camera graphics inet net_bt net_bt_admin
+   group system audio camera graphics inet net_bt net_bt_admin net_raw
+   ioprio rt 4
 
 service bootanim /system/bin/bootanimation
     user graphics
