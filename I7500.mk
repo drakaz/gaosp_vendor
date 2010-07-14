@@ -8,7 +8,7 @@ BUILD_ID := PUBLIC_BETA3
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRF91 BUILD_DISPLAY_ID=FRF91 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2/FRF91/43546:user/release-keys
 PRIVATE_BUILD_DESC="galaxy-user 2.2 FRF91 43546 release-keys"
 
-DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
+DEVICE_PACKAGE_OVERLAYS := device/Samsung/I7500/overlay
 
 # Enable root on userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
