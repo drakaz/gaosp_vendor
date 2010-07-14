@@ -40,7 +40,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     wifi.supplicant_scan_interval=15 \
     ro.telephony.default_network=0 \
     ro.sf.lcd_density=160 \
-    # dalvik.vm.execution-mode=int:fast
+    dalvik.vm.execution-mode=int:fast
 
 # Other Files
 PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \

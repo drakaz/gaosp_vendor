@@ -2,6 +2,9 @@
 # 
 # Product-specific compile-time definitions.
 #
+
+USE_CAMERA_STUB := true
+
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
@@ -31,7 +34,7 @@ BOARD_USES_GENERIC_AUDIO := false
 HAVE_HTC_AUDIO_DRIVER := false
 
 BOARD_USES_OLD_CAMERA_HACK := true
-USE_CAMERA_STUB := false
+
 
 TARGET_HARDWARE_3D := false
 BOARD_GL_TEX_POW2_DIMENSION_REQUIRED := true
