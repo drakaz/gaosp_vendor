@@ -3,7 +3,7 @@
 # Product-specific compile-time definitions.
 #
 
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
