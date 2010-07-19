@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Whether or not to display the trackball settings -->
+    <bool name="has_trackball">true</bool>
+    <bool name="pref_use_dithering">false</bool>
+    <int name="pref_heapsize">12</bool>
+</resources>
