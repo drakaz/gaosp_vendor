@@ -82,9 +82,9 @@
         <EncoderProfile quality="high" fileFormat="3gp" duration="60">
             <Video codec="h263"
                    bitRate="360000"
-                   width="352"
-                   height="288"
-                   frameRate="20" />
+                   width="480"
+                   height="320"
+                   frameRate="30" />
 
             <Audio codec="amrnb"
                    bitRate="12200"
@@ -126,9 +126,9 @@
     -->
     <VideoEncoderCap name="h263" enabled="true"
         minBitRate="192000" maxBitRate="420000"
-        minFrameWidth="176" maxFrameWidth="352"
-        minFrameHeight="144" maxFrameHeight="288"
-        minFrameRate="1" maxFrameRate="20" />
+        minFrameWidth="176" maxFrameWidth="480"
+        minFrameHeight="144" maxFrameHeight="320"
+        minFrameRate="1" maxFrameRate="30" />
 
     <VideoEncoderCap name="m4v" enabled="true"
         minBitRate="192000" maxBitRate="420000"
