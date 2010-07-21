@@ -501,6 +501,11 @@ on boot
 service console /system/bin/sh
     console
 
+# Update vold.fstab with current SDCard id
+service rc /system/bin/logwrapper /system/bin/bash /system/bin/voldupdater
+        user root
+        oneshot
+
 # adbd is controlled by the persist.service.adb.enable system property
 service adbd /sbin/adbd
     disabled

@@ -169,6 +169,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/rc | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/voldupdater
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/voldupdater | $(ACP)
+        $(transform-prebuilt-to-target)
+
 file := $(TARGET_OUT)/xbin/remountro
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/remountro | $(ACP)
