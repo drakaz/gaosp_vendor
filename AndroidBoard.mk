@@ -136,6 +136,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/dhcpcd.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/etc/adb_shell.conf
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/adb_shell.conf | $(ACP)
+	$(transform-prebuilt-to-target)
+
 # open modules
 
 file := $(TARGET_OUT)/lib/modules/ramzswap.ko
