@@ -253,7 +253,6 @@ symlink /system/xbin/busybox SYSTEM:bin/start-stop-daemon
 symlink /system/xbin/busybox SYSTEM:bin/stat             
 symlink /system/xbin/busybox SYSTEM:bin/strings          
 symlink /system/xbin/busybox SYSTEM:bin/stty
-symlink /system/xbin/busybox SYSTEM:bin/su             
 symlink /system/xbin/busybox SYSTEM:bin/sulogin          
 symlink /system/xbin/busybox SYSTEM:bin/sum              
 symlink /system/xbin/busybox SYSTEM:bin/sv               
