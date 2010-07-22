@@ -14,7 +14,7 @@ echo "GaospRC : Remount in RW..."
 
 if [ ! -z `grep "sshd=yes" /system/etc/gaosp.conf` ]
 then
-	kill -9 `pidof dropbear`
+	PID=`pidof dropbear` && kill -9 $PID
 # Verification du necessaire pour dropbear et lancement du serveur sshd
 # Generation des clés si nécessaire
 	if [ ! -d /data/ssh/ ]
@@ -36,7 +36,7 @@ then
 	/system/bin/logwrapper /system/xbin/dropbear &
 
 else
-	kill -9 `pidof dropbear`
+	PID=`pidof dropbear` && kill -9 $PID
 fi
 
 ###################
@@ -72,12 +72,12 @@ fi
 
 if [ ! -z `grep "vnc=yes" /system/etc/gaosp.conf` ]
 then
-	kill -9 `pidof fbvncserver`
+	PID=`pidof fbvncserver` && kill -9 $PID
 	echo "GaospRC : Starting VNC server..."
-		/system/bin/logwrapper /system/xbin/fbvncserver &
+		/system/bin/logwrapper /system/bin/fbvncserver &
 else
 	echo "GaospRC : Vnc server deactivated, not started"
-	kill -9 `pidof fbvncserver`
+	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
 
@@ -220,5 +220,5 @@ echo "GaospRC : Remount in RO..."
 ## Auto kill ######
 ###################
 
-kill -9 `pidof com.android.alarmclock`
+PID=`pidof com.android.alarmclock` && kill -9 $PID
 
