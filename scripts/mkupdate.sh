@@ -23,7 +23,7 @@ find  out/target/product/I7500/system/bin/ -type l -exec rm "{}" \;
 cd out/target/product/I7500/
 
 ### zip and sign
-zip -yr unsigned.zip META-INF data system boot.img dev_data
+zip -qyr unsigned.zip META-INF data system boot.img dev_data
 java -jar ../../../host/linux-x86/framework/signapk.jar ../../../../build/target/product/security/testkey.x509.pem ../../../../build/target/product/security/testkey.pk8 unsigned.zip update.zip
 
 ### Restore original directory for data/app_s
