@@ -42,6 +42,15 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=160 \
     dalvik.vm.execution-mode=int:fast
 
+# Nightly
+ifdef NIGHTLY
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=GAOSP-2-$(shell date +%m%d%Y)-NIGHTLY
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=GAOSP-2-PUBLIC-BETA-3
+endif
+
 # Other Files
 PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
 		    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
