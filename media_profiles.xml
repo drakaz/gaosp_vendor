@@ -132,8 +132,8 @@
 
     <VideoEncoderCap name="m4v" enabled="true"
         minBitRate="192000" maxBitRate="420000"
-        minFrameWidth="176" maxFrameWidth="352"
-        minFrameHeight="144" maxFrameHeight="288"
+        minFrameWidth="176" maxFrameWidth="480"
+        minFrameHeight="144" maxFrameHeight="320"
         minFrameRate="1" maxFrameRate="20" />
 
     <AudioEncoderCap name="amrnb" enabled="true"
