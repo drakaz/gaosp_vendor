@@ -21,19 +21,19 @@
     <bool name="config_drawerNew">false</bool>
 
     <integer name="config_desktopSpeed">0</integer>
-    <integer name="config_desktopBounce">40</integer>
+    <integer name="config_desktopBounce">30</integer>
     <integer name="config_drawerAlpha">0</integer>
     <integer name="config_pageHorizontalMargin">20</integer>
-    <integer name="config_drawerColumnsPortrait">3</integer>
-    <integer name="config_drawerRowsPortrait">3</integer>
+    <integer name="config_drawerColumnsPortrait">4</integer>
+    <integer name="config_drawerRowsPortrait">5</integer>
     <integer name="config_drawerColumnsLandscape">4</integer>
     <integer name="config_drawerRowsLandscape">3</integer>
-    <string name="config_homeBinding">3</string>
+    <string name="config_homeBinding">1</string>
     <string name="config_swipedown_actions">6</string>
     <string name="config_swipeup_actions">5</string>    
     <bool name="config_drawerAnimated">false</bool>
     <!-- config_desktopScreens min value is 1, so it will add 1 to whatever value you set here -->
-    <integer name="config_desktopScreens">5</integer>
+    <integer name="config_desktopScreens">4</integer>
     <integer name="config_defaultScreen">3</integer>
     <bool name="config_hideStatusbar">false</bool>
     <bool name="config_previewsNew">true</bool>
@@ -48,7 +48,7 @@
     <bool name="config_uiAppsBg">false</bool>
     <bool name="config_uiABBg">false</bool>
     <!-- config_zoomSpeed min is 300, so it will add 300 to whatever value you set here -->
-    <integer name="config_zoomSpeed">400</integer>
+    <integer name="config_zoomSpeed">200</integer>
     <!-- config_uiScaleAB is a float value between 0.1 and 0.8. Set here the default .X-->
     <integer name="config_uiScaleAB">6</integer>
     <bool name="config_uiHideLabels">false</bool>
