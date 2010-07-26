@@ -27,9 +27,6 @@ loglevel 3
 # Backward compatibility
     symlink /system/etc /etc
     symlink /sys/kernel/debug /d
-    symlink /mnt/sdcard /sdcard
-    symlink /mnt/sdcard2 /sdcard2
-    symlink /mnt/sdcard2 /sdcard/sd
 
 # create mountpoints and mount tmpfs on sqlite_stmt_journals
     mkdir /sdcard 0000 system system
@@ -59,6 +56,11 @@ loglevel 3
 # Secure container public mount points.
    mkdir /mnt/asec  0700 root system
    mount tmpfs tmpfs /mnt/asec mode=0755,gid=1000
+
+#Backward compatibility
+    symlink /mnt/sdcard /sdcard
+    symlink /mnt/sdcard2 /sdcard2
+    symlink /mnt/sdcard2 /sdcard/sd
 
 # Create dbdata
     mkdir /dbdata
@@ -105,6 +107,7 @@ loglevel 3
 	 chmod 0777 /system/etc/
 # Backward compatibility for libmodules
    	 symlink /system/lib/modules /system/libmodules
+	 symlink /dev/msm_camera/msm_camera0 /dev/msm_camera0
     mount yaffs2 mtd@system /system ro remount
 
 # Add I7500 devices
@@ -245,7 +248,7 @@ loglevel 3
     chmod 0666 /dev/log/main
     chmod 0662 /dev/log/events
     chmod 0666 /dev/graphics/fb0
-    chmod 0666 /dev/msm_camera0
+    chmod 0666 /dev/msm_camera/msm_camera0
     chown system system /cache/recovery
     chmod 0770 /cache/recovery
     #change permissions on kmsg & sysrq-trigger so bugreports can grab kthread stacks
