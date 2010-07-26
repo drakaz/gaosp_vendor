@@ -292,6 +292,40 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/lib/egl.cfg | $(ACP)
 	$(transform-prebuilt-to-target)
 
+ifdef WITH_WINDOWS_MEDIA
+
+file := $(TARGET_OUT)/lib/libomx_wmadec_sharedlibrary.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libomx_wmadec_sharedlibrary.so | $(ACP)
+        $(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/lib/libomx_wmvdec_sharedlibrary.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libomx_wmvdec_sharedlibrary.so | $(ACP)
+        $(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/lib/libpvasfcommon.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libpvasfcommon.so | $(ACP)
+        $(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/lib/libpvasflocalpbreg.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libpvasflocalpbreg.so: | $(ACP)
+        $(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/lib/libpvasflocalpb.so
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libpvasflocalpb.so | $(ACP)
+        $(transform-prebuilt-to-target)
+
+file := $(TARGET_OUT)/etc/pvasflocal.cfg
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/proprietary/pvasflocal.cfg | $(ACP)
+        $(transform-prebuilt-to-target)
+
+endif
+
 # Keylayouts
 file := $(TARGET_OUT)/usr/keychars/I7500_keypad.kcm.bin
 ALL_PREBUILT += $(file)
