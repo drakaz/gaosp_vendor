@@ -73,8 +73,6 @@ include frameworks/base/data/sounds/AudioPackage4.mk
 
 # Packages
 PRODUCT_PACKAGES := \
-    libRS \
-    librs_jni \
     framework-res \
     AlarmClock \
     AlarmProvider \
