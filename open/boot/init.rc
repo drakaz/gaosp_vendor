@@ -505,7 +505,7 @@ service console /system/bin/sh
     console
 
 # Update vold.fstab with current SDCard id
-service rc /system/bin/logwrapper /system/bin/bash /system/bin/voldupdater
+service update_vold /system/bin/logwrapper /system/bin/bash /system/bin/voldupdater
         user root
         oneshot
 
