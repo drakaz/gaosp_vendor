@@ -35,6 +35,8 @@ HAVE_HTC_AUDIO_DRIVER := false
 
 BOARD_USES_OLD_CAMERA_HACK := true
 
+# No authoring clock for OpenCore
+BOARD_NO_PV_AUTHORING_CLOCK := true
 
 TARGET_HARDWARE_3D := false
 BOARD_GL_TEX_POW2_DIMENSION_REQUIRED := true
