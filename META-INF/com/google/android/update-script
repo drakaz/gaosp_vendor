@@ -316,8 +316,7 @@ symlink /system/xbin/busybox SYSTEM:bin/zcip
 symlink /system/bin/toolbox SYSTEM:bin/reboot
 symlink /system/bin/toolbox SYSTEM:bin/setprop
 symlink /system/bin/toolbox SYSTEM:bin/getprop
-
-set_perm 0 0 04755 SYSTEM:bin/su
+symlink /system/bin/toolbox SYSTEM:bin/newfs_msdos
 
 copy_dir PACKAGE:dev_data INTERNAL:
 set_perm 1000 1000 0771 INTERNAL:app_s
