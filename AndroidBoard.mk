@@ -214,6 +214,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/fbvncserver | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/compcache
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/compcache | $(ACP)
+	$(transform-prebuilt-to-target)
+
 
 # open lib
 
