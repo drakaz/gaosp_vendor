@@ -20,7 +20,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.config.notification_sound=pixiedust.ogg \
     ro.config.alarm_alert=Alarm_Classic.ogg \
     keyguard.no_require_sim=true \
-    ro.com.android.dateformat=MM-dd-yyyy \
     dalvik.vm.dexopt-data-only=0 \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
@@ -41,6 +40,15 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.telephony.default_network=0 \
     ro.sf.lcd_density=160 \
     dalvik.vm.execution-mode=int:fast
+
+# Chinese specific
+ifdef CHINESE
+    PRODUCT_PROPERTY_OVERRIDES += \
+	ro.com.android.dateformat=yyyy-MM-dd 
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+    	ro.com.android.dateformat=MM-dd-yyyy 
+endif
 
 # Nightly
 ifdef NIGHTLY
@@ -102,7 +110,6 @@ PRODUCT_PACKAGES := \
     HTMLViewer \
     IM \
     ImProvider \
-    LatinIME \
     ManagementProvider \
     MediaProvider \
     Mms \
@@ -129,6 +136,14 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     LiveWallpapersPicker \
     Superuser
+
+ifdef CHINESE
+PRODUCT_PACKAGES += \
+    PinyinIME 
+else
+PRODUCT_PACKAGES += \
+    LatinIME 
+endif
 
 # Locales
 PRODUCT_LOCALES := \
