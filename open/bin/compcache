@@ -6,7 +6,7 @@
 
 DEV=/dev/block/ramzswap0
 MODULE=ramzswap
-MODULES_DIR=/system/modules/lib/modules/`uname -r`
+MODULES_DIR=/system/lib/modules/
 
 case "$1" in
    start)
