@@ -29,8 +29,6 @@ loglevel 3
     symlink /sys/kernel/debug /d
 
 # create mountpoints and mount tmpfs on sqlite_stmt_journals
-    mkdir /sdcard 0000 system system
-    mkdir /sdcard2 0000 system system
     mkdir /system
     mkdir /system/media
     mkdir /data 0000 system system
@@ -60,7 +58,6 @@ loglevel 3
 #Backward compatibility
     symlink /mnt/sdcard /sdcard
     symlink /mnt/sdcard2 /sdcard2
-    symlink /mnt/sdcard2 /sdcard/sd
 
 # Create dbdata
     mkdir /dbdata
