@@ -12,7 +12,7 @@ disk_size=`grep "compcache_disksize=" /system/etc/gaosp.conf | awk -F"=" '{print
 case "$1" in
    start)
       echo 3 > /proc/sys/vm/drop_caches
-      insmod $MODULE/ramzswap.ko  disksize_kb=$disk_size
+      insmod $MODULES_DIR/ramzswap.ko  disksize_kb=$disk_size
       rzscontrol $DEV --init
       swapon $DEV
    ;;
