@@ -1,10 +1,5 @@
 #! /system/bin/bash
 
-
-# Montage en rw
-echo "Vold Updater : Remount in RW..."
-/system/bin/bash /system/xbin/remountrw
-
 ##################
 ### vold.fstab ###
 ##################
@@ -13,9 +8,13 @@ echo "Vold Updater : Updating vold.fstab..."
 mmc1id=$(basename `find /sys/devices/platform/msm_sdcc.1/mmc_host/mmc1/ -name  mmc1:\*`)
 if [ "$mmc1id" != "" ]
 then
+	/system/bin/bash /system/xbin/remountrw
 	sed -i "s/mmc1:[a-z0-9]\{4\}/$mmc1id/g" /system/etc/vold.fstab
+	sync
+	toolbox stop vold
+	toolbox start vold
+	/system/bin/bash /system/xbin/remountro
 	echo "Vold Updater : vold.fstab updated."
 else
 	echo "Vold Updater : no external sdcard detected."
 fi
-/system/bin/bash /system/xbin/remountro
