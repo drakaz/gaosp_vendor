@@ -102,6 +102,7 @@ PRODUCT_PACKAGES := \
     DefaultContainerService \
     DownloadProvider \
     DeskClock \
+    DSPManager \
     Email \
     Gallery3D \
     GlobalSearch \
