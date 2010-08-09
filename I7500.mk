@@ -10,6 +10,8 @@ PRIVATE_BUILD_DESC="galaxy-user 2.2 FRF91 43546 release-keys"
 
 DEVICE_PACKAGE_OVERLAYS := device/Samsung/I7500/overlay
 
+PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
+
 # Enable root on userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
