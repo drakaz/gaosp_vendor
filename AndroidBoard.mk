@@ -149,16 +149,6 @@ $(file) : $(LOCAL_PATH)/open/modules/ramzswap.ko | $(ACP)
 	$(transform-prebuilt-to-target)
 
 # open bin
-file := $(TARGET_OUT)/xbin/dropbear
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/dropbear | $(ACP)
-	$(transform-prebuilt-to-target)
-
-file := $(TARGET_OUT)/xbin/dropbearkey
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/bin/dropbearkey | $(ACP)
-	$(transform-prebuilt-to-target)
-
 file := $(TARGET_OUT)/xbin/usb-tether
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/usb-tether | $(ACP)
