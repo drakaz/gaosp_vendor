@@ -348,7 +348,7 @@ on boot
     setprop ro.VISIBLE_APP_ADJ 1
     setprop ro.SECONDARY_SERVER_ADJ 2
     setprop ro.BACKUP_APP_ADJ 2
-    setprop ro.HOME_APP_ADJ 0
+    setprop ro.HOME_APP_ADJ 4
     setprop ro.HIDDEN_APP_MIN_ADJ 7
     setprop ro.CONTENT_PROVIDER_ADJ 14
     setprop ro.EMPTY_APP_ADJ 15
