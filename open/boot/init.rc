@@ -138,9 +138,11 @@ loglevel 3
     
 # Databases
    mkdir /dbdata/databases
+   mkdir /dbdata/shared_prefs
    chown system system /data
    chown system system /dbdata
    chown system system /dbdata/databases
+   chown system system /dbdata/shared_prefs
    
         
 # CPU scaling permissions
