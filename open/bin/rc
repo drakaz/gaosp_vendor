@@ -1,4 +1,4 @@
-#! /system/bin/bash
+#!/system/bin/bash
 
 
 sleep 5
