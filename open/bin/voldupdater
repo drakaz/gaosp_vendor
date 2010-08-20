@@ -5,7 +5,7 @@
 ##################
 
 echo "Vold Updater : Updating vold.fstab..."
-mmc1id=$(basename `find /sys/devices/platform/msm_sdcc.1/mmc_host/mmc1/ -name  mmc1:\*` 2&>/dev/null)
+mmc1id=$(basename `find /sys/devices/platform/msm_sdcc.1/mmc_host/mmc1/ -name  mmc1:\*`)
 if [ "$mmc1id" != "" ]
 then
 	/system/bin/bash /system/xbin/remountrw
