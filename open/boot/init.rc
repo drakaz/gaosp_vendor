@@ -22,7 +22,7 @@ loglevel 3
     export TMPDIR /data/local/tmp
     export ASEC_MOUNTPOINT /mnt/asec
     export EXTERNAL_STORAGE /mnt/sdcard
-    export SD_EXT_DIRECTORY /sd-ext
+    export SD_EXT_DIRECTORY /mnt/sd-ext
     
 # Backward compatibility
     symlink /system/etc /etc
