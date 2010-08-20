@@ -22,7 +22,7 @@ loglevel 3
     export TMPDIR /data/local/tmp
     export ASEC_MOUNTPOINT /mnt/asec
     export EXTERNAL_STORAGE /mnt/sdcard
-    export EXTERNAL_SDCARD /mnt/sdcard2
+    export SD_EXT_DIRECTORY /sd-ext
     
 # Backward compatibility
     symlink /system/etc /etc
@@ -39,7 +39,7 @@ loglevel 3
     mount tmpfs tmpfs /sqlite_stmt_journals size=4m
     mkdir /mnt 0775 root system
     mkdir /mnt/sdcard 0000 system system
-    mkdir /mnt/sdcard2 0000 system system
+    mkdir /mnt/sd-ext 0000 system system
 
 # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root
@@ -57,7 +57,7 @@ loglevel 3
 
 #Backward compatibility
     symlink /mnt/sdcard /sdcard
-    symlink /mnt/sdcard2 /sdcard2
+    symlink /mnt/sd-ext /sd-ext
 
 # Create dbdata
     mkdir /dbdata
