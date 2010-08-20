@@ -60,9 +60,9 @@ if [ ! -z `grep "provisionned=yes" /system/etc/gaosp.conf` ]
 then
 # Modification de la valeur de provisioning sim
 	echo "GaospRC : Provisionning sim..."
-	if [ ! $(/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "select * from system where name='device_provisioned';" ) ]
+	if [ ! $(/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "select * from system where name='device_provisioned';" 2&>/dev/null) ]
 	then
-		/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "INSERT INTO system (name, value) VALUES ('device_provisioned', 1);"
+		/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "INSERT INTO system (name, value) VALUES ('device_provisioned', 1);" 2&>/dev/null
 	fi
 fi
 
