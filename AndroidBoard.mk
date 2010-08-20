@@ -204,6 +204,10 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/bin/compcache | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/bin/handle_compcache
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/bin/handle_compcache | $(ACP)
+	$(transform-prebuilt-to-target)
 
 # open lib
 
