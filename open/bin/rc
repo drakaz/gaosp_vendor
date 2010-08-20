@@ -60,9 +60,9 @@ if [ ! -z `grep "provisionned=yes" /system/etc/gaosp.conf` ]
 then
 # Modification de la valeur de provisioning sim
 	echo "GaospRC : Provisionning sim..."
-	if [ ! $(/system/xbin/sqlite3 /data/data/com.android.providers.settings/databases/settings.db "select * from system where name='device_provisioned';" ) ]
+	if [ ! $(/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "select * from system where name='device_provisioned';" ) ]
 	then
-		/system/xbin/sqlite3 /data/data/com.android.providers.settings/databases/settings.db "INSERT INTO system (name, value) VALUES ('device_provisioned', 1);"
+		/system/xbin/sqlite3 /dbdata/databases/com.android.providers.settings/settings.db "INSERT INTO system (name, value) VALUES ('device_provisioned', 1);"
 	fi
 fi
 
@@ -203,9 +203,10 @@ then
 	echo 800 > /proc/sys/vm/dirty_writeback_centisecs
 	echo 10 > /proc/sys/vm/dirty_background_ratio
 	echo 16 > /proc/sys/vm/dirty_ratio
+        echo 3 > /proc/sys/vm/drop_caches
 
-	# Swapong
-	swapon /dev/block/ramzswap0 -p 100
+	# Swapon
+	swapon /dev/block/ramzswap0
 else
 	swapoff /dev/block/ramzswap0
 	rmmod ramzswap
