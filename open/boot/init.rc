@@ -62,9 +62,6 @@ loglevel 3
 # Create dbdata
     mkdir /dbdata
     
-# Mount rootfs
-    mount rootfs rootfs / ro remount
-
 # Kernel configuration
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -122,6 +119,9 @@ loglevel 3
     mount yaffs2 mtd@userdata /userdata nosuid nodev noatime
     mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev noatime
     mount yaffs2 mtd@data /dbdata nosuid nodev noatime
+
+# Mount rootfs
+    mount rootfs rootfs / ro remount
 
 # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
