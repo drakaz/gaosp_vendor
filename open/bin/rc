@@ -17,17 +17,17 @@ then
 	PID=`pidof dropbear` && kill -9 $PID
 # Verification du necessaire pour dropbear et lancement du serveur sshd
 # Generation des clés si nécessaire
-	if [ ! -d /data/ssh/ ]
+	if [ ! -d /data/dropbear/ ]
 	then
-		/system/bin/mkdir /data/ssh/
+		/system/bin/mkdir /data/dropbear/
 	fi
-	if [ ! -f /data/ssh/rsa_host_key ]
+	if [ ! -f /data/dropbear/dropbear_rsa_host_key ]
 	then
-		/system/xbin/dropbearkey -t rsa -f /data/ssh/rsa_host_key
+		/system/xbin/dropbearkey -t rsa -f /data/dropbear/dropbear_rsa_host_key
 	fi
-	if [ ! -f /data/ssh/dss_host_key ]
+	if [ ! -f /data/dropbear/dropbear_dss_host_key ]
 	then
-		/system/xbin/dropbearkey -t dss -f /data/ssh/dss_host_key
+		/system/xbin/dropbearkey -t dss -f /data/dropbear/dropbear_dss_host_key
 	fi
 	
 
