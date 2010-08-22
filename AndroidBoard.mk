@@ -141,6 +141,11 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/etc/adb_shell.conf | $(ACP)
 	$(transform-prebuilt-to-target)
 
+file := $(TARGET_OUT)/etc/sysctl.conf
+ALL_PREBUILT += $(file)
+$(file) : $(LOCAL_PATH)/open/etc/sysctl.conf | $(ACP)
+        $(transform-prebuilt-to-target)
+
 # open modules
 
 file := $(TARGET_OUT)/lib/modules/ramzswap.ko
