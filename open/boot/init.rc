@@ -710,4 +710,7 @@ service rc /system/bin/logwrapper /system/bin/bash /system/bin/rc
 	oneshot
 
 # Compcache
-exec /system/bin/handle_compcache
+service compcache /system/bin/handle_compcache
+    user root
+    group root
+    oneshot
