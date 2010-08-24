@@ -19,10 +19,10 @@
 	<bool name="force_hidden_settings">false</bool>
     <bool name="config_desktopRotation">false</bool> 
     <bool name="config_drawerNew">false</bool>
+    <bool name="config_drawerAnimated">false</bool>
 
     <integer name="config_desktopSpeed">0</integer>
     <integer name="config_desktopBounce">30</integer>
-    <integer name="config_drawerAlpha">0</integer>
     <integer name="config_pageHorizontalMargin">20</integer>
     <integer name="config_drawerColumnsPortrait">4</integer>
     <integer name="config_drawerRowsPortrait">5</integer>
