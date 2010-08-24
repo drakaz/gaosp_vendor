@@ -17,7 +17,7 @@ PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
 KERNEL_MODULES_DIR:=/system/lib/modules
 
 # Tiny toolbox
-TINY_TOOLBOX:=true
+TINY_TOOLBOX:=false
 
 # Enable Windows Media if supported by the board
 WITH_WINDOWS_MEDIA:=true
@@ -113,8 +113,8 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/bash:/bin/bash \
 	device/Samsung/I7500/open/bin/sysinit:/bin/sysinit \
 	device/Samsung/I7500/open/bin/fbvncserver:/bin/fbvncserver \
-	device/Samsung/I7500/open/bin/akmd2:/bin/akmd2 \
-	device/Samsung/I7500/open/bin/BCM4325D1_004.002.004.0153.0156.hcd:/bin/BCM4325D1_004.002.004.0153.0156.hcd \
+	device/Samsung/I7500/proprietary/bin/akmd2:/bin/akmd2 \
+	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:/bin/BCM4325D1_004.002.004.0153.0156.hcd \
 	device/Samsung/I7500/open/apps/GalaxoParameters.apk:/app/GalaxoParameters.apk \
 	device/Samsung/I7500/open/apps/GaospConf.apk:/app/GaospConf.apk \
 	device/Samsung/I7500/open/boot/bootanimation.zip:/media/bootanimation.zip \
