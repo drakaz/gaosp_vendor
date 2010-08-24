@@ -252,11 +252,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/open/lib/hw/sensors.samsung.so | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/lib/egl/egl.cfg
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/lib/egl.cfg | $(ACP)
-	$(transform-prebuilt-to-target)
-
 ifdef WITH_WINDOWS_MEDIA
 
 file := $(TARGET_OUT)/lib/libomx_wmadec_sharedlibrary.so

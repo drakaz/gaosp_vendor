@@ -19,10 +19,14 @@ BUILD_OLD_SU := false
 
 BOARD_HAVE_BLUETOOTH    := true
 BOARD_HAVE_BLUETOOTH_BCM    := true
+BOARD_VENDOR_USE_AKMD := akm8973
 BT_USE_BTL_IF := true
 BT_ALT_STACK := true
 BRCM_BTL_INCLUDE_A2DP := true
 BRCM_BT_USE_BTL_IF := true
+
+# OpenGL drivers config file path
+BOARD_EGL_CFG := device/Samsung/I7500/open/lib/egl.cfg
 
 USE_QEMU_GPS_HARDWARE   := false
 BOARD_HAVE_GPS_HARDWARE := true
@@ -33,6 +37,7 @@ BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_GENERIC_AUDIO := false
 HAVE_HTC_AUDIO_DRIVER := false
 
+# Use libcamera2
 BOARD_USES_OLD_CAMERA_HACK := true
 
 # No authoring clock for OpenCore
@@ -51,7 +56,6 @@ BOARD_WPA_SUPPLICANT_DRIVER := true
 
 TARGET_NO_RECOVERY := true
 TARGET_NO_BOOTLOADER := true
-#TARGET_NO_KERNEL := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_SIMULATOR := false
 
