@@ -111,6 +111,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/remountro:/xbin/remountro \
 	device/Samsung/I7500/open/bin/zsh:/xbin/zsh \
 	device/Samsung/I7500/open/bin/bash:/bin/bash \
+	device/Samsung/I7500/open/bin/sysinit:/bin/sysinit \
 	device/Samsung/I7500/open/bin/fbvncserver:/bin/fbvncserver \
 	device/Samsung/I7500/open/bin/akmd2:/bin/akmd2 \
 	device/Samsung/I7500/open/bin/BCM4325D1_004.002.004.0153.0156.hcd:/bin/BCM4325D1_004.002.004.0153.0156.hcd \
@@ -120,7 +121,13 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/boot/logo.rle:/logo.rle \
 	device/Samsung/I7500/open/modules/ramzswap.ko:/lib/modules/ramzswap.ko \
 	device/Samsung/I7500/open/lib/librun.so:/lib/librun.so \
-	device/Samsung/I7500/open/lib/libncurses.so:/lib/libncurses.so
+	device/Samsung/I7500/open/lib/libncurses.so:/lib/libncurses.so \
+	device/Samsung/I7500/open/etc/init.d/00banner:/etc/init.d/00banner \
+	device/Samsung/I7500/open/etc/init.d/01sysctl:/etc/init.d/01sysctl \
+	device/Samsung/I7500/open/etc/init.d/03firstboot:/etc/init.d/03firstboot \
+	device/Samsung/I7500/open/etc/init.d/04modules:/etc/init.d/04modules \
+	device/Samsung/I7500/open/etc/init.d/20userinit:/etc/init.d/20userinit
+	
 
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
