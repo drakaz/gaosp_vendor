@@ -13,6 +13,15 @@ DEVICE_PACKAGE_OVERLAYS := device/Samsung/I7500/overlay
 
 PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
 
+# Used by BusyBox
+KERNEL_MODULES_DIR:=/system/lib/modules
+
+# Tiny toolbox
+TINY_TOOLBOX:=true
+
+# Enable Windows Media if supported by the board
+WITH_WINDOWS_MEDIA:=true
+
 # Enable root on userdebug
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
@@ -104,6 +113,7 @@ PRODUCT_PACKAGES := \
     Camera \
     CertInstaller \
     CMParts \
+    CMPartsHelper \
     Contacts \
     ContactsProvider \
     CustomLocale \
@@ -113,7 +123,6 @@ PRODUCT_PACKAGES := \
     DSPManager \
     Email \
     Gallery3D \
-    GlobalSearch \
     GoogleContactsProvider \
     GoogleSearch \
     HTMLViewer \
@@ -127,7 +136,6 @@ PRODUCT_PACKAGES := \
     Phone \
     PicoTts \
     Protips \
-    Provision \
     QuickSearchBox \
     Settings \
     SettingsProvider \
@@ -146,13 +154,26 @@ PRODUCT_PACKAGES := \
     LiveWallpapersPicker \
     Superuser
 
-ifdef CHINESE
-PRODUCT_PACKAGES += \
-    PinyinIME 
+
+ifdef WITH_GOOGLE
+	ifdef CHINESE
+	PRODUCT_PACKAGES += \
+	    PinyinIME 
+	endif
 else
-PRODUCT_PACKAGES += \
-    LatinIME 
+	ifdef CHINESE
+	PRODUCT_PACKAGES += \
+	    PinyinIME 
+	else
+	PRODUCT_PACKAGES += \
+	    LatinIME 
+	endif
+
+	PRODUCT_PACKAGES += \
+	    Provision \
+	    GoogleSearch
 endif
+
 
 # Locales
 PRODUCT_LOCALES := \
