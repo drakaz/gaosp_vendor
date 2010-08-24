@@ -76,16 +76,51 @@ endif
 
 # Other Files
 PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
-		    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-		    frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-		    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-		    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-		    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-		    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-                    device/Samsung/I7500/open/etc/media_profiles.xml:/system/etc/media_profiles.xml \
-		    device/Samsung/I7500/open/etc/resolv.conf:/system/etc/resolv.conf \
-                    device/Samsung/I7500/open/bin/rmmod:system/bin/rmmod
-
+	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+	frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+	device/Samsung/I7500/open/etc/media_profiles.xml:/system/etc/media_profiles.xml \
+	device/Samsung/I7500/open/etc/resolv.conf:/system/etc/resolv.conf \
+	device/Samsung/I7500/open/etc/sysctl.conf:/system/etc/sysctl.conf \
+	device/Samsung/I7500/open/etc/terminfo/l/linux:/etc/terminfo/l/linux \
+	device/Samsung/I7500/open/etc/terminfo/u/unknown:/etc/terminfo/u/unknown \
+	device/Samsung/I7500/open/etc/fstab:/etc/fstab \
+	device/Samsung/I7500/open/etc/bash.bashrc:/etc/bash.bashrc \
+	device/Samsung/I7500/open/etc/gshadow:/etc/gshadow \
+	device/Samsung/I7500/open/etc/passwd:/etc/passwd \
+	device/Samsung/I7500/open/etc/profile:/etc/profile \
+	device/Samsung/I7500/open/etc/shadow:/etc/shadow \
+	device/Samsung/I7500/open/etc/group:/etc/group \
+	device/Samsung/I7500/open/etc/shells:/etc/shells \
+	device/Samsung/I7500/open/etc/zshrc:/etc/zshrc \
+	device/Samsung/I7500/open/etc/adb_shell.conf:/etc/adb_shell.conf \
+	device/Samsung/I7500/open/bin/rc:/bin/rc \
+	device/Samsung/I7500/open/bin/compcache:/bin/compcache \
+	device/Samsung/I7500/open/bin/handle_compcache:/bin/handle_compcache \
+	device/Samsung/I7500/open/bin/fix_permissions:/bin/fix_permissions \
+	device/Samsung/I7500/open/bin/openvpn-up.sh:/xbin/openvpn-up.sh \
+	device/Samsung/I7500/open/bin/htop:/xbin/htop \
+	device/Samsung/I7500/open/bin/irssi:/xbin/irssi \
+	device/Samsung/I7500/open/bin/lsof:/xbin/lsof \
+	device/Samsung/I7500/open/bin/powertop:/xbin/powertop \
+	device/Samsung/I7500/open/bin/shutdown:/xbin/shutdown \
+	device/Samsung/I7500/open/bin/voldupdater:/xbin/voldupdater \
+	device/Samsung/I7500/open/bin/remountro:/xbin/remountro \
+	device/Samsung/I7500/open/bin/zsh:/xbin/zsh \
+	device/Samsung/I7500/open/bin/bash:/bin/bash \
+	device/Samsung/I7500/open/bin/fbvncserver:/bin/fbvncserver \
+	device/Samsung/I7500/open/bin/akmd2:/bin/akmd2 \
+	device/Samsung/I7500/open/bin/BCM4325D1_004.002.004.0153.0156.hcd:/bin/BCM4325D1_004.002.004.0153.0156.hcd \
+	device/Samsung/I7500/open/apps/GalaxoParameters.apk:/app/GalaxoParameters.apk \
+	device/Samsung/I7500/open/apps/GaospConf.apk:/app/GaospConf.apk \
+	device/Samsung/I7500/open/boot/bootanimation.zip:/media/bootanimation.zip \
+	device/Samsung/I7500/open/boot/logo.rle:/logo.rle \
+	device/Samsung/I7500/open/modules/ramzswap.ko:/lib/modules/ramzswap.ko \
+	device/Samsung/I7500/open/lib/librun.so:/lib/librun.so \
+	device/Samsung/I7500/open/lib/libncurses.so:/lib/libncurses.so
 
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
@@ -174,7 +209,6 @@ else
 	    Provision \
 	    GoogleSearch
 endif
-
 
 # Locales
 PRODUCT_LOCALES := \
