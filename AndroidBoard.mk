@@ -95,7 +95,7 @@ $(file) : $(LOCAL_PATH)/proprietary/lib/libpvasfcommon.so | $(ACP)
 
 file := $(TARGET_OUT)/lib/libpvasflocalpbreg.so
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/lib/libpvasflocalpbreg.so: | $(ACP)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libpvasflocalpbreg.so | $(ACP)
         $(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/lib/libpvasflocalpb.so

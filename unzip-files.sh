@@ -36,12 +36,12 @@ unzip -j -o $ZIP system/etc/rtecdc.bin -d proprietary/etc/
 unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychars/
 
 # Windows Media
-unzip -j -o $ZIP2 system/lib/libomx_wmadec_sharedlibrary.so proprietary/lib/libomx_wmadec_sharedlibrary.so
-unzip -j -o $ZIP2 system/lib/libomx_wmvdec_sharedlibrary.so proprietary/lib/libomx_wmvdec_sharedlibrary.so
-unzip -j -o $ZIP2 system/lib/libpvasfcommon.so proprietary/lib/libpvasfcommon.so
-unzip -j -o $ZIP2 system/lib/libpvasflocalpbreg.so proprietary/lib/libpvasflocalpbreg.so
-unzip -j -o $ZIP2 system/lib/libpvasflocalpb.so proprietary/lib/libpvasflocalpb.so
-unzip -j -o $ZIP2 system/etc/pvasflocal.cfg proprietary/pvasflocal.cfg
+unzip -j -o $ZIP2 system/lib/libomx_wmadec_sharedlibrary.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/lib/libomx_wmvdev_sharedlibrary.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/lib/libpvasfcommon.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/lib/libpvasflocalpbreg.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/lib/libpvasflocalpb.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/etc/pvasflocal.cfg -d proprietary/
 
 (cd qcom/proprietary-open/loc_api && ./unzip-files.sh $ZIP)
 (cd qcom/proprietary-open/dsp/libqcamera && ./unzip-files.sh $ZIP)
