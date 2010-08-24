@@ -7,23 +7,6 @@ ro.telephony.default_network = 0
 wifi.interface=eth0
 wifi.supplicant_scan_interval=15
 
-# Others
-ro.com.google.locationfeatures=1
-ro.sf.lcd_density = 160
-ro.setupwizard.mode=DISABLED
-DEVICE_PROVISIONED=1
-
-# ADDITIONAL_BUILD_PROPERTIES
-ro.config.notification_sound=OnTheHunt.ogg
-ro.config.alarm_alert=Alarm_Classic.ogg
-keyguard.no_require_sim=true
-ro.kernel.android.checkjni=1
-ro.setupwizard.mode=DISABLED
-net.bt.name=Android
-ro.config.sync=yes
-dalvik.vm.stack-trace-file=/data/anr/traces.txt
-sys.checkfs.fat=false
-
 # Media settings
 ro.media.enc.file.format = 3gp,mp4
 ro.media.enc.vid.codec = m4v,h263

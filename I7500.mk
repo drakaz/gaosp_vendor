@@ -1,7 +1,8 @@
 # Overrides
-PRODUCT_BRAND := I7500
+PRODUCT_BRAND := Samsung
 PRODUCT_NAME := I7500
 PRODUCT_DEVICE := I7500
+PRODUCT_BOARD := I7500
 PRODUCT_MANUFACTURER := Samsung
 BUILD_ID := PUBLIC_BETA3
 
@@ -17,31 +18,34 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
 NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
+
+# PROPERTIES
 PRODUCT_PROPERTY_OVERRIDES := \
-    ro.config.ringtone=DonMessWivIt.ogg \
-    ro.config.notification_sound=pixiedust.ogg \
-    ro.config.alarm_alert=Alarm_Classic.ogg \
     keyguard.no_require_sim=true \
     dalvik.vm.dexopt-data-only=0 \
-    ro.com.android.wifi-watchlist=GoogleGuest \
-    ro.setupwizard.enterprise_mode=1 \
-    ro.com.android.dataroaming=false \
+    ro.ril.hsxpa=1 \
+    ro.ril.gprsclass=10 \
+    ro.media.dec.jpeg.memcap=10000000 \
+    ro.sf.lcd_density=160 \
+    ro.telephony.default_network=0 \
+    dalvik.vm.execution-mode=int:fast \
+    ro.opengles.version=65536 \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
     ro.com.google.clientidbase=android-google \
-    ro.setupwizard.mode=OPTIONAL \
-    net.bt.name=Android \
-    ro.com.google.locationfeatures=1 \
-    ro.com.google.gmsversion=2.1_r1 \
-    ro.config.sync=yes \
-    dalvik.vm.stack-trace-file=/data/anr/traces.txt \
-    ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1 \
-    ro.media.dec.jpeg.memcap=10000000 \
-    wifi.supplicant_scan_interval=15 \
-    ro.telephony.default_network=0 \
-    ro.sf.lcd_density=160 \
-    dalvik.vm.execution-mode=int:fast
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false \
+    net.bt.name=Galaxy \
+
+# Disable Compcache by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.compcache.default=0
+
+# Disable fs check on boot by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.checkfs.fat=false
 
 # Chinese specific
 ifdef CHINESE
