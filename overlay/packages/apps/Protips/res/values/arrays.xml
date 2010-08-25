@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- Set of tips to show the user.
+
+         First line is the tip title, which is shown in bold on its own line.
+
+         All subsequent text is placed into the tip body.
+
+         The occurrence of @drawable/foo causes the bitmap drawable named "foo"
+         to be displayed to the right of the tip text.
+
+         Example for tip #1:
+          _____________________________________________     \_/
+         |                                             |   /._.\
+         |  See all your apps.         [all_apps.png]   > U|   |U
+         |  Touch the Launcher icon.                   |   |___|
+         |_____________________________________________|    U U
+    -->
+    <string-array name="tips">
+        <!-- Tip: Where the launcher icon is and what it does. With icon. -->
+        <item>See all your apps.\n
+        Touch the Launcher icon. @drawable/all_apps</item>
+
+        <!-- Tip: How to survive in CyanogenMod. -->
+        <item>Rules\n
+        The only rule of CyanogenMod: You dont ask for ETAs.</item>
+
+        <!-- Tip: Longpress in Launcher (all apps) to drag apps to the home screen. -->
+        <item>Drag apps to your Home screen.\n
+        Touch &amp; hold an app in the Launcher until it vibrates.</item>
+
+        <!-- Tip: blamewes -->
+        <item>#blamewes\n
+        Avoid wesgarner at all costs. @drawable/wesgarner</item>
+
+        <!-- Tip: Longpress to move icons/widgets around. -->
+        <item>Rearrange your Home screen.\n
+        Touch &amp; hold an item and when it vibrates, drag it where you want.</item>
+
+        <!-- Tip: Teach them how to become better programmers -->
+        <item>Ballmer Peak\n
+        Optimal coding ability takes place between a BAC of .129 and .138.</item>
+
+        <!-- Tip: Longpress icons/widgets and drag to trash to remove them. -->
+        <item>Remove items.\n
+        Touch &amp; hold an item and when it vibrates, drag it to the Trash icon. @drawable/trash</item>
+
+        <!-- Tip: Explain what is wrong with the iPhone. -->
+        <item>iPhone\n
+        You\'re holding it wrong. Always.</item>
+
+        <!-- Tip: Swipe to switch workspaces; drag items to move them to other
+             workspaces. -->
+        <item>Multiple Home screens.\n
+        Swipe left or right to switch. Drag items to other screens.</item>
+
+        <!-- Tip: Winzip must be kept up to date. -->
+        <item>Number 1 Priority\n
+        Don\'t forget to keep your winzip up to date.</item>
+
+        <!-- Tip: Reminder about how to delete widgets, reinforcing that this
+             technique can be used to remove the tips widget iteself. -->
+        <item>Done with this widget?\n
+        Touch &amp; hold it and when it vibrates, drag it to the Trash icon.</item>
+
+        <!-- Tip: Find out what it means to kang. -->
+        <item>Kang [kayng] - (verb)\n
+        Upgraded my winzip br0. Thanks to my patient lady putting up with my devvin. @drawable/kang_truck</item>
+
+    </string-array>
+</resources>
