@@ -136,6 +136,9 @@ loglevel 3
    chown system system /dbdata
    chown system system /dbdata/databases
    chown system system /dbdata/shared_prefs
+   chmod 0777 /dbdata
+   chmod 0777 /dbdata/databases
+   chmod 0777 /dbdata/shared_prefs
 
 # Create dump dir and collect dumps.
 # Do this before we mount cache so eventually we can use cache for
