@@ -82,51 +82,51 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-	device/Samsung/I7500/open/etc/media_profiles.xml:/system/etc/media_profiles.xml \
-	device/Samsung/I7500/open/etc/resolv.conf:/system/etc/resolv.conf \
-	device/Samsung/I7500/open/etc/sysctl.conf:/system/etc/sysctl.conf \
-	device/Samsung/I7500/open/etc/terminfo/l/linux:/etc/terminfo/l/linux \
-	device/Samsung/I7500/open/etc/terminfo/u/unknown:/etc/terminfo/u/unknown \
-	device/Samsung/I7500/open/etc/fstab:/etc/fstab \
-	device/Samsung/I7500/open/etc/bash.bashrc:/etc/bash.bashrc \
-	device/Samsung/I7500/open/etc/gshadow:/etc/gshadow \
-	device/Samsung/I7500/open/etc/passwd:/etc/passwd \
-	device/Samsung/I7500/open/etc/profile:/etc/profile \
-	device/Samsung/I7500/open/etc/shadow:/etc/shadow \
-	device/Samsung/I7500/open/etc/group:/etc/group \
-	device/Samsung/I7500/open/etc/shells:/etc/shells \
-	device/Samsung/I7500/open/etc/zshrc:/etc/zshrc \
-	device/Samsung/I7500/open/etc/adb_shell.conf:/etc/adb_shell.conf \
-	device/Samsung/I7500/open/bin/rc:/bin/rc \
-	device/Samsung/I7500/open/bin/compcache:/bin/compcache \
-	device/Samsung/I7500/open/bin/handle_compcache:/bin/handle_compcache \
-	device/Samsung/I7500/open/bin/fix_permissions:/bin/fix_permissions \
-	device/Samsung/I7500/open/bin/openvpn-up.sh:/xbin/openvpn-up.sh \
-	device/Samsung/I7500/open/bin/htop:/xbin/htop \
-	device/Samsung/I7500/open/bin/irssi:/xbin/irssi \
-	device/Samsung/I7500/open/bin/lsof:/xbin/lsof \
-	device/Samsung/I7500/open/bin/powertop:/xbin/powertop \
-	device/Samsung/I7500/open/bin/shutdown:/xbin/shutdown \
-	device/Samsung/I7500/open/bin/voldupdater:/xbin/voldupdater \
-	device/Samsung/I7500/open/bin/remountro:/xbin/remountro \
-	device/Samsung/I7500/open/bin/zsh:/xbin/zsh \
-	device/Samsung/I7500/open/bin/bash:/bin/bash \
-	device/Samsung/I7500/open/bin/sysinit:/bin/sysinit \
-	device/Samsung/I7500/open/bin/fbvncserver:/bin/fbvncserver \
-	device/Samsung/I7500/proprietary/bin/akmd2:/bin/akmd2 \
-	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:/bin/BCM4325D1_004.002.004.0153.0156.hcd \
-	device/Samsung/I7500/open/apps/GalaxoParameters.apk:/app/GalaxoParameters.apk \
-	device/Samsung/I7500/open/apps/GaospConf.apk:/app/GaospConf.apk \
-	device/Samsung/I7500/open/boot/bootanimation.zip:/media/bootanimation.zip \
-	device/Samsung/I7500/open/boot/logo.rle:/logo.rle \
-	device/Samsung/I7500/open/modules/ramzswap.ko:/lib/modules/ramzswap.ko \
-	device/Samsung/I7500/open/lib/librun.so:/lib/librun.so \
-	device/Samsung/I7500/open/lib/libncurses.so:/lib/libncurses.so \
-	device/Samsung/I7500/open/etc/init.d/00banner:/etc/init.d/00banner \
-	device/Samsung/I7500/open/etc/init.d/01sysctl:/etc/init.d/01sysctl \
-	device/Samsung/I7500/open/etc/init.d/03firstboot:/etc/init.d/03firstboot \
-	device/Samsung/I7500/open/etc/init.d/04modules:/etc/init.d/04modules \
-	device/Samsung/I7500/open/etc/init.d/20userinit:/etc/init.d/20userinit
+	device/Samsung/I7500/open/etc/media_profiles.xml:system/etc/media_profiles.xml \
+	device/Samsung/I7500/open/etc/resolv.conf:system/etc/resolv.conf \
+	device/Samsung/I7500/open/etc/sysctl.conf:system/etc/sysctl.conf \
+	device/Samsung/I7500/open/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
+	device/Samsung/I7500/open/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown \
+	device/Samsung/I7500/open/etc/fstab:system/etc/fstab \
+	device/Samsung/I7500/open/etc/bash.bashrc:system/etc/bash.bashrc \
+	device/Samsung/I7500/open/etc/gshadow:system/etc/gshadow \
+	device/Samsung/I7500/open/etc/passwd:system/etc/passwd \
+	device/Samsung/I7500/open/etc/profile:system/etc/profile \
+	device/Samsung/I7500/open/etc/shadow:system/etc/shadow \
+	device/Samsung/I7500/open/etc/group:system/etc/group \
+	device/Samsung/I7500/open/etc/shells:system/etc/shells \
+	device/Samsung/I7500/open/etc/zshrc:system/etc/zshrc \
+	device/Samsung/I7500/open/etc/adb_shell.conf:system/etc/adb_shell.conf \
+	device/Samsung/I7500/open/bin/rc:system/bin/rc \
+	device/Samsung/I7500/open/bin/compcache:system/bin/compcache \
+	device/Samsung/I7500/open/bin/handle_compcache:system/bin/handle_compcache \
+	device/Samsung/I7500/open/bin/fix_permissions:system/bin/fix_permissions \
+	device/Samsung/I7500/open/bin/openvpn-up.sh:system/xbin/openvpn-up.sh \
+	device/Samsung/I7500/open/bin/htop:system/xbin/htop \
+	device/Samsung/I7500/open/bin/irssi:system/xbin/irssi \
+	device/Samsung/I7500/open/bin/lsof:system/xbin/lsof \
+	device/Samsung/I7500/open/bin/powertop:system/xbin/powertop \
+	device/Samsung/I7500/open/bin/shutdown:system/xbin/shutdown \
+	device/Samsung/I7500/open/bin/voldupdater:system/xbin/voldupdater \
+	device/Samsung/I7500/open/bin/remountro:system/xbin/remountro \
+	device/Samsung/I7500/open/bin/zsh:system/xbin/zsh \
+	device/Samsung/I7500/open/bin/bash:system/bin/bash \
+	device/Samsung/I7500/open/bin/sysinit:system/bin/sysinit \
+	device/Samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
+	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
+	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
+	device/Samsung/I7500/open/apps/GalaxoParameters.apk:system/app/GalaxoParameters.apk \
+	device/Samsung/I7500/open/apps/GaospConf.apk:system/app/GaospConf.apk \
+	device/Samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
+	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
+	device/Samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+	device/Samsung/I7500/open/lib/librun.so:system/lib/librun.so \
+	device/Samsung/I7500/open/lib/libncurses.so:system/lib/libncurses.so \
+	device/Samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
+	device/Samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+	device/Samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
+	device/Samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
+	device/Samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit
 	
 
 # Sounds
