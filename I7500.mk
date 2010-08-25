@@ -97,6 +97,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/etc/shells:system/etc/shells \
 	device/Samsung/I7500/open/etc/zshrc:system/etc/zshrc \
 	device/Samsung/I7500/open/etc/adb_shell.conf:system/etc/adb_shell.conf \
+	device/Samsung/I7500/open/etc/gaosp.conf:system/etc/gaosp.conf \
 	device/Samsung/I7500/open/bin/rc:system/bin/rc \
 	device/Samsung/I7500/open/bin/compcache:system/bin/compcache \
 	device/Samsung/I7500/open/bin/handle_compcache:system/bin/handle_compcache \
