@@ -110,6 +110,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/shutdown:system/xbin/shutdown \
 	device/Samsung/I7500/open/bin/voldupdater:system/xbin/voldupdater \
 	device/Samsung/I7500/open/bin/remountro:system/xbin/remountro \
+	device/Samsung/I7500/open/bin/remountrw:system/xbin/remountrw \
 	device/Samsung/I7500/open/bin/zsh:system/xbin/zsh \
 	device/Samsung/I7500/open/bin/bash:system/bin/bash \
 	device/Samsung/I7500/open/bin/sysinit:system/bin/sysinit \
