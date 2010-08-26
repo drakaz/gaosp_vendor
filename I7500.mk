@@ -202,20 +202,17 @@ PRODUCT_PACKAGES := \
     Superuser
 
 
-ifdef WITH_GOOGLE
-	ifdef CHINESE
+# Check : building for chinese people ?
+ifdef CHINESE
 	PRODUCT_PACKAGES += \
-	    PinyinIME 
-	endif
+	PinyinIME
 else
-	ifdef CHINESE
 	PRODUCT_PACKAGES += \
-	    PinyinIME 
-	else
-	PRODUCT_PACKAGES += \
-	    LatinIME 
-	endif
+	LatinIME
+endif
 
+# Check if we build with google or not
+ifndef WITH_GOOGLE
 	PRODUCT_PACKAGES += \
 	    Provision \
 	    GoogleSearch
