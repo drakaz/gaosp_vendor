@@ -119,7 +119,6 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
 	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
 	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
-	device/Samsung/I7500/open/apps/GalaxoParameters.apk:system/app/GalaxoParameters.apk \
 	device/Samsung/I7500/open/apps/GaospConf.apk:system/app/GaospConf.apk \
 	device/Samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
 	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
