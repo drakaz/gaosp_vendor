@@ -82,8 +82,8 @@
         <EncoderProfile quality="high" fileFormat="3gp" duration="60">
             <Video codec="h263"
                    bitRate="360000"
-                   width="480"
-                   height="320"
+                   width="352"
+                   height="288"
                    frameRate="30" />
 
             <Audio codec="amrnb"
