@@ -198,7 +198,9 @@ PRODUCT_PACKAGES := \
     VpnServices \
     WebSearchProvider \
     LiveWallpapersPicker \
-    Superuser
+    Superuser \
+    Torch \
+    libjni_flash
 
 
 # Check : building for chinese people ?
