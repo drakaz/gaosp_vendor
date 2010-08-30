@@ -117,6 +117,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/bash:system/bin/bash \
 	device/Samsung/I7500/open/bin/sysinit:system/bin/sysinit \
 	device/Samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
+	device/Samsung/I7500/open/bin/changepasswd:system/bin/changepasswd \
 	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
 	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
 	device/Samsung/I7500/open/apps/GaospConf.apk:system/app/GaospConf.apk \
@@ -124,7 +125,6 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/Samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
 	device/Samsung/I7500/open/lib/librun.so:system/lib/librun.so \
-	device/Samsung/I7500/open/lib/libncurses.so:system/lib/libncurses.so \
 	device/Samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/Samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/Samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
