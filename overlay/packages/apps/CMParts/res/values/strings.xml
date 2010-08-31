@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_trackball_wake_title">HOLD key wake/lock</string>
+    <string name="pref_trackball_wake_summary">Pressing the HOLD key wakes/lock the device</string>
+    <string name="pref_trackball_unlock_title">HOLD unlock</string>
+    <string name="pref_trackball_unlock_summary">Pressing the HOLD key unlocks the device</string>
+</resources>

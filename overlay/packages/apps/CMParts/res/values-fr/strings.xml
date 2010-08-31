@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_trackball_wake_title">Réveil/verrouillage par HOLD</string>
+    <string name="pref_trackball_wake_summary">Une pression sur le boutton HOLD réveille/verrouille le téléphone</string>
+    <string name="pref_trackball_unlock_title">Déverrouillage par HOLD</string>
+    <string name="pref_trackball_unlock_summary">Une pression sur le boutton hold déverrouille le téléphone</string>
+</resources>
