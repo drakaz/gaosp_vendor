@@ -7,6 +7,8 @@ sleep 5
 echo "GaospRC : Remount in RW..."
 /system/bin/bash /system/xbin/remountrw
 
+# akmd fix
+echo 250 > /data/delay
 
 ##################
 ##### SSHD #######
