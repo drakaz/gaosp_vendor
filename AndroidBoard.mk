@@ -85,7 +85,7 @@ $(file) : $(LOCAL_PATH)/proprietary/lib/libomx_wmadec_sharedlibrary.so | $(ACP)
 
 file := $(TARGET_OUT)/lib/libomx_wmvdec_sharedlibrary.so
 ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/lib/libomx_wmvdev_sharedlibrary.so | $(ACP)
+$(file) : $(LOCAL_PATH)/proprietary/lib/libomx_wmvdec_sharedlibrary.so | $(ACP)
         $(transform-prebuilt-to-target)
 
 file := $(TARGET_OUT)/lib/libpvasfcommon.so

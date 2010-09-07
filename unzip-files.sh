@@ -37,7 +37,7 @@ unzip -j -o $ZIP system/usr/keychars/I7500_keypad.kcm.bin -d proprietary/keychar
 
 # Windows Media
 unzip -j -o $ZIP2 system/lib/libomx_wmadec_sharedlibrary.so -d proprietary/lib/
-unzip -j -o $ZIP2 system/lib/libomx_wmvdev_sharedlibrary.so -d proprietary/lib/
+unzip -j -o $ZIP2 system/lib/libomx_wmvdec_sharedlibrary.so -d proprietary/lib/
 unzip -j -o $ZIP2 system/lib/libpvasfcommon.so -d proprietary/lib/
 unzip -j -o $ZIP2 system/lib/libpvasflocalpbreg.so -d proprietary/lib/
 unzip -j -o $ZIP2 system/lib/libpvasflocalpb.so -d proprietary/lib/
