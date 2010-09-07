@@ -68,6 +68,7 @@
     <bool name="config_uiScrollableWidgets">true</bool>
     <bool name="config_drawerLabels">true</bool>
     <bool name="config_fadeDrawerLabels">false</bool>
+    <bool name="config_nagScreen">false</bool>
     <bool name="config_desktop_indicator">true</bool>
     <bool name="config_desktop_indicator_autohide">true</bool>
     <!-- 1=top dots, 2=top slider, 3=bottom slider -->
