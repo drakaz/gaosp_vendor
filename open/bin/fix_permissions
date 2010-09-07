@@ -25,8 +25,8 @@
 # v2.02 - ignore com.htc.resources.apk if it exists and minor code cleanups,
 #         fix help text, implement simulated run (-s) [farmatito]
 # v2.03 - fixed chown group ownership output [Kastro]
-
-VERSION="2.03"
+# v2.04 - replaced /system/sd with $SD_EXT_DIRECTORY [Firerat]
+VERSION="2.04"
 
 # Defaults
 DEBUG=0 # Debug off by default
@@ -61,8 +61,8 @@ DATE="busybox date"
 
 # Initialise vars
 CODEPATH=""
-UID=""
-GID=""
+LOCALUID=""
+LOCALGID=""
 PACKAGE=""
 REMOVE=0
 NOSYSTEM=0
@@ -74,7 +74,15 @@ DATAMOUNT=0
 SYSSDMOUNT=0
 FP_STARTTIME=$( $DATE +"%m-%d-%Y %H:%M:%S" )
 FP_STARTEPOCH=$( $DATE +%s )
-
+if $TEST "$SD_EXT_DIRECTORY" = ""; then
+    #check for mount point, /system/sd included in tests for backward compatibility
+    for MP in /sd-ext /system/sd;do
+        if $TEST -d $MP; then
+            SD_EXT_DIRECTORY=$MP
+            break
+        fi
+    done
+fi
 fp_usage()
 {
    $ECHO "Usage $0 [OPTIONS] [APK_PATH]"
@@ -186,8 +194,8 @@ fp_start()
          DATAMOUNT=1
       fi
       
-      if $TEST -e /dev/block/mmcblk0p2 && $TEST $( $GREP -c " /system/sd " "/proc/mounts" ) -eq 0; then
-         $MOUNT /system/sd > /dev/null 2>&1
+      if $TEST -e /dev/block/mmcblk0p2 && $TEST $( $GREP -c " $SD_EXT_DIRECTORY " "/proc/mounts" ) -eq 0; then
+         $MOUNT $SD_EXT_DIRECTORY > /dev/null 2>&1
          SYSSDMOUNT=1
       fi
    fi
@@ -287,14 +295,14 @@ fp_package()
    endnum=$3
    CODEPATH=$( $ECHO $pkgline | $SED 's%.* codePath="\(.*\)".*%\1%' |  $CUT -d '"' -f1 )
    PACKAGE=$( $ECHO $pkgline | $SED 's%.* name="\(.*\)".*%\1%' | $CUT -d '"' -f1 )
-   UID=$( $ECHO $pkgline | $SED 's%.*serId="\(.*\)".*%\1%' |  $CUT -d '"' -f1 )
-   GID=$UID
+   LOCALUID=$( $ECHO $pkgline | $SED 's%.*serId="\(.*\)".*%\1%' |  $CUT -d '"' -f1 )
+   LOCALGID=$LOCALUID
    APPDIR=$( $ECHO $CODEPATH | $SED 's%^\(.*\)/.*%\1%' )
    APK=$( $ECHO $CODEPATH | $SED 's%^.*/\(.*\..*\)$%\1%' )
    
    #debug
    if $TEST $DEBUG -eq 1; then
-      fp_print "CODEPATH: $CODEPATH APPDIR: $APPDIR APK:$APK UID/GID:$UID:$GID"
+      fp_print "CODEPATH: $CODEPATH APPDIR: $APPDIR APK:$APK UID/GID:$LOCALUID:$LOCALGID"
    fi
    
    #check for existence of apk
@@ -323,7 +331,7 @@ fp_package()
          fp_chmod $OLD_PER "rw-r--r--" 644 "$CODEPATH"
          elif $TEST "$APPDIR" = "/data/app-private" || $TEST "$APPDIR" = "/sd-ext/app-private"; then
          fp_chown_uid $OLD_UID 1000 "$CODEPATH"
-         fp_chown_gid $OLD_GID $GID "$CODEPATH"
+         fp_chown_gid $OLD_GID $LOCALGID "$CODEPATH"
          fp_chmod $OLD_PER "rw-r-----" 640 "$CODEPATH"
       fi
    else
@@ -353,11 +361,11 @@ fp_package()
          ISLIB=0
          REVPERM=755
          REVPSTR="rwxr-xr-x"
-         REVUID=$UID
-         REVGID=$GID
+         REVUID=$LOCALUID
+         REVGID=$LOCALGID
          
          if $TEST "$FOURDIR" = ""; then
-            #package directory, perms:755 owner:$UID:$GID
+            #package directory, perms:755 owner:$LOCALUID:$LOCALGID
             fp_chmod $OLD_PER "rwxr-xr-x" 755 "$FILEDIR"
             elif $TEST "$FOURDIR" = "lib"; then
             #lib directory, perms:755 owner:1000:1000
@@ -369,25 +377,25 @@ fp_package()
             REVGID=1000
             fp_chmod $OLD_PER "rwxr-xr-x" 755 "$FILEDIR"
             elif $TEST "$FOURDIR" = "shared_prefs"; then
-            #shared_prefs directories, perms:771 owner:$UID:$GID
-            #shared_prefs files, perms:660 owner:$UID:$GID
+            #shared_prefs directories, perms:771 owner:$LOCALUID:$LOCALGID
+            #shared_prefs files, perms:660 owner:$LOCALUID:$LOCALGID
             REVPERM=660
             REVPSTR="rw-rw----"
             fp_chmod $OLD_PER "rwxrwx--x" 771 "$FILEDIR"
             elif $TEST "$FOURDIR" = "databases"; then
-            #databases directories, perms:771 owner:$UID:$GID
-            #databases files, perms:660 owner:$UID:$GID
+            #databases directories, perms:771 owner:$LOCALUID:$LOCALGID
+            #databases files, perms:660 owner:$LOCALUID:$LOCALGID
             REVPERM=660
             REVPSTR="rw-rw----"
             fp_chmod $OLD_PER "rwxrwx--x" 771 "$FILEDIR"
             elif $TEST "$FOURDIR" = "cache"; then
-            #cache directories, perms:771 owner:$UID:$GID
-            #cache files, perms:600 owner:$UID:GID
+            #cache directories, perms:771 owner:$LOCALUID:$LOCALGID
+            #cache files, perms:600 owner:$LOCALUID:$LOCALGID
             REVPERM=600
             REVPSTR="rw-------"
             fp_chmod $OLD_PER "rwxrwx--x" 771 "$FILEDIR"
          else
-            #other directories, perms:771 owner:$UID:$GID
+            #other directories, perms:771 owner:$LOCALUID:$LOCALGID
             REVPERM=771
             REVPSTR="rwxrwx--x"
             fp_chmod $OLD_PER "rwxrwx--x" 771 "$FILEDIR"
@@ -398,8 +406,8 @@ fp_package()
             fp_chown_uid $OLD_UID 1000 "$FILEDIR"
             fp_chown_gid $OLD_GID 1000 "$FILEDIR"
          else
-            fp_chown_uid $OLD_UID $UID "$FILEDIR"
-            fp_chown_gid $OLD_GID $GID "$FILEDIR"
+            fp_chown_uid $OLD_UID $LOCALUID "$FILEDIR"
+            fp_chown_gid $OLD_GID $LOCALGID "$FILEDIR"
          fi
          
          #if any files exist in directory with improper permissions reset them
@@ -445,7 +453,7 @@ fp_end()
    fi
    
    if $TEST $SYSSDMOUNT -eq 1; then
-      $UMOUNT /system/sd > /dev/null 2>&1
+      $UMOUNT $SD_EXT_DIRECTORY > /dev/null 2>&1
    fi
    
    if $TEST $SYSMOUNT -eq 1; then
@@ -474,3 +482,4 @@ else
    fp_all
 fi
 fp_end
+
