@@ -24,7 +24,6 @@ symlink /system/xbin/busybox SYSTEM:bin/adjtimex
 symlink /system/xbin/busybox SYSTEM:bin/ar      
 symlink /system/xbin/busybox SYSTEM:bin/arp     
 symlink /system/xbin/busybox SYSTEM:bin/arping  
-symlink /system/xbin/busybox SYSTEM:bin/ash     
 symlink /system/xbin/busybox SYSTEM:bin/awk     
 symlink /system/xbin/busybox SYSTEM:bin/basename
 symlink /system/xbin/busybox SYSTEM:bin/blkid   
