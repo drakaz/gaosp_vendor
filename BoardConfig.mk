@@ -8,6 +8,7 @@ USE_CAMERA_STUB := false
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
+TARGET_ARCH_VARIANT := armv6j
 TARGET_KERNEL_CONFIG := gaosp_msm_defconfig
 TARGET_KERNEL_DIR := gaosp-kernel
 
