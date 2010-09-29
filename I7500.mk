@@ -200,6 +200,7 @@ PRODUCT_PACKAGES := \
     VpnServices \
     WebSearchProvider \
     LiveWallpapersPicker \
+    FileManager \
     Superuser \
     Torch \
     libjni_flash
