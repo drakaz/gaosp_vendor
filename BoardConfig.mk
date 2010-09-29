@@ -24,6 +24,7 @@ BT_USE_BTL_IF := true
 BT_ALT_STACK := true
 BRCM_BTL_INCLUDE_A2DP := true
 BRCM_BT_USE_BTL_IF := true
+WITH_A2DP := true
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/Samsung/I7500/open/lib/egl.cfg
