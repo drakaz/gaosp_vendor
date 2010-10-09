@@ -118,6 +118,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/sysinit:system/bin/sysinit \
 	device/Samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
 	device/Samsung/I7500/open/bin/changepasswd:system/bin/changepasswd \
+	device/Samsung/I7500/open/bin/dropbear:system/xbin/dropbear \
 	device/Samsung/I7500/open/bin/dropbear-keygen:system/xbin/dropbear-keygen \
 	device/Samsung/I7500/open/bin/busybox:system/xbin/busybox \
 	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
