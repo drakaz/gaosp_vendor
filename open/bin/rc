@@ -7,6 +7,8 @@ sleep 5
 echo "GaospRC : Remount in RW..."
 /system/bin/bash /system/xbin/remountrw
 
+set -x
+
 # akmd fix
 echo 250 > /data/delay
 
@@ -14,7 +16,7 @@ echo 250 > /data/delay
 ##### SSHD #######
 ##################
 
-if [ ! -z `grep "sshd=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "sshd=yes" /system/etc/gaosp.conf` ]
 then
 	PID=`pidof dropbear` && kill -9 $PID
 # Verification du necessaire pour dropbear et lancement du serveur sshd
@@ -45,7 +47,7 @@ fi
 ##### inadyn ######
 ###################
 
-if [ ! -z `grep "inadyn=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "inadyn=yes" /system/etc/gaosp.conf` ]
 then
 	echo "GaospRC : inadyn activated, starting..."
 	/system/bin/logwrapper /system/xbin/inadyn &
@@ -58,7 +60,7 @@ fi
 ###### Prov #######
 ###################
 
-if [ ! -z `grep "provisionned=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "provisionned=yes" /system/etc/gaosp.conf` ]
 then
 # Modification de la valeur de provisioning sim
 	echo "GaospRC : Provisionning sim..."
@@ -72,7 +74,7 @@ fi
 ###### VNC Server #######
 #########################
 
-if [ ! -z `grep "vnc=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "vnc=yes" /system/etc/gaosp.conf` ]
 then
 	PID=`pidof fbvncserver` && kill -9 $PID
 	echo "GaospRC : Starting VNC server..."
@@ -89,14 +91,14 @@ fi
 
 
 echo "GaospRC : Applying CpuFreq sampling rule..."
-if [ ! -z `grep "overclocking=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "overclocking=yes" /system/etc/gaosp.conf` ]
 then
 	step1=true;
 	echo "GaospRC : overclocking CPU to 614Mhz..."
 		echo 614400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 fi
 
-if [ ! -z `grep "overclocking2=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "overclocking2=yes" /system/etc/gaosp.conf` ]
 then
 	step2=true;
 	echo "GaospRC : overclocking CPU to 710Mhz..."
@@ -115,7 +117,7 @@ fi
 ####################
 
 echo "GaospRC : Applying CPU sampling..."
-if [ ! -z `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
+if [ -n `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
 	then
 	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 	case $cpu_sampling in
@@ -147,7 +149,7 @@ fi
 ##### Renice #######
 ####################
 
-if [ ! -z `grep "renice=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "renice=yes" /system/etc/gaosp.conf` ]
 then
 	renice -20 `pidof com.android.mms`
 	renice -19 `pidof com.android.phone`
@@ -181,7 +183,7 @@ fi
 ### Compcache ####
 ##################
 
-if [ ! -z `grep "compcache=yes" /system/etc/gaosp.conf` ]
+if [ -n `grep "compcache=yes" /system/etc/gaosp.conf` ]
 then
         if [ -r /dev/block/ramzswap0 ]
         then
