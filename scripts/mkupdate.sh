@@ -6,6 +6,9 @@ cp -r device/Samsung/I7500/META-INF out/target/product/I7500/
 mkdir out/target/product/I7500/dev_data/
 mv out/target/product/I7500/system/app out/target/product/I7500/dev_data/app_s
 
+# Addin firstboot.sh script to /data
+cp -p device/Samsung/I7500/open/bin/firstboot.sh out/target/product/I7500/dev_data/firstboot.sh
+
 ### For future kernel generation, for now we just get prebuild boot.img from gcode download page
 #rm -rf out/target/product/I7500/ramdisk.gz
 #cp -rp device/Samsung/I7500/open/boot/init out/target/product/I7500/root/init
