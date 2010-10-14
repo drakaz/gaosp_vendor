@@ -73,5 +73,5 @@
     <bool name="config_desktop_indicator_autohide">true</bool>
     <!-- 1=top dots, 2=top slider, 3=bottom slider -->
     <string name="config_desktop_indicator_type">1</string>
-    <bool name="config_system_persistent">false</bool>
+    <bool name="config_system_persistent">true</bool>
 </resources>
