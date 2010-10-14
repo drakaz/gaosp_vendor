@@ -626,7 +626,6 @@ service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --patchram /sys
     
 # Execute files in /etc/init.d before booting
 service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
-    disabled
     oneshot
 
 # Clean shutdown from cyanogen
