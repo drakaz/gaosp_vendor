@@ -32,4 +32,5 @@ java -jar ../../../host/linux-x86/framework/signapk.jar ../../../../build/target
 ### Restore original directory for data/app_s
 cd ../../../../
 mv out/target/product/I7500/dev_data/app_s out/target/product/I7500/system/app
+rm out/target/product/I7500/dev_data/firstboot.sh
 rmdir out/target/product/I7500/dev_data/
