@@ -206,7 +206,8 @@ PRODUCT_PACKAGES := \
     FileManager \
     Superuser \
     Torch \
-    libjni_flash
+    libjni_flash \
+    sensors.msm7k
 
 
 # Check : building for chinese people ?
