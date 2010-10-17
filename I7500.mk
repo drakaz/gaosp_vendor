@@ -48,11 +48,11 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
-    net.bt.name=Galaxy \
+    net.bt.name=Galaxy 
 
-# Disable Compcache by default
+# Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.compcache.default=0
+    ro.compcache.default=25
 
 # Disable fs check on boot by default
 PRODUCT_PROPERTY_OVERRIDES += \
