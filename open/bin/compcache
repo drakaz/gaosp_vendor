@@ -6,14 +6,13 @@
 
 DEV=/dev/block/ramzswap0
 MODULE=ramzswap
-MODULES_DIR=/system/lib/modules/
-disk_size=`grep "compcache_disksize=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+MODULES_DIR=/system/modules/lib/modules/`uname -r`
 
 case "$1" in
    start)
       echo 3 > /proc/sys/vm/drop_caches
-      insmod $MODULES_DIR/ramzswap.ko  disksize_kb=$disk_size
-      rzscontrol $DEV --init
+      modprobe $MODULE
+      rzscontrol $DEV --disksize_kb=$2 --init
       swapon $DEV
    ;;
 
@@ -25,9 +24,10 @@ case "$1" in
       rzscontrol $DEV --stats
    ;;
    *)
-      echo "Usage: $0 {start|stop|stats}"
+      echo "Usage: $0 {start <size>|stop|stats}"
       exit 1
 esac
 
 exit 0
+
 
