@@ -8,9 +8,8 @@ BUILD_ID := PUBLIC_BETA3
 
 WITH_GOOGLE := true
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83/60505:user/release-keys 
-PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83 60505 release-keys"
-
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=tmobile/opal/sapphire/sapphire:2.2.1/FRG83/60505:user/release-keys 
+PRIVATE_BUILD_DESC="opal-user 2.2.1 FRG83 60505 release-keys"
 DEVICE_PACKAGE_OVERLAYS := device/Samsung/I7500/overlay
 
 PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
