@@ -6,6 +6,7 @@ copy_dir PACKAGE:system SYSTEM:
 set_perm_recursive 0 0 0755 0644 SYSTEM:
 set_perm_recursive 0 2000 0755 0755 SYSTEM:bin
 set_perm_recursive 0 2000 0755 0755 SYSTEM:xbin
+set_perm_recursive 0 2000 0755 0755 SYSTEM:etc/init.d
 
 set_perm 0 2000 0550 SYSTEM:etc/init.goldfish.sh
 set_perm 1002 1002 0440 SYSTEM:etc/dbus.conf
