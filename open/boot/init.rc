@@ -366,6 +366,9 @@ on boot
 # Swapiness 
 #     write /proc/sys/vm/swappiness 0
 
+# enable insecure AGPS
+    setprop ro.ril.def.agps.mode 2
+
 # Mass Storage
     write /sys/devices/platform/mass_storage/lun0/file /dev/block/mmcblk0p2
     write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.1/polling 1
