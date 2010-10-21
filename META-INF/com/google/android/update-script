@@ -320,6 +320,7 @@ symlink /system/bin/toolbox SYSTEM:bin/newfs_msdos
 
 copy_dir PACKAGE:dev_data INTERNAL:
 set_perm 1000 1000 0771 INTERNAL:app_s
+set_perm 1000 1000 0771 INTERNAL:app
 
 symlink /data/app_s SYSTEM:app
 
