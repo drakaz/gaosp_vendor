@@ -37,7 +37,7 @@
     <bool name="config_drawerAnimated">false</bool>
     <!-- config_desktopScreens min value is 1, so it will add 1 to whatever value you set here -->
     <integer name="config_desktopScreens">4</integer>
-    <integer name="config_defaultScreen">3</integer>
+    <integer name="config_defaultScreen">2</integer>
     <bool name="config_hideStatusbar">false</bool>
     <bool name="config_previewsNew">true</bool>
     <bool name="config_previewsFullScreen">true</bool>
