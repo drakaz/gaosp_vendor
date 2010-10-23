@@ -2,7 +2,7 @@
 source $PWD/build/envsetup.sh
 
 # Lunch 
-lunch I7500-eng
+lunch I7500-userdebug
 
 # Function
 function gaosp_help {
