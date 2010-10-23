@@ -194,7 +194,6 @@ PRODUCT_PACKAGES := \
     SoundRecoder \
     SubscribedFeedsProvider \
     Stk \
-    SpeechRecorder \
     TelephonyProvider \
     Term \
     TtsService \
