@@ -51,7 +51,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.compcache.default=25
+    ro.compcache.default=18
 
 # Disable fs check on boot by default
 PRODUCT_PROPERTY_OVERRIDES += \
