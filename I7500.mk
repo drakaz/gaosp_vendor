@@ -125,6 +125,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/apps/GaospConf.apk:system/app/GaospConf.apk \
 	device/Samsung/I7500/open/apps/serviceModeApp.apk:system/app/serviceModeApp.apk \
 	device/Samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
+	device/Samsung/I7500/open/apps/wireless_tether_2_0_2.apk:system/app/wireless_tether_2_0_2.apk \
 	device/Samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
 	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/Samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
