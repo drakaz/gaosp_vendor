@@ -246,13 +246,14 @@ loglevel 3
 #   chmod 0777 /dev/proximity
 
 # Permissions for btld_testmode
-    chmod 0660 /dev/ttyHS0
+    chmod 0666 /dev/ttyHS0
     chown bluetooth bluetooth /dev/uinput
     chmod 0666 /dev/uinput
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
+    write /sys/class/rfkill/rfkill0/state 0
     chmod 0777 /sys/class/rfkill/rfkill0/state
     chmod 0777 /sys/class/rfkill/rfkill1/state
     chmod 0666 /dev/msm_snd
@@ -529,7 +530,7 @@ service bluetoothd /system/bin/bluetoothd -n
     disabled
 
 #btld
-service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -lpm 1
+service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -hp -lpm 1
     user root
     group bluetooth net_bt_admin
     disabled
@@ -537,14 +538,14 @@ service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -lpm 1
 
 # DTUN HCID
 # service hcid /system/bin/hcid -s -n -f /etc/bluez/hcid.conf
-service hcid /system/bin/logwrapper /system/bin/hcid
-    socket bluetooth stream 660 bluetooth bluetooth
-    socket dbus_bluetooth stream 660 bluetooth bluetooth
+#service hcid /system/bin/logwrapper /system/bin/hcid
+#    socket bluetooth stream 660 bluetooth bluetooth
+#    socket dbus_bluetooth stream 660 bluetooth bluetooth
     # init.rc does not yet support applying capabilities, so run as root and
     # let hcid drop uid to bluetooth with the right linux capabilities
-    group bluetooth net_bt_admin misc
-    disabled
-    oneshot    
+#   group bluetooth net_bt_admin misc
+#   disabled
+#   oneshot    
     
 service hfag /system/bin/sdptool add --channel=10 HFAG
     user bluetooth
@@ -622,7 +623,7 @@ service ifcfg_eth0 /system/bin/ifconfig eth0 up
     oneshot
 
 # Bluetooth
-service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --patchram /system/bin/BCM4325D1_004.002.004.0153.0156.hcd /dev/ttyHS0
+service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --baudrate 3000000 --patchram /system/bin/BCM4325D1_004.002.004.0153.0156.hcd /dev/ttyHS0
     user bluetooth
     group bluetooth net_bt_admin
     disabled
