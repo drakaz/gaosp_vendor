@@ -179,6 +179,7 @@ PRODUCT_PACKAGES := \
     HTMLViewer \
     IM \
     ImProvider \
+    klogtail \
     ManagementProvider \
     MediaProvider \
     Mms \
