@@ -133,7 +133,8 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/Samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/Samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
-	device/Samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit
+	device/Samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
+        device/Samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin
 	
 
 # Sounds

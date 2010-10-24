@@ -60,11 +60,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/etc/rtecdc.bin | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/etc/rtecdc.bin
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/open/etc/rtecdc_adhoc.bin | $(ACP)
-        $(transform-prebuilt-to-target)
-
 # Proprietary lib
 file := $(TARGET_OUT)/lib/libsec-ril.so
 ALL_PREBUILT += $(file)
