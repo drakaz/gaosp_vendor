@@ -5,14 +5,14 @@
 #
 
 DEV=/dev/block/ramzswap0
-MODULE=ramzswap
-MODULES_DIR=/system/modules/lib/modules/`uname -r`
+MODULE=ramzswap.ko
+MODULES_DIR=/system/lib/modules/
 
 case "$1" in
    start)
       echo 3 > /proc/sys/vm/drop_caches
       echo 30 > /proc/sys/vm/swappiness
-      modprobe $MODULE
+      insmod $MODULES_DIR/$MODULE
       rzscontrol $DEV --disksize_kb=$2 --init
       swapon $DEV
    ;;
