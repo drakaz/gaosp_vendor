@@ -119,6 +119,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/changepasswd:system/bin/changepasswd \
 	device/Samsung/I7500/open/bin/dropbear:system/xbin/dropbear \
 	device/Samsung/I7500/open/bin/dropbear-keygen:system/xbin/dropbear-keygen \
+	device/Samsung/I7500/open/bin/dropbearkey:system/xbin/dropbearkey \
 	device/Samsung/I7500/open/bin/busybox:system/xbin/busybox \
 	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
 	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
