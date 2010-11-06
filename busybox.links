@@ -100,6 +100,7 @@
 /bin/reset
 /bin/rm
 /bin/rmdir
+/bin/rmmod
 /sbin/route
 /bin/run-parts
 /bin/sed
