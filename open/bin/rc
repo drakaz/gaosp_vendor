@@ -1,7 +1,7 @@
 
 sleep 5
 
-# Montage en rw
+# Remount in read/write
 echo "GaospRC : Remount in RW..."
 /system/bin/bash /system/xbin/remountrw
 
@@ -105,9 +105,9 @@ echo "GaospRC : overclocking deactivated"
 fi
 
 	
-####################
-##### Tweaks #######
-####################
+##########################
+##### CPU sampling #######
+##########################
 
 echo "GaospRC : Applying CPU sampling..."
 if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
@@ -179,28 +179,6 @@ then
 	renice 0 `pidof com.google.process.gapps`
 fi
 
-####################
-###### Swap ########
-####################
-
-# Now managed by a-swapper
-
-# Gestion de la swap
-#echo "GaospRC : Mouting swap..."
-#if [ ! -r /dev/block/mmcblk1p2 ]
-#then
-#	if [ ! -f /data/swapfile ]
-#	then
-		#dd if=/dev/zero of=/data/swapfile bs=1024 count=30720
-		#mkswap /data/swapfile
-#		echo "rien a faire"
-#	fi
-	#swapon /data/swapfile
-#else
-#mkswap /dev/block/mmcblk1p2
-#swapon /dev/block/mmcblk1p2
-#fi
-
 ##################
 ### Compcache ####
 ##################
@@ -224,7 +202,7 @@ then
 	fi
 	sleep 5
 
-	# Compcache tunning
+	# Compcache tuning
 	echo 20 > /proc/sys/vm/swappiness
 	echo 1 > /proc/sys/vm/page-cluster
 	echo 5 > /proc/sys/vm/laptop_mode
@@ -244,10 +222,50 @@ else
 	fi
 fi
 
-# remontage en ro
+####################
+###### Swap ########
+####################
+
+if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
+then
+	echo "GaospRC : Mouting swap..."
+	if [ ! -r /dev/block/mmcblk1p2 ]
+	then
+		if [ ! -f /data/swapfile ]
+		then
+			dd if=/dev/zero of=/data/swapfile bs=1024 count=30720
+			mkswap /data/swapfile		
+		fi		
+		swapon /data/swapfile
+		echo "Use swap file"	
+	else
+		mkswap /dev/block/mmcblk1p2
+		swapon /dev/block/mmcblk1p2
+		echo "Use swap partition"
+	fi
+	# Swap tuning
+	echo 15 > /proc/sys/vm/swappiness
+	echo 700 > /proc/sys/vm/dirty_writeback_centisecs
+	echo 700 > /proc/sys/vm/dirty_expire_centisecs
+	echo 55 > /proc/sys/vm/dirty_ratio
+	echo 30 > /proc/sys/vm/dirty_background_ratio
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task
+	echo 10 > /proc/sys/vm/vfs_cache_pressure
+else
+	if [ -f /data/swapfile ]
+	then
+		swapoff /data/swapfile
+		rm -f /data/swapfile
+	fi			
+	if [ -r /dev/block/mmcblk1p2 ]
+	then
+		swapoff /dev/block/mmcblk1p2
+	fi
+fi
+
+# Remount in read only
 echo "GaospRC : Remount in RO..."
 /system/bin/bash /system/xbin/remountro &
-
 
 ###################
 ## Auto kill ######
@@ -320,6 +338,3 @@ then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 fi
-
-
-
