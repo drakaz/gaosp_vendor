@@ -231,12 +231,12 @@ then
 	echo "GaospRC : Mouting swap..."
 	if [ ! -r /dev/block/mmcblk1p2 ]
 	then
-		if [ ! -f /data/swapfile ]
+		if [ ! -f /mnt/sdcard/sd/swap/swapfile ]
 		then
-			dd if=/dev/zero of=/data/swapfile bs=1024 count=30720
-			mkswap /data/swapfile		
+			dd if=/dev/zero of=/mnt/sdcard/sd/swap/swapfile bs=1024 count=30720
+			mkswap /mnt/sdcard/sd/swap/swapfile	
 		fi		
-		swapon /data/swapfile
+		swapon /mnt/sdcard/sd/swap/swapfile
 		echo "Use swap file"	
 	else
 		mkswap /dev/block/mmcblk1p2
@@ -252,10 +252,10 @@ then
 	echo 1 > /proc/sys/vm/oom_kill_allocating_task
 	echo 10 > /proc/sys/vm/vfs_cache_pressure
 else
-	if [ -f /data/swapfile ]
+	if [ -f /mnt/sdcard/sd/swap/swapfile ]
 	then
-		swapoff /data/swapfile
-		rm -f /data/swapfile
+		swapoff /mnt/sdcard/sd/swap/swapfile
+		rm -f /mnt/sdcard/sd/swap/swapfile
 	fi			
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
