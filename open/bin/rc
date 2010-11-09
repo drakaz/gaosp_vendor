@@ -1,3 +1,4 @@
+#!/system/bin/bash
 
 sleep 5
 
@@ -109,7 +110,7 @@ fi
 ##### CPU sampling #######
 ##########################
 
-echo "GaospRC : Applying CPU sampling..."
+echo "GaospRC : Applying CPU sampling..."
 if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
 	then
 	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
@@ -140,7 +141,7 @@ fi
 ##### Sensors ######
 ####################
 
-echo "GaospRC : Applying Sensors sampling..."
+echo "GaospRC : Applying Sensors sampling..."
 if [ `grep "sensors_sampling=" /system/etc/gaosp.conf` ]
 	then
 	cpu_sampling=`grep "sensors_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
@@ -229,34 +230,24 @@ fi
 if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
 then
 	echo "GaospRC : Mouting swap..."
-	if [ ! -r /dev/block/mmcblk1p2 ]
+	if [ -r /dev/block/mmcblk1p2 ]
 	then
-		if [ ! -f /mnt/sdcard/sd/swap/swapfile ]
-		then
-			dd if=/dev/zero of=/mnt/sdcard/sd/swap/swapfile bs=1024 count=30720
-			mkswap /mnt/sdcard/sd/swap/swapfile	
-		fi		
-		swapon /mnt/sdcard/sd/swap/swapfile
-		echo "Use swap file"	
-	else
 		mkswap /dev/block/mmcblk1p2
 		swapon /dev/block/mmcblk1p2
 		echo "Use swap partition"
+		
+		# Swap tuning
+		echo 15 > /proc/sys/vm/swappiness
+		echo 700 > /proc/sys/vm/dirty_writeback_centisecs
+		echo 700 > /proc/sys/vm/dirty_expire_centisecs
+		echo 55 > /proc/sys/vm/dirty_ratio
+		echo 30 > /proc/sys/vm/dirty_background_ratio
+		echo 1 > /proc/sys/vm/oom_kill_allocating_task
+		echo 10 > /proc/sys/vm/vfs_cache_pressure
+	else
+		echo "No swap partition found!"
 	fi
-	# Swap tuning
-	echo 15 > /proc/sys/vm/swappiness
-	echo 700 > /proc/sys/vm/dirty_writeback_centisecs
-	echo 700 > /proc/sys/vm/dirty_expire_centisecs
-	echo 55 > /proc/sys/vm/dirty_ratio
-	echo 30 > /proc/sys/vm/dirty_background_ratio
-	echo 1 > /proc/sys/vm/oom_kill_allocating_task
-	echo 10 > /proc/sys/vm/vfs_cache_pressure
 else
-	if [ -f /mnt/sdcard/sd/swap/swapfile ]
-	then
-		swapoff /mnt/sdcard/sd/swap/swapfile
-		rm -f /mnt/sdcard/sd/swap/swapfile
-	fi			
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
 		swapoff /dev/block/mmcblk1p2
@@ -338,3 +329,5 @@ then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 fi
+
+
