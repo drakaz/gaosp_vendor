@@ -174,6 +174,7 @@ PRODUCT_PACKAGES := \
     DSPManager \
     Email \
     Gallery3D \
+    GaospConf \
     GoogleContactsProvider \
     GoogleSearch \
     HTMLViewer \
