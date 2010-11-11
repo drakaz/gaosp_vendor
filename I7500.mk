@@ -126,6 +126,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/apps/serviceModeApp.apk:system/app/serviceModeApp.apk \
 	device/Samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
 	device/Samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
+	device/Samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
 	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/Samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
 	device/Samsung/I7500/open/lib/librun.so:system/lib/librun.so \
