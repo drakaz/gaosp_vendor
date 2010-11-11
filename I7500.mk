@@ -208,7 +208,8 @@ PRODUCT_PACKAGES := \
     Superuser \
     Torch \
     libjni_flash \
-    sensors.msm7k
+    sensors.msm7k \
+    libterm
 
 
 # Check : building for chinese people ?

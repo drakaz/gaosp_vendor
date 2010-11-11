@@ -14,7 +14,8 @@ loglevel 3
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /mnt/sdcard
-    export SD_EXT_DIRECTORY /mnt/sdcard2
+    export EXTERNAL_STORAGE2 /mnt/sdcard2
+    export SD_EXT_DIRECTORY /sd-ext
     export ASEC_MOUNTPOINT /mnt/asec
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar
     export TERMINFO /system/etc/terminfo
@@ -38,6 +39,7 @@ loglevel 3
     
 # Backwards Compat - XXX: Going away in G*
     symlink /mnt/sdcard /sdcard
+    symlink /mnt/sdcard2 /sdcard2
     symlink /mnt/sd-ext /sd-ext
     
     mkdir /system
