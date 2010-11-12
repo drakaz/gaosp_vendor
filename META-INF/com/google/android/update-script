@@ -222,7 +222,7 @@ symlink /system/xbin/busybox SYSTEM:bin/reset
 symlink /system/xbin/busybox SYSTEM:bin/resize       
 symlink /system/xbin/busybox SYSTEM:bin/rm           
 symlink /system/xbin/busybox SYSTEM:bin/rmdir        
-symlink /system/xbin/busybox SYSTEM:bin/rmmod
+symlink /system/bin/toolbox SYSTEM:bin/rmmod
 symlink /system/xbin/busybox SYSTEM:bin/route        
 symlink /system/xbin/busybox SYSTEM:bin/rtcwake      
 symlink /system/xbin/busybox SYSTEM:bin/run-parts    
