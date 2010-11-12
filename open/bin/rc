@@ -274,57 +274,57 @@ then
 	mkdir /dbdata/data
 	chmod 777 /dbdata/data
 fi
-if [ -d "/data/data/com.android.providers.contacts" ]
+if [ ! -h "/data/data/com.android.providers.contacts" ]
 then
 	mv /data/data/com.android.providers.contacts /dbdata/data/com.android.providers.contacts
 	ln -s /dbdata/data/com.android.providers.contacts /data/data/com.android.providers.contacts
 fi
-if [ -d "/data/data/com.android.contacts" ]
+if [ ! -h "/data/data/com.android.contacts" ]
 then
 	mv /data/data/com.android.contacts /dbdata/data/com.android.contacts
 	ln -s /dbdata/data/com.android.contacts /data/data/com.android.contacts
 fi
-if [ -d "/data/data/com.android.browser" ]
+if [ ! -h "/data/data/com.android.browser" ]
 then
 	mv /data/data/com.android.browser /dbdata/data/com.android.browser
 	ln -s /dbdata/data/com.android.browser /data/data/com.android.browser
 fi
-if [ -d "/data/data/com.android.launcher" ]
+if [ ! -h "/data/data/com.android.launcher" ]
 then
 	mv /data/data/com.android.launcher /dbdata/data/com.android.launcher
 	ln -s /dbdata/data/com.android.launcher /data/data/com.android.launcher
 fi
-if [ -d "/data/data/com.android.mms" ]
+if [ ! -h "/data/data/com.android.mms" ]
 then
 	mv /data/data/com.android.mms /dbdata/data/com.android.mms
 	ln -s /dbdata/data/com.android.mms /data/data/com.android.mms
 fi
-if [ -d "/data/data/com.android.providers.media" ]
+if [ ! -h "/data/data/com.android.providers.media" ]
 then
 	mv /data/data/com.android.providers.media /dbdata/data/com.android.providers.media
 	ln -s /dbdata/data/com.android.providers.media /data/data/com.android.providers.media
 fi
-if [ -d /data/data/com.android.settings ]
+if [ ! -h /data/data/com.android.settings ]
 then
 	mv /data/data/com.android.settings /dbdata/data/com.android.settings
 	ln -s /dbdata/data/com.android.settings /data/data/com.android.settings
 fi
-if [ -d "/data/data/com.android.providers.telephony" ]
+if [ ! -h "/data/data/com.android.providers.telephony" ]
 then
 	mv /data/data/com.android.providers.telephony /dbdata/data/com.android.providers.telephony
 	ln -s /dbdata/data/com.android.providers.telephony /data/data/com.android.providers.telephony
 fi
-if [ -d "/data/data/com.android.settings" ]
+if [ ! -h "/data/data/com.android.settings" ]
 then
 	mv /data/data/com.android.settings /dbdata/data/com.android.settings
 	ln -s /dbdata/data/com.android.settings /data/data/com.android.settings
 fi
-if [ -d "/data/data/com.android.vending" ]
+if [ ! -h "/data/data/com.android.vending" ]
 then
 	mv /data/data/com.android.vending /dbdata/data/com.android.vending
 	ln -s /dbdata/data/com.android.vending /data/data/com.android.vending
 fi
-if [ -d "/data/data/com.android.providers.downloads" ]
+if [ ! -h "/data/data/com.android.providers.downloads" ]
 then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
