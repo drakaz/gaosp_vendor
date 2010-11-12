@@ -10,6 +10,7 @@ MODULES_DIR=/system/lib/modules/
 
 case "$1" in
    start)
+      echo "Compcache : start"
       echo 3 > /proc/sys/vm/drop_caches
       echo 30 > /proc/sys/vm/swappiness
       insmod $MODULES_DIR/$MODULE
@@ -18,6 +19,7 @@ case "$1" in
    ;;
 
    stop)
+      echo "Compcache : stop"
       swapoff $DEV >/dev/null 2>&1
       rmmod $MODULE >/dev/null 2>&1
    ;;
