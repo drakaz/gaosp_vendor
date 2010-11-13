@@ -23,9 +23,6 @@ TINY_TOOLBOX:=false
 # Enable Windows Media if supported by the board
 WITH_WINDOWS_MEDIA:=true
 
-# Enable root on userdebug
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-
 NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
 
