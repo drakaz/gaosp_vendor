@@ -38,14 +38,14 @@
 
 // sensor IDs must be a power of two and
 // must match values in SensorManager.java
-#define EVENT_TYPE_ACCEL_X          ABS_Y
-#define EVENT_TYPE_ACCEL_Y          ABS_X
+#define EVENT_TYPE_ACCEL_X          ABS_X
+#define EVENT_TYPE_ACCEL_Y          ABS_Y
 #define EVENT_TYPE_ACCEL_Z          ABS_Z
 #define EVENT_TYPE_ACCEL_STATUS     ABS_WHEEL
 
 #define EVENT_TYPE_YAW              ABS_RX
-#define EVENT_TYPE_PITCH            ABS_RY
-#define EVENT_TYPE_ROLL             ABS_RZ
+#define EVENT_TYPE_PITCH            ABS_RZ
+#define EVENT_TYPE_ROLL             ABS_RY
 #define EVENT_TYPE_ORIENT_STATUS    ABS_RUDDER
 
 /*** AKEMD ATTENTION! To adjust Android ***/
@@ -71,7 +71,7 @@
 // conversion of acceleration data to SI units (m/s^2)
 #define CONVERT_A                   (GRAVITY_EARTH / LSG)
 #define CONVERT_A_X                 (CONVERT_A)
-#define CONVERT_A_Y                 (-CONVERT_A)
+#define CONVERT_A_Y                 (CONVERT_A)
 #define CONVERT_A_Z                 (-CONVERT_A)
 
 // conversion of magnetic data to uT units
@@ -89,7 +89,7 @@
 #define CONVERT_O                   (1.0f/64.0f)
 #define CONVERT_O_Y                 (CONVERT_O)
 #define CONVERT_O_P                 (CONVERT_O)
-#define CONVERT_O_R                 (-CONVERT_O)
+#define CONVERT_O_R                 (CONVERT_O)
 
 
 #define SENSOR_STATE_MASK           (0x7FFF)
@@ -380,7 +380,7 @@ static uint32_t read_sensors_state(int fd)
     if (fd<0) return 0;
     short flags;
     uint32_t sensors = 0;
-	LOGE("read_sensors_state");
+    LOGD("read_sensors_state");
     // read the actual value of all sensors
     if (!ioctl(fd, ECS_IOCTL_APP_GET_MFLAG, &flags)) {
         if (flags)  sensors |= SENSORS_ORIENTATION;
@@ -418,12 +418,12 @@ static native_handle_t* sensors_control_open_data_source(struct sensors_control_
 
     /* enable the proximity sensor */
     /* TODO: there should be a nicer way by ioctl or something */
-    int f = open("/sys/devices/platform/i2c-gpio.6/i2c-adapter/i2c-6/6-0044/enable",O_WRONLY);
+    int f = open("/sys/devices/platform/i2c-gpio.1/i2c-adapter/i2c-1/1-0044/enable",O_WRONLY);
     if(f < 0 ) {
-      LOGE("Error opening /sys/devices/platform/i2c-gpio.6/i2c-adapter/i2c-6/6-0044/enable for proximity sensor enabling");
+      LOGE("Error opening /sys/devices/platform/i2c-gpio.1/i2c-adapter/i2c-1/1-0044/enable for proximity sensor enabling");
     } else {
       if( write(f,"1",2) == -1 ) {
-        LOGE("Error writing to /sys/devices/platform/i2c-gpio.6/i2c-adapter/i2c-6/6-0044/enable");
+        LOGE("Error writing to /sys/devices/platform/i2c-gpio.1/i2c-adapter/i2c-1/1-0044/enable");
       }
       close(f);
     }
@@ -465,7 +465,7 @@ static int sensors_control_activate(struct sensors_control_device_t *dev,
         LOGD("sensors=%08x, real=%08x",
                 sActiveSensors, read_sensors_state(fd));
     }
-    return 0;
+    return 1;
 }
 
 static int sensors_control_delay(struct sensors_control_device_t *dev, int32_t ms)
@@ -706,10 +706,11 @@ static int pick_sensor(sensors_data_t* values)
             sPendingSensors &= ~(1<<i);
             *values = sSensors[i];
             values->sensor = (1<<i);
-            /*LOGD_IF(0, "%d [%f, %f, %f]", (1<<i),
+            LOGD("Picked sensor %d", SENSORS_HANDLE_BASE + i);
+            LOGD("%d [%f, %f, %f]", (1<<i),
                     values->vector.x,
                     values->vector.y,
-                    values->vector.z);*/
+                    values->vector.z);
             return SENSORS_HANDLE_BASE + i;
         }
     }
@@ -823,7 +824,9 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
                         sSensors[ID_O].orientation.azimuth = 
                             (sActiveSensors & SENSORS_ORIENTATION) ?
 			    LMSFilter(t, event.value * CONVERT_O) : event.value * CONVERT_O;*/
-                        sSensors[ID_O].orientation.azimuth = event.value * CONVERT_O_Y;
+                        float conv = ( event.value * CONVERT_O_Y + 180 );
+                        conv = conv > 360 ? conv - 360 : conv;
+                        sSensors[ID_O].orientation.azimuth = conv;
                         sSensors[ID_OR].orientation.azimuth = event.value;
                         break;
                     case EVENT_TYPE_PITCH:
@@ -844,12 +847,12 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
 						LOGD("EVENT_TYPE_TEMPERATURE");
                         sSensors[ID_T].temperature = event.value;
                         break;
-					case EVENT_TYPE_PROXIMITY:
-						new_sensors |= SENSORS_PROXIMITY;
-						LOGD("EVENT_TYPE_PROXIMITY");
-						sSensors[ID_P].distance = event.value;
-						break;
-	                case EVENT_TYPE_STEP_COUNT:
+                    case EVENT_TYPE_PROXIMITY:
+                        new_sensors |= SENSORS_PROXIMITY;
+            LOGD("EVENT_TYPE_PROXIMITY");
+                        sSensors[ID_P].vector.x = event.value;
+                        break;
+                    case EVENT_TYPE_STEP_COUNT:
 						LOGD("EVENT_TYPE_STEP_COUNT");
                         // step count (only reported in MODE_FFD)
                         // we do nothing with it for now.
