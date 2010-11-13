@@ -254,6 +254,18 @@ else
 	fi
 fi
 
+#################################
+###### Memory thresholds ########
+#################################
+
+mem1=`grep "mem1=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+mem2=`grep "mem2=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+mem3=`grep "mem3=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+mem4=`grep "mem4=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+mem5=`grep "mem5=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+mem6=`grep "mem6=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+echo $mem1","$mem2","$mem3","$mem4","$mem5","$mem6 > /sys/module/lowmemorykiller/parameters/minfree
+
 # Remount in read only
 echo "GaospRC : Remount in RO..."
 /system/bin/bash /system/xbin/remountro &
