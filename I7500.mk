@@ -118,7 +118,7 @@ PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/Samsung/I7500/open/bin/dropbear-keygen:system/xbin/dropbear-keygen \
 	device/Samsung/I7500/open/bin/dropbearkey:system/xbin/dropbearkey \
 	device/Samsung/I7500/open/bin/busybox:system/xbin/busybox \
-	device/Samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
+	device/Samsung/I7500/open/bin/akmd2:system/bin/akmd2 \
 	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
 	device/Samsung/I7500/open/apps/serviceModeApp.apk:system/app/serviceModeApp.apk \
 	device/Samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
@@ -285,8 +285,6 @@ tr_TR \
 uk_UA \
 vi_VN \
 zh_CN \
-zh_TW \
-mdpi \
-hdpi
+zh_TW
  
  
