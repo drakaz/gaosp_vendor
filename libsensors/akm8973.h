@@ -61,10 +61,11 @@
 #define ECS_IOCTL_APP_GET_DELAY		ECS_IOCTL_GET_DELAY
 #define ECS_IOCTL_APP_SET_MVFLAG	_IOW(AKMIO, 0x19, short)	/* Set raw magnetic vector flag */
 #define ECS_IOCTL_APP_GET_MVFLAG	_IOR(AKMIO, 0x1A, short)	/* Get raw magnetic vector flag */
-#define ECS_IOCTL_APP_SET_PFLAG		_IOR(AKMIO, 0x1B, short)	/* Get proximity flag */
-#define ECS_IOCTL_APP_GET_PFLAG		_IOR(AKMIO, 0x1C, short)	/* Set proximity flag */
 
-
+#define ECS_IOCTL_APP_SET_PFLAG	_IOW(AKMIO, 0x1B, short)	/* Set proximity sensor flag */
+#define ECS_IOCTL_APP_GET_PFLAG	_IOR(AKMIO, 0x1C, short)	/* Get proximity sensor flag */
+#define ECS_IOCTL_APP_SET_LFLAG	_IOW(AKMIO, 0x1D, short)	/* Set raw light value */
+#define ECS_IOCTL_APP_GET_LFLAG	_IOR(AKMIO, 0x1E, short)	/* Get raw light value */
 /* IOCTLs for pedometer */
 //#define ECS_IOCTL_SET_STEP_CNT          _IOW(AKMIO, 0x20, short)
 
@@ -72,7 +73,7 @@
 //#define ECS_RST		146	/*MISC4, bit2 */
 //#define ECS_CLK_ON	155	/*MISC5, bit3 */
 //#define ECS_INTR	161	/*INT2, bit1 */
-
+#define AKM_GPIO_RESET	108
 //struct akm8973_platform_data {
 //	int reset;
 //	int clk_on;
