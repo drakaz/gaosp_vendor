@@ -824,8 +824,7 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
                         sSensors[ID_O].orientation.azimuth = 
                             (sActiveSensors & SENSORS_ORIENTATION) ?
 			    LMSFilter(t, event.value * CONVERT_O) : event.value * CONVERT_O;*/
-                        float conv = ( event.value * CONVERT_O_Y + 180 );
-                        conv = conv > 360 ? conv - 360 : conv;
+                        float conv = ( event.value * CONVERT_O_Y);                       
                         sSensors[ID_O].orientation.azimuth = conv;
                         sSensors[ID_OR].orientation.azimuth = event.value;
                         break;
