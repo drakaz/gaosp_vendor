@@ -874,8 +874,7 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
                     case EVENT_TYPE_LIGHT:
             LOGD("EVENT_TYPE_LIGHT");
                         new_sensors |= SENSORS_LIGHT;
-                        // Adhoc calibration, .1 to prevent android from rejecting 0
-                        sSensors[ID_L].vector.x = 47 * event.value + .1;
+                        sSensors[ID_L].vector.x = event.value;
                         break;
                     case EVENT_TYPE_ACCEL_STATUS:
 						LOGD("EVENT_TYPE_ACCEL_STATUS");
