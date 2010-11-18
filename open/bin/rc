@@ -78,11 +78,9 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
-
 ##########################
 ##### OverClocking #######
 ##########################
-
 
 echo "GaospRC : Applying CpuFreq sampling rule..."
 if [ `grep "overclocking=yes" /system/etc/gaosp.conf` ]
@@ -104,7 +102,6 @@ then
 echo "GaospRC : overclocking deactivated"
 		echo 528000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 fi
-
 	
 ##########################
 ##### CPU sampling #######
@@ -180,62 +177,23 @@ then
 	renice 0 `pidof com.google.process.gapps`
 fi
 
-##################
-### Compcache ####
-##################
-
-if [ `grep "compcache=yes" /system/etc/gaosp.conf` ]
-then
-        if [ -r /dev/block/ramzswap0 ]
-        then
-                swapoff /dev/block/ramzswap0 2>&1 > /dev/null
-                rmmod ramzswap  2>&1 > /dev/null
-        fi
-	echo "GaospRC : loading compcache..."
-	disk_size=`grep "compcache_disksize=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-
-	if [ -r /dev/block/mmcblk1p2 ]
-	then	
-		mkswap /dev/block/mmcblk1p2
-		insmod /system/libmodules/ramzswap.ko num_devices=1 memlimit_kb=$disk_size backing_swap=/dev/block/mmcblk1p2
-	else
-		insmod /system/libmodules/ramzswap.ko num_devices=1 disksize_kb=$disk_size
-	fi
-	sleep 5
-
-	# Compcache tuning
-	echo 20 > /proc/sys/vm/swappiness
-	echo 1 > /proc/sys/vm/page-cluster
-	echo 5 > /proc/sys/vm/laptop_mode
-	echo 5000 > /proc/sys/vm/dirty_expire_centisecs
-	echo 800 > /proc/sys/vm/dirty_writeback_centisecs
-	echo 10 > /proc/sys/vm/dirty_background_ratio
-	echo 16 > /proc/sys/vm/dirty_ratio
-        echo 3 > /proc/sys/vm/drop_caches
-
-	# Swapon
-	swapon /dev/block/ramzswap0
-else
-	if [ -r /dev/block/ramzswap0 ]
-	then
-		swapoff /dev/block/ramzswap0
-		rmmod ramzswap
-	fi
-fi
-
 ####################
 ###### Swap ########
 ####################
 
 if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
 then
-	echo "GaospRC : Mouting swap..."
+	if [ -r /dev/block/ramzswap0 ]
+	then
+		echo "GaospRC : Disabling compcache..."
+		swapoff /dev/block/ramzswap0
+		rmmod ramzswap
+	fi
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
+		echo "GaospRC : Mouting swap..."
 		mkswap /dev/block/mmcblk1p2
 		swapon /dev/block/mmcblk1p2
-		echo "Use swap partition"
-		
 		# Swap tuning
 		echo 15 > /proc/sys/vm/swappiness
 		echo 700 > /proc/sys/vm/dirty_writeback_centisecs
@@ -245,12 +203,7 @@ then
 		echo 1 > /proc/sys/vm/oom_kill_allocating_task
 		echo 10 > /proc/sys/vm/vfs_cache_pressure
 	else
-		echo "No swap partition found!"
-	fi
-else
-	if [ -r /dev/block/mmcblk1p2 ]
-	then
-		swapoff /dev/block/mmcblk1p2
+		echo "GaospRC : No swap partition found!"
 	fi
 fi
 
