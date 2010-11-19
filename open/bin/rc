@@ -191,9 +191,6 @@ then
 	fi
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
-		echo "GaospRC : Mouting swap..."
-		mkswap /dev/block/mmcblk1p2
-		swapon /dev/block/mmcblk1p2
 		# Swap tuning
 		echo 15 > /proc/sys/vm/swappiness
 		echo 700 > /proc/sys/vm/dirty_writeback_centisecs
@@ -202,6 +199,10 @@ then
 		echo 30 > /proc/sys/vm/dirty_background_ratio
 		echo 1 > /proc/sys/vm/oom_kill_allocating_task
 		echo 10 > /proc/sys/vm/vfs_cache_pressure
+		echo 3 > /proc/sys/vm/drop_caches
+		echo "GaospRC : Mouting swap..."
+		mkswap /dev/block/mmcblk1p2
+		swapon /dev/block/mmcblk1p2
 	else
 		echo "GaospRC : No swap partition found!"
 	fi
