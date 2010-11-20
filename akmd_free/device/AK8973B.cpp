@@ -181,8 +181,8 @@ void AK8973B::measure() {
     else m = mbuf;
     
 //    LOGD("mf x=%d y=%d z=%d",(int)mbuf.x,(int)mbuf.y,(int)mbuf.z);
-    calibrate_magnetometer_analog();
-    calibrate();
+    //calibrate_magnetometer_analog();
+    //calibrate();
 }
 
 Vector AK8973B::read()
