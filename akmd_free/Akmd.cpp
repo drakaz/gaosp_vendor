@@ -33,6 +33,8 @@ Akmd::Akmd(ChipReader* orientation_reader,
     this->accelerometer_reader = accelerometer_reader;
     this->temperature_reader = temperature_reader;
     this->result_writer = result_writer;
+    delay_min = 0;
+    delay_max = 0;
 }
 
 Akmd::~Akmd() {
@@ -72,7 +74,7 @@ void Akmd::fill_result_vector(Vector o, Vector a, Vector m, short temperature, s
 /****************************************************************************/
 void Akmd::sleep_until_next_update()
 {
-    int delay = 300; //200; /* Based on SensorManager.SENSOR_DELAY_NORMAL */
+    int delay = 200; /* Based on SensorManager.SENSOR_DELAY_NORMAL */
     int candidate_delay;
 
     ChipReader* chips[3] = { magnetometer_reader, accelerometer_reader, temperature_reader };
@@ -82,9 +84,14 @@ void Akmd::sleep_until_next_update()
         int candidate_delay = chips[i]->get_delay();
         if (candidate_delay > 0 && candidate_delay < delay) {
             delay = candidate_delay;
+            //LOGI("candidate delay= %d",candidate_delay);
         }
     }
 
+    /* override slow update delay */
+    if (delay >= 200 && delay_max > 200) {
+        delay = delay_max;
+    }
     /* Decide if we want "fast" updates or "slow" updates.
      * FASTEST, GAME and UI are defined as <= 60.
      *
@@ -94,9 +101,15 @@ void Akmd::sleep_until_next_update()
      * I sample twice per given interval, but no faster than is practically
      * possible.
      */
+
+    if (delay_min > 0 && delay < delay_min) {
+        delay = delay_min;
+    }
+
     if (delay <= 60) {
         delay = 60;
-    }// else {
+    }
+    // else {
         /* divide by 2 to get 2 real samples for the slow modes too. */
         //delay /= 2;
     //}
@@ -124,6 +137,38 @@ void Akmd::sleep_until_next_update()
     interval.tv_sec = sleep_time / 1000;
     interval.tv_nsec = 1000000 * (sleep_time % 1000);
     SUCCEED(nanosleep(&interval, NULL) == 0);
+}
+
+void Akmd::set_delays() {
+    char dmax[6]; 
+    char dmin[6]; 
+    int d_min = 0;
+    int d_max = 0;
+
+    FILE *fmin = fopen("/data/misc/delay_min.txt","r");
+    if (fmin > 0) {
+        fread(dmin, sizeof(int), 1, fmin);
+        fclose(fmin);
+        d_min = parse_delay(dmin);
+    }
+    FILE *fmax = fopen("/data/misc/delay_max.txt","r");
+    if (fmax > 0) {
+        fread(dmax, sizeof(int), 1, fmax);
+        fclose(fmax);
+        d_max = parse_delay(dmax);
+    }
+    if (d_min >= 60) {
+        delay_min = d_min;
+    }
+    if (d_max >= d_min) {
+        delay_max = d_max;
+    }
+}
+
+int Akmd::parse_delay(char *d) {
+    int delay;
+    sscanf(d, "%d",&delay);
+    return delay;
 }
 
 void Akmd::measure()

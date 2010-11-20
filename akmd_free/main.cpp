@@ -48,6 +48,7 @@ void mainloop(int d_gain, int a_gain)
 
     while (true) {
         magnetometer_reader->wait_start();
+        measurer->set_delays();
         LOGI("Begin periodic update.");
         measurer->start();
 
