@@ -63,7 +63,7 @@
 #define EVENT_TYPE_PROXIMITY		ABS_DISTANCE
 
 #define EVENT_TYPE_TEMPERATURE      ABS_THROTTLE
-#define EVENT_TYPE_STEP_COUNT       ABS_GAS
+#define EVENT_TYPE_LIGHT            ABS_GAS
 
 // 720 LSG = 1G
 #define LSG                         (720.0f)
@@ -95,19 +95,21 @@
 #define SENSOR_STATE_MASK           (0x7FFF)
 
 
-#define SENSORS_MASK               0xaf
+#define SENSORS_MASK               0xbf
 #define SENSORS_ORIENTATION_RAW    0x80
 #define SENSORS_ORIENTATION        0x01
 #define SENSORS_ACCELERATION       0x02
 #define SENSORS_TEMPERATURE        0x04
 #define SENSORS_MAGNETIC_FIELD     0x08
-#define SENSORS_PROXIMITY		   0x20
+#define SENSORS_PROXIMITY		       0x20
+#define SENSORS_LIGHT	        	   0x10
 #define SENSORS_ORIENTATION_RAW_HANDLE    7
 #define SENSORS_ORIENTATION_HANDLE        0
 #define SENSORS_ACCELERATION_HANDLE       1
 #define SENSORS_TEMPERATURE_HANDLE        2
 #define SENSORS_MAGNETIC_FIELD_HANDLE     3
-#define SENSORS_PROXIMITY_HANDLE     	  5
+#define SENSORS_PROXIMITY_HANDLE     	    5
+#define SENSORS_LIGHT_HANDLE     	        4
 
 #define SUPPORTED_SENSORS (SENSORS_ORIENTATION | \
               SENSORS_ACCELERATION | \
@@ -365,6 +367,12 @@ static void enable_disable(int fd, uint32_t sensors, uint32_t mask)
         }
     }
 #endif	
+    if (mask & SENSORS_LIGHT) {
+        flags = (sensors & SENSORS_LIGHT) ? 1 : 0;
+        if (ioctl(fd, ECS_IOCTL_APP_SET_LFLAG, &flags) < 0) {
+          LOGE("ECS_IOCTL_APP_SET_TFLAG error (%s)", strerror(errno));
+        }
+    }
 #ifdef ECS_IOCTL_APP_SET_MVFLAG
     if (mask & SENSORS_MAGNETIC_FIELD) {
         flags = (sensors & SENSORS_MAGNETIC_FIELD) ? 1 : 0;
@@ -507,7 +515,7 @@ const struct sensors_module_t HAL_MODULE_INFO_SYM = {
 };
 
 struct sensor_t sensors_descs[] = {
-	{
+	  {
       name : "AK8973 Magnetic Field",
       vendor : "Asahi Kasei Corp.",
       version : 1,
@@ -567,6 +575,16 @@ struct sensor_t sensors_descs[] = {
       resolution : 1,
       power : 20,
     },
+    {
+      name : "Luminosity Sensor",
+      vendor : "Samsung",
+      version : 1,
+      handle : SENSORS_LIGHT_HANDLE,
+      type : SENSOR_TYPE_LIGHT,
+      maxRange : 12000.0,
+      resolution : 1,
+      power : 20,
+    },
     0,
 };
 
@@ -582,7 +600,7 @@ struct sensors_data_context_t {
 static int sensors_get_sensors_list(struct sensors_module_t* module,
 		struct sensor_t const** plist){
     *plist = sensors_descs;
-    return 6;/*4;*/ // No need to return number of sensor list
+    return 7;
 }
 
 static int sensors_device_open(const struct hw_module_t* module, const char* name,
@@ -667,6 +685,7 @@ static const int ID_T  = 2;
 static const int ID_M  = 3;
 static const int ID_P  = 5;
 static const int ID_OR = 7; // orientation raw
+static const int ID_L  = 4; // light
 static sensors_data_t sSensors[MAX_NUM_SENSORS];
 static uint32_t sPendingSensors;
 
@@ -699,6 +718,7 @@ static int sensors_data_data_close(struct sensors_data_device_t *dev)
 static int pick_sensor(sensors_data_t* values)
 {
     uint32_t mask = SENSORS_MASK;
+    LOGD("Picking sensor, sPendingSensors=%08x", sPendingSensors);
     while(mask) {
         uint32_t i = 31 - __builtin_clz(mask);
         mask &= ~(1<<i);
@@ -851,10 +871,10 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
             LOGD("EVENT_TYPE_PROXIMITY");
                         sSensors[ID_P].vector.x = event.value;
                         break;
-                    case EVENT_TYPE_STEP_COUNT:
-						LOGD("EVENT_TYPE_STEP_COUNT");
-                        // step count (only reported in MODE_FFD)
-                        // we do nothing with it for now.
+                    case EVENT_TYPE_LIGHT:
+            LOGD("EVENT_TYPE_LIGHT");
+                        new_sensors |= SENSORS_LIGHT;
+                        sSensors[ID_L].vector.x = event.value;
                         break;
                     case EVENT_TYPE_ACCEL_STATUS:
 						LOGD("EVENT_TYPE_ACCEL_STATUS");
@@ -874,7 +894,7 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
             } else if (event.type == EV_SYN) {
                 if (new_sensors) {
                     sPendingSensors = new_sensors;
-					LOGD("sPendingSensors");
+                    LOGD("sPendingSensors : %08x", sPendingSensors);
                     int64_t t = event.time.tv_sec*1000000000LL +
                             event.time.tv_usec*1000;
                     while (new_sensors) {
