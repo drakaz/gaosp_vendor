@@ -32,7 +32,7 @@ BOARD_EGL_CFG := device/Samsung/I7500/open/lib/egl.cfg
 
 USE_QEMU_GPS_HARDWARE   := false
 BOARD_HAVE_GPS_HARDWARE := true
-BOARD_GPS_LIBRARIES := libgps librpc
+BOARD_GPS_LIBRARIES :=  libloc_api
 
 #BOARD_USES_ALSA_AUDIO   := true
 #BUILD_WITH_ALSA_UTILS := true
