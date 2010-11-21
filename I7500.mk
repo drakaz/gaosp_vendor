@@ -170,6 +170,7 @@ PRODUCT_PACKAGES := \
     DeskClock \
     DSPManager \
     Email \
+    Gallery \
     Gallery3D \
     GaospConf \
     GoogleContactsProvider \
