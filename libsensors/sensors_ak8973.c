@@ -81,12 +81,12 @@
 #define CONVERT_M_Y                 (-CONVERT_M)
 #define CONVERT_M_Z                 (CONVERT_M)
 #else /*Changing for Google Sky Maps */
-#define CONVERT_M                   (1.0f/16.0f)
+#define CONVERT_M                   (1.0f/1.0f)
 #define CONVERT_M_X                 (CONVERT_M)
 #define CONVERT_M_Y                 (CONVERT_M)
 #define CONVERT_M_Z                 (-CONVERT_M)
 #endif
-#define CONVERT_O                   (1.0f/64.0f)
+#define CONVERT_O                   (1.0f/1.0f)
 #define CONVERT_O_Y                 (CONVERT_O)
 #define CONVERT_O_P                 (CONVERT_O)
 #define CONVERT_O_R                 (CONVERT_O)
