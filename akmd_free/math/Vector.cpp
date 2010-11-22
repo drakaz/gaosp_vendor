@@ -41,6 +41,10 @@ Vector Vector::add(Vector o) {
     return Vector(x + o.x, y + o.y, z + o.z);
 }
 
+Vector Vector::sub(Vector o) {
+    return Vector(x - o.x, y - o.y, z - o.z);
+}
+
 Vector Vector::cross(Vector o)
 {
     return Vector(
