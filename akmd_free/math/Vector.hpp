@@ -9,6 +9,7 @@ class Vector {
     Vector();
     Vector(float x, float y, float z);
     Vector add(Vector o);
+    Vector sub(Vector o);
     Vector multiply(float k);
     Vector multiply(Vector o);
     Vector divide(float o);

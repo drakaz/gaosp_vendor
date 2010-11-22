@@ -1,6 +1,9 @@
 #pragma once
 
 #include "device/ChipReader.hpp"
+#include "math/Filter.hpp"
+
+
 
 namespace akmd {
 
@@ -15,6 +18,9 @@ class OrientationAdapter : public ChipReader {
     ChipReader* accelerometer;
     ChipReader* magnetometer;
     Vector earth;
+    Vector earth_raw;
+    Filter acc;
+    Filter mag;
 
     public:
     OrientationAdapter(ChipReader* a, ChipReader *m);
