@@ -44,12 +44,12 @@ void Akmd::fill_result_vector(Vector o, Vector a, Vector m, short temperature, s
 {
     
     /* Establish the angle in E */
-    //out[0] =  64*o.x;//(short)o.x;//roundf(o.y);
-     out[0] = ((int)roundf(360-o.x))<<6;//roundf(64.1*(359-o.x));// 64*(360-o.x);
+    
+    out[0] =  (int)roundf(360-o.x);
     /* pitch */
-    out[2] =  ((int)-roundf(o.y)<<6);    //roundf(-70*o.y);//roundf(o.y);
+    out[2] = -(int)roundf(o.y);    
     /* roll */
-    out[1] = -((int)roundf(o.z)<<6);//roundf(70*o.z);//(short)o.z;//roundf(o.y);
+    out[1] = -(int)roundf(o.z);
 
     out[3] = temperature;
     out[4] = 3;
@@ -60,9 +60,9 @@ void Akmd::fill_result_vector(Vector o, Vector a, Vector m, short temperature, s
     out[7] =   roundf(a.z);
     out[8] =  -roundf(a.y);*/
 
-    out[6] =   roundf(a.y);  
-    out[7] =   -roundf(a.x);
-    out[8] =   roundf(a.z);
+    out[6] =  roundf(a.y);  
+    out[7] = -roundf(a.x);
+    out[8] =  roundf(a.z);
 
     out[9] =  -roundf(m.x);
     out[10] = -roundf(m.y);
