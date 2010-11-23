@@ -174,6 +174,7 @@ PRODUCT_PACKAGES := \
     Gallery3D \
     GaospConf \
     GoogleContactsProvider \
+    GoogleSearch \
     HTMLViewer \
     IM \
     ImProvider \
@@ -186,7 +187,6 @@ PRODUCT_PACKAGES := \
     Phone \
     PicoTts \
     Protips \
-    QuickSearchBox \
     Settings \
     SettingsProvider \
     SoundRecoder \
