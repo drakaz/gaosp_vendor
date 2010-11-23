@@ -174,7 +174,6 @@ PRODUCT_PACKAGES := \
     Gallery3D \
     GaospConf \
     GoogleContactsProvider \
-    GoogleSearch \
     HTMLViewer \
     IM \
     ImProvider \
