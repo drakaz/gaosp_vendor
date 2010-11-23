@@ -765,33 +765,6 @@ static int sensors_data_poll(struct sensors_data_device_t *dev, sensors_data_t* 
     // wait until we get a complete event for an enabled sensor
     while (1) {
         nread = 0;
-        if (sActiveSensors & SENSORS_ORIENTATION) {
-            /* We do some special processing if the orientation sensor is
-             * activated. In particular the yaw value is filtered with a
-             * LMS filter. Since the kernel only sends an event when the
-             * value changes, we need to wake up at regular intervals to
-             * generate an output value (the output value may not be
-             * constant when the input value is constant)
-             */
-            int err = poll(&fds, 1, SENSORS_TIMEOUT_MS);
-            if (err == 0) {
-                struct timespec time;
-                time.tv_sec = time.tv_nsec = 0;
-                clock_gettime(CLOCK_MONOTONIC, &time);
-
-                /* generate an output value */
-                t = time.tv_sec*1000000000LL+time.tv_nsec;
-                new_sensors |= SENSORS_ORIENTATION;
-                sSensors[ID_O].orientation.azimuth =
-                        LMSFilter(t, sSensors[ID_O].orientation.azimuth);
-
-                /* generate a fake sensors event */
-                event.type = EV_SYN;
-                event.time.tv_sec = time.tv_sec;
-                event.time.tv_usec = time.tv_nsec/1000;
-                nread = sizeof(event);
-            }
-        }
         if (nread == 0) {
             /* read the next event */
             nread = read(fd, &event, sizeof(event));
