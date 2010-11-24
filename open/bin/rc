@@ -280,7 +280,7 @@ then
 	mv /data/data/com.android.providers.telephony /dbdata/data/com.android.providers.telephony
 	ln -s /dbdata/data/com.android.providers.telephony /data/data/com.android.providers.telephony
 fi
-if [ ! -h "/data/data/com.android.settings" ] && [-e "/data/data/com.android.settings" ]
+if [ ! -h "/data/data/com.android.settings" ] && [ -e "/data/data/com.android.settings" ]
 then
 	mv /data/data/com.android.settings /dbdata/data/com.android.settings
 	ln -s /dbdata/data/com.android.settings /data/data/com.android.settings
