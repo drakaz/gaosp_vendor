@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="pref_trackball_wake_title">HOLD - пробуждение</string>
+  <string name="pref_trackball_wake_summary">Нажатие на HOLD пробуждает устройство</string>
+  <string name="pref_trackball_unlock_title">HOLD - разблокировка</string>
+  <string name="pref_trackball_unlock_summary">Нажатие на HOLD разблокирует устройство</string>
+</resources>
