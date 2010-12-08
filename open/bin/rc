@@ -220,6 +220,14 @@ mem5=`grep "mem5=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 mem6=`grep "mem6=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 echo $mem1","$mem2","$mem3","$mem4","$mem5","$mem6 > /sys/module/lowmemorykiller/parameters/minfree
 
+####################################
+###### Interactive governor ########
+####################################
+if [ `grep "interactive=yes" /system/etc/gaosp.conf` ]
+then
+	echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+fi
+
 # Remount in read only
 echo "GaospRC : Remount in RO..."
 /system/bin/bash /system/xbin/remountro &
