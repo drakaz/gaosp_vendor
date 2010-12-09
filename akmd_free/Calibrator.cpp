@@ -130,6 +130,8 @@ bool Calibrator::try_fit(int time)
         if (x[1] > 0.5f && x[1] < 2.0f && x[3] > 0.5f && x[3] < 2.0f) {
             center = Vector(x[0], x[2] / x[1], x[4] / x[3]);
             scale = Vector(1, sqrtf(x[1]), sqrtf(x[3]));
+            LOGD("center x=%f y=%f z=%f",center.x,center.y,center.z);
+            LOGD("scale x=%f y=%f z=%f",scale.x, scale.y, scale.z);
         }
         delete[] x;
     }
