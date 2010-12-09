@@ -21,12 +21,17 @@ class Calibrator {
     point_t point_cloud[PCR];
     Vector old_nv;
 
+    bool fad_exists;
+    bool magnetic;
+
     public:
     int fit_time;
     Vector center;
     Vector scale;
 
-    Calibrator(int validity);
+    bool calibrated;
+
+    Calibrator(int validity, bool magnetic);
     ~Calibrator();
 
     void update(int time, Vector v);
