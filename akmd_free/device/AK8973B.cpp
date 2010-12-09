@@ -12,7 +12,7 @@
 namespace akmd {
 
 AK8973B::AK8973B(int dgain, int again)
-: magnetometer(600)
+: magnetometer(600, true)
 {
     mbuf = Vector();
 

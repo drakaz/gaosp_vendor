@@ -9,7 +9,7 @@
 namespace akmd {
 
 BMA020::BMA020()
-: index(0), accelerometer(3600)
+: index(0), accelerometer(3600,false)
 {
     abuf[0] = abuf[1] = Vector();
     unsigned char param=0;

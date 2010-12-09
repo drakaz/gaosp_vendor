@@ -4,6 +4,8 @@
 
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
 
 #include <utils/Log.h>
 
@@ -13,10 +15,36 @@
 
 namespace akmd {    
 
-Calibrator::Calibrator(int validity)
+Calibrator::Calibrator(int validity, bool magnetic)
 {
     this->validity = validity;
+    this->magnetic = magnetic;
     reset();
+
+     if(magnetic) {
+        /* Check if calibration data file exsists. */
+        calibrated = false;
+        FILE *fad = fopen("/data/misc/akmd.dat","rb");
+        if(fad != NULL) {
+            fad_exists = true;
+            LOGI("compass calibration file exsist");
+            float akmd_data[6] = {0,};
+            /* Read recorded calibration data from file. */
+            fread(akmd_data, sizeof(float), 6, fad);
+            center = Vector(akmd_data[0], akmd_data[1], akmd_data[2]);
+            scale  = Vector(akmd_data[3], akmd_data[4], akmd_data[5]);
+            fclose(fad);
+            calibrated = true;
+            LOGI("compass calibration data obtained from a file");
+            LOGI("compass calibrated to offset=(%f %f %f) scale=(%f %f %f)", 
+                center.x, center.y, center.z, scale.x, scale.y, scale.z);
+        }
+        else {
+            fad_exists = false;
+            LOGI("compass calibration file doesnt exsist");
+        }
+    }
+
 }
 
 void Calibrator::reset()
@@ -36,6 +64,9 @@ Calibrator::~Calibrator()
 
 void Calibrator::update(int time, Vector v)
 {
+    if(calibrated) {
+        return;
+    }
     const float SIMILARITY = 0.8f; /* 36 degrees' deviation, 10 vectors per circle */
 
     float vl = v.length();
@@ -81,6 +112,9 @@ void Calibrator::update(int time, Vector v)
 
 bool Calibrator::try_fit(int time)
 {
+    if(calibrated) {
+        return false;
+    }
     int n = 0;
     for (int i = 0; i < PCR; i ++) {
         if (point_cloud[i].time >= time - validity) {
@@ -135,6 +169,23 @@ bool Calibrator::try_fit(int time)
         }
         delete[] x;
     }
+    /* Save calibration data to a file. */
+    if(!calibrated && magnetic && center.x != 0 && center.y != 0 && center.z != 0) {
+        if(!fad_exists) {
+            float calibration_data[6] =  {center.x, center.y, center.z,
+                                             scale.x, scale.y, scale.z};
+            FILE *fac = fopen("/data/misc/akmd.dat","wb");
+            if(fac != NULL) {
+                fwrite(calibration_data, sizeof(float), 6, fac);
+            }
+            fclose(fac);
+            calibrated = true;
+            LOGI("compass calibrated to offset=(%f %f %f) scale=(%f %f %f)", 
+                center.x, center.y, center.z, scale.x, scale.y, scale.z);
+        }
+        calibrated = true;
+    }
+
     
     return true;
 }

@@ -26,7 +26,7 @@ Akmd::Akmd(ChipReader* orientation_reader,
     ChipReader* accelerometer_reader,
     ChipReader* temperature_reader,
     DataPublisher* result_writer)
-    : magnetometer(120)
+    : magnetometer(120,false)
 {
     this->orientation_reader = orientation_reader;
     this->magnetometer_reader = magnetometer_reader;
