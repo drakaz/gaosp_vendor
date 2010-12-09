@@ -12,6 +12,7 @@ case "$1" in
    start)
       	echo 3 > /proc/sys/vm/drop_caches
       	echo 30 > /proc/sys/vm/swappiness
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task
 	# GaospConf Compcache tuning
 	#echo 20 > /proc/sys/vm/swappiness
 	#echo 1 > /proc/sys/vm/page-cluster
@@ -34,15 +35,15 @@ case "$1" in
    ;;
 
    stop)
-      swapoff $DEV >/dev/null 2>&1
-      rmmod $MODULE >/dev/null 2>&1
+      	swapoff $DEV >/dev/null 2>&1
+      	rmmod $MODULE >/dev/null 2>&1
    ;;
    stats)
-      rzscontrol $DEV --stats
+      	rzscontrol $DEV --stats
    ;;
    *)
-      echo "Usage: $0 {start <size>|stop|stats}"
-      exit 1
+      	echo "Usage: $0 {start <size>|stop|stats}"
+      	exit 1
 esac
 
 exit 0

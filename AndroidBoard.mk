@@ -66,11 +66,6 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/proprietary/lib/libsec-ril.so | $(ACP)
 	$(transform-prebuilt-to-target)
 
-file := $(TARGET_OUT)/lib/hw/lights.samsung.so
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/proprietary/lib/hw/lights.samsung.so | $(ACP)
-	$(transform-prebuilt-to-target)
-
 ifdef WITH_WINDOWS_MEDIA
 
 file := $(TARGET_OUT)/lib/libomx_wmadec_sharedlibrary.so

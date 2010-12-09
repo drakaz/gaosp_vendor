@@ -170,6 +170,7 @@ PRODUCT_PACKAGES := \
     DeskClock \
     DSPManager \
     Email \
+    Gallery \
     Gallery3D \
     GaospConf \
     GoogleContactsProvider \
@@ -186,7 +187,6 @@ PRODUCT_PACKAGES := \
     Phone \
     PicoTts \
     Protips \
-    QuickSearchBox \
     Settings \
     SettingsProvider \
     SoundRecoder \
