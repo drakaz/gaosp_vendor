@@ -15,7 +15,6 @@ cp -p device/Samsung/I7500/open/bin/firstboot.sh out/target/product/I7500/dev_da
 # Addons
 mkdir out/target/product/I7500/dev_data/app/
 wget -O out/target/product/I7500/dev_data/app/yaam.apk http://yaam.mobi/apk/yaam.apk
-wget -O out/target/product/I7500/dev_data/app/wireless_tether_2_0_2.apk http://android-wifi-tether.googlecode.com/files/wireless_tether_2_0_2.apk
 
 ### For future kernel generation, for now we just get prebuild boot.img from gcode download page
 #rm -rf out/target/product/I7500/ramdisk.gz
