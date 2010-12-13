@@ -78,31 +78,18 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
-##########################
-##### OverClocking #######
-##########################
+###########################
+##### CPU Frequency #######
+###########################
 
-echo "GaospRC : Applying CpuFreq sampling rule..."
-if [ `grep "overclocking=yes" /system/etc/gaosp.conf` ]
-then
-	step1=true;
-	echo "GaospRC : overclocking CPU to 614Mhz..."
-		echo 614400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-fi
+echo "GaospRC : Applying CPU Frequency..."
+minfreq=`grep "minfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+echo "GaospRC : setting min CPU frequency..."
+echo $minfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+maxfreq=`grep "maxfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+echo "GaospRC : Setting max CPU frequency..."
+echo $maxfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 
-if [ `grep "overclocking2=yes" /system/etc/gaosp.conf` ]
-then
-	step2=true;
-	echo "GaospRC : overclocking CPU to 710Mhz..."
-		echo 710000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-fi
-
-if [ ! $step1 ] && [ ! $step2 ]
-then
-echo "GaospRC : overclocking deactivated"
-		echo 528000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-fi
-	
 ##########################
 ##### CPU sampling #######
 ##########################
