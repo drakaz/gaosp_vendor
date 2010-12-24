@@ -30,4 +30,3 @@
 
 # Mounts the first usable partition of the specified device
 dev_mount sdcard_int /mnt/sdcard 2 /devices/platform/msm_sdcc.3/mmc_host/mmc0/mmc0:0001/block/mmcblk0
-dev_mount sdcard_ext /mnt/sdcard2 1 /devices/platform/msm_sdcc.1/mmc_host/mmc1/mmc1:aaaa/block/mmcblk1
