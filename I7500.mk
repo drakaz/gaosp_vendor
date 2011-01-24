@@ -10,7 +10,7 @@ WITH_GOOGLE := true
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=tmobile/opal/sapphire/sapphire:2.2.1/FRG83/60505:user/release-keys 
 PRIVATE_BUILD_DESC="opal-user 2.2.1 FRG83 60505 release-keys"
-DEVICE_PACKAGE_OVERLAYS := device/Samsung/I7500/overlay
+DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
 
 PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
 
@@ -73,65 +73,66 @@ else
 endif
 
 # Other Files
-PRODUCT_COPY_FILES += device/Samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
+PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apns-conf.xml \
 	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 	frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-	device/Samsung/I7500/open/etc/media_profiles.xml:system/etc/media_profiles.xml \
-	device/Samsung/I7500/open/etc/resolv.conf:system/etc/resolv.conf \
-	device/Samsung/I7500/open/etc/sysctl.conf:system/etc/sysctl.conf \
-	device/Samsung/I7500/open/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
-	device/Samsung/I7500/open/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown \
-	device/Samsung/I7500/open/etc/fstab:system/etc/fstab \
-	device/Samsung/I7500/open/etc/bash.bashrc:system/etc/bash.bashrc \
-	device/Samsung/I7500/open/etc/gshadow:system/etc/gshadow \
-	device/Samsung/I7500/open/etc/passwd:system/etc/passwd \
-	device/Samsung/I7500/open/etc/profile:system/etc/profile \
-	device/Samsung/I7500/open/etc/shadow:system/etc/shadow \
-	device/Samsung/I7500/open/etc/group:system/etc/group \
-	device/Samsung/I7500/open/etc/shells:system/etc/shells \
-	device/Samsung/I7500/open/etc/zshrc:system/etc/zshrc \
-	device/Samsung/I7500/open/etc/adb_shell.conf:system/etc/adb_shell.conf \
-	device/Samsung/I7500/open/etc/gaosp.conf:system/etc/gaosp.conf \
-	device/Samsung/I7500/open/bin/rc:system/bin/rc \
-	device/Samsung/I7500/open/bin/compcache:system/bin/compcache \
-	device/Samsung/I7500/open/bin/handle_compcache:system/bin/handle_compcache \
-	device/Samsung/I7500/open/bin/fix_permissions:system/bin/fix_permissions \
-	device/Samsung/I7500/open/bin/openvpn-up.sh:system/xbin/openvpn-up.sh \
-	device/Samsung/I7500/open/bin/htop:system/xbin/htop \
-	device/Samsung/I7500/open/bin/irssi:system/xbin/irssi \
-	device/Samsung/I7500/open/bin/lsof:system/xbin/lsof \
-	device/Samsung/I7500/open/bin/powertop:system/xbin/powertop \
-	device/Samsung/I7500/open/bin/shutdown:system/xbin/shutdown \
-	device/Samsung/I7500/open/bin/voldupdater:system/xbin/voldupdater \
-	device/Samsung/I7500/open/bin/remountro:system/xbin/remountro \
-	device/Samsung/I7500/open/bin/remountrw:system/xbin/remountrw \
-	device/Samsung/I7500/open/bin/zsh:system/xbin/zsh \
-	device/Samsung/I7500/open/bin/bash:system/bin/bash \
-	device/Samsung/I7500/open/bin/sysinit:system/bin/sysinit \
-	device/Samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
-	device/Samsung/I7500/open/bin/changepasswd:system/bin/changepasswd \
-	device/Samsung/I7500/open/bin/dropbear:system/xbin/dropbear \
-	device/Samsung/I7500/open/bin/dropbear-keygen:system/xbin/dropbear-keygen \
-	device/Samsung/I7500/open/bin/dropbearkey:system/xbin/dropbearkey \
-	device/Samsung/I7500/open/bin/busybox:system/xbin/busybox \
-	device/Samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
-	device/Samsung/I7500/open/apps/serviceModeApp.apk:system/app/serviceModeApp.apk \
-	device/Samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
-	device/Samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
-	device/Samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
-	device/Samsung/I7500/open/boot/logo.rle:root/logo.rle \
-	device/Samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
-	device/Samsung/I7500/open/lib/librun.so:system/lib/librun.so \
-	device/Samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
-	device/Samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-	device/Samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
-	device/Samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
-	device/Samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-        device/Samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin
+	device/samsung/I7500/open/etc/media_profiles.xml:system/etc/media_profiles.xml \
+	device/samsung/I7500/open/etc/resolv.conf:system/etc/resolv.conf \
+	device/samsung/I7500/open/etc/sysctl.conf:system/etc/sysctl.conf \
+	device/samsung/I7500/open/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
+	device/samsung/I7500/open/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown \
+	device/samsung/I7500/open/etc/fstab:system/etc/fstab \
+	device/samsung/I7500/open/etc/bash.bashrc:system/etc/bash.bashrc \
+	device/samsung/I7500/open/etc/gshadow:system/etc/gshadow \
+	device/samsung/I7500/open/etc/passwd:system/etc/passwd \
+	device/samsung/I7500/open/etc/profile:system/etc/profile \
+	device/samsung/I7500/open/etc/shadow:system/etc/shadow \
+	device/samsung/I7500/open/etc/group:system/etc/group \
+	device/samsung/I7500/open/etc/shells:system/etc/shells \
+	device/samsung/I7500/open/etc/zshrc:system/etc/zshrc \
+	device/samsung/I7500/open/etc/adb_shell.conf:system/etc/adb_shell.conf \
+	device/samsung/I7500/open/etc/gaosp.conf:system/etc/gaosp.conf \
+	device/samsung/I7500/open/bin/rc:system/bin/rc \
+	device/samsung/I7500/open/bin/compcache:system/bin/compcache \
+	device/samsung/I7500/open/bin/handle_compcache:system/bin/handle_compcache \
+	device/samsung/I7500/open/bin/fix_permissions:system/bin/fix_permissions \
+	device/samsung/I7500/open/bin/openvpn-up.sh:system/xbin/openvpn-up.sh \
+	device/samsung/I7500/open/bin/htop:system/xbin/htop \
+	device/samsung/I7500/open/bin/irssi:system/xbin/irssi \
+	device/samsung/I7500/open/bin/lsof:system/xbin/lsof \
+	device/samsung/I7500/open/bin/powertop:system/xbin/powertop \
+	device/samsung/I7500/open/bin/shutdown:system/xbin/shutdown \
+	device/samsung/I7500/open/bin/voldupdater:system/xbin/voldupdater \
+	device/samsung/I7500/open/bin/remountro:system/xbin/remountro \
+	device/samsung/I7500/open/bin/remountrw:system/xbin/remountrw \
+	device/samsung/I7500/open/bin/zsh:system/xbin/zsh \
+	device/samsung/I7500/open/bin/bash:system/bin/bash \
+	device/samsung/I7500/open/bin/sysinit:system/bin/sysinit \
+	device/samsung/I7500/open/bin/fbvncserver:system/bin/fbvncserver \
+	device/samsung/I7500/open/bin/changepasswd:system/bin/changepasswd \
+	device/samsung/I7500/open/bin/dropbear:system/xbin/dropbear \
+	device/samsung/I7500/open/bin/dropbear-keygen:system/xbin/dropbear-keygen \
+	device/samsung/I7500/open/bin/dropbearkey:system/xbin/dropbearkey \
+	device/samsung/I7500/open/bin/busybox:system/xbin/busybox \
+	device/samsung/I7500/proprietary/bin/BCM4325D1_004.002.004.0153.0156.hcd:system/bin/BCM4325D1_004.002.004.0153.0156.hcd \
+	device/samsung/I7500/open/apps/serviceModeApp.apk:system/app/serviceModeApp.apk \
+	device/samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
+	device/samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
+	device/samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
+	device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
+	device/samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
+	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
+	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
+	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
+	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
+        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
+	device/samsung/I7500/open/keylayout/azerty.kcm:system/usr/keylayout/azerty.kcm \
 	
 
 # Sounds
