@@ -19,9 +19,9 @@ wget -O out/target/product/I7500/system/etc/rtecdc.bin http://obihoernchen.andro
 
 ### For future kernel generation, for now we just get prebuild boot.img from gcode download page
 #rm -rf out/target/product/I7500/ramdisk.gz
-#cp -rp device/samsung/I7500/open/boot/init out/target/product/I7500/root/init
+#cp -rp device/Samsung/I7500/open/boot/init out/target/product/I7500/root/init
 #out/host/linux-x86/bin/mkbootfs out/target/product/I7500/root/ | gzip > out/target/product/I7500/ramdisk.gz
-#out/host/linux-x86/bin/mkbootimg --kernel device/samsung/I7500/open/boot/kernel --ramdisk out/target/product/I7500/ramdisk.gz -o out/target/product/I7500/boot.img
+#out/host/linux-x86/bin/mkbootimg --kernel device/Samsung/I7500/open/boot/kernel --ramdisk out/target/product/I7500/ramdisk.gz -o out/target/product/I7500/boot.img
 #wget -q http://gaosp.googlecode.com/files/boot.img -O out/target/product/I7500/boot.img
 ###
 

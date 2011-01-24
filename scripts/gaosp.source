@@ -31,11 +31,11 @@ echo "-----------------------------------------------------------"
 }
 
 # Alias
-alias update_repo='device/samsung/I7500/scripts/update_repo.sh'
-alias build_repo='device/samsung/I7500/scripts/build_repo.sh'
-alias mkupdate='device/samsung/I7500/scripts/mkupdate.sh'
-alias clean='device/samsung/I7500/scripts/clean.sh'
-alias build_all='device/samsung/I7500/scripts/update_repo.sh; device/samsung/I7500/scripts/build_repo.sh; device/samsung/I7500/scripts/mkupdate.sh '
+alias update_repo='device/Samsung/I7500/scripts/update_repo.sh'
+alias build_repo='device/Samsung/I7500/scripts/build_repo.sh'
+alias mkupdate='device/Samsung/I7500/scripts/mkupdate.sh'
+alias clean='device/Samsung/I7500/scripts/clean.sh'
+alias build_all='device/Samsung/I7500/scripts/update_repo.sh; device/Samsung/I7500/scripts/build_repo.sh; device/Samsung/I7500/scripts/mkupdate.sh '
 
 
 welcome

@@ -10,5 +10,6 @@ LOCAL_SRC_FILES := Akmd.cpp Calibrator.cpp main.cpp \
     device/OrientationAdapter.cpp device/TemperatureReaderAdapter.cpp
 LOCAL_SHARED_LIBRARIES := liblog
 LOCAL_MODULE := akmd2
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_EXECUTABLE)

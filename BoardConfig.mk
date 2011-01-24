@@ -3,15 +3,17 @@
 # Product-specific compile-time definitions.
 #
 
-USE_CAMERA_STUB := false
+USE_CAMERA_STUB := true
 TARGET_EMULATOR := false
 
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
 TARGET_ARCH_VARIANT := armv6j
-TARGET_KERNEL_CONFIG := gaosp_msm_defconfig
-TARGET_KERNEL_DIR := gaosp-kernel
+TARGET_PREBUILT_KERNEL := device/samsung/I7500/open/boot/kernel
+
+#TARGET_KERNEL_CONFIG := gaosp_msm_defconfig
+#TARGET_KERNEL_DIR := gaosp-kernel
 
 # JIT
 WITH_JIT := true
@@ -49,6 +51,7 @@ HAVE_HTC_AUDIO_DRIVER := false
 
 BOARD_USE_I7500_USB_FUNCTION_SWITCH := true
 
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 # Use libcamera2
 BOARD_USES_OLD_CAMERA_HACK := true
 
@@ -70,16 +73,5 @@ TARGET_SIMULATOR := false
 
 TARGET_PROVIDES_INIT_RC := true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Use RGB565 surfaces until userspace drivers are upgraded
+BOARD_NO_RGBX_8888 := true

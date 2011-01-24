@@ -1,16 +1,29 @@
 # Overrides
-PRODUCT_BRAND := Samsung
-PRODUCT_NAME := I7500
-PRODUCT_DEVICE := I7500
-PRODUCT_BOARD := I7500
-PRODUCT_MANUFACTURER := Samsung
-BUILD_ID := PUBLIC_BETA3
+#PRODUCT_BRAND := Samsung
+#PRODUCT_NAME := I7500 Gaosp
+#PRODUCT_DEVICE := I7500
+#PRODUCT_BOARD := I7500
+#PRODUCT_MANUFACTURER := Samsung
+#BUILD_ID := PUBLIC_BETA3
 
 WITH_GOOGLE := true
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=tmobile/opal/sapphire/sapphire:2.2.1/FRG83/60505:user/release-keys 
 PRIVATE_BUILD_DESC="opal-user 2.2.1 FRG83 60505 release-keys"
 DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
+
+# Build kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_PREBUILT_KERNEL=device/samsung/I7500/open/boot/kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_DIR=gaosp-kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_CONFIG=gaosp_msm_defconfig
+
+TARGET_PREBUILT_KERNEL := device/samsung/I7500/open/boot/kernel
+LOCAL_KERNEL := device/samsung/I7500/open/boot/kernel
+
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 
 PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
 
@@ -123,17 +136,19 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/apps/HotRebootFree.apk:system/app/HotRebootFree.apk \
 	device/samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
 	device/samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
-	device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
+	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
+	device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko \
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
-	device/samsung/I7500/open/keylayout/azerty.kcm:system/usr/keylayout/azerty.kcm \
+        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin
 	
+#device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
 
 # Sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
@@ -147,9 +162,11 @@ include frameworks/base/data/sounds/AudioPackage4.mk
 
 # Packages
 PRODUCT_PACKAGES := \
+    azerty.kcm \
     framework-res \
     AlarmClock \
     AlarmProvider \
+    AndroidTerm \
     AccountAndSyncSettings \
     ADWLauncher \
     ApplicationsProvider \
@@ -185,6 +202,7 @@ PRODUCT_PACKAGES := \
     Mms \
     Music \
     PackageInstaller \
+    Pacman \
     Phone \
     PicoTts \
     Protips \
@@ -207,6 +225,11 @@ PRODUCT_PACKAGES := \
     Torch \
     libjni_flash \
     sensors.msm7k \
+    libOmxCore \
+    libmm-adspsvc.so \
+    libOmxH264Dec.so \
+    libOmxMpeg4Dec.so \
+    libOmxVidEnc.so \
     libterm
 
 
@@ -287,4 +310,12 @@ vi_VN \
 zh_CN \
 zh_TW
  
- 
+$(call inherit-product, build/target/product/full_base.mk) 
+
+PRODUCT_BRAND := Samsung
+PRODUCT_NAME := I7500 Gaosp
+PRODUCT_DEVICE := I7500
+PRODUCT_BOARD := I7500
+PRODUCT_MANUFACTURER := Samsung
+BUILD_ID := PUBLIC_BETA3
+

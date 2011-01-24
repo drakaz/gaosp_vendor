@@ -11,5 +11,6 @@ LOCAL_SRC_FILES += sensors_ak8973.c
 #LOCAL_SRC_FILES += sensors_proximity.c 
 #endif
 LOCAL_MODULE := sensors.samsung
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
