@@ -210,6 +210,7 @@ PRODUCT_PACKAGES := \
     Phone \
     PicoTts \
     Protips \
+    sensors.samsung \
     Settings \
     SettingsProvider \
     SoundRecoder \
