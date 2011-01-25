@@ -585,3 +585,25 @@ service dumpstate /system/bin/dumpstate -s
     disabled
     oneshot
 
+service akmd2 /system/bin/akmd2
+    user compass
+    group compass misc input
+
+# Bluetooth
+service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --baudrate 3000000 --patchram /system/bin/BCM4325D1_004.002.004.0153.0156.hcd /dev/ttyHS0
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+
+# Clean shutdown from cyanogen
+service reboot /system/xbin/shutdown -r
+    disabled
+    oneshot
+
+service poweroff /system/xbin/shutdown
+    disabled
+
+service RebootRecovery /system/xbin/shutdown -e
+    disabled
+    oneshot
+>>>>>>> 70ba596... Add missing services
