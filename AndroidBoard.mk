@@ -19,7 +19,8 @@ $(file) : $(LOCAL_PATH)/open/keylayout/I7500_keypad.kl | $(ACP)
 
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := /open/keylayout/azerty.kcm
+LOCAL_SRC_FILES := azerty.kcm
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_KEY_CHAR_MAP)
 
 # boot files

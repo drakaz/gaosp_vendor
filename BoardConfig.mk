@@ -3,7 +3,7 @@
 # Product-specific compile-time definitions.
 #
 
-USE_CAMERA_STUB := false
+USE_CAMERA_STUB := true
 TARGET_EMULATOR := false
 
 TARGET_BOARD_PLATFORM := msm7k
@@ -28,7 +28,7 @@ BRCM_BT_USE_BTL_IF := true
 WITH_A2DP := true
 
 # OpenGL drivers config file path
-BOARD_EGL_CFG := device/Samsung/I7500/open/lib/egl.cfg
+BOARD_EGL_CFG := device/samsung/I7500/open/lib/egl.cfg
 
 USE_QEMU_GPS_HARDWARE   := false
 BOARD_HAVE_GPS_HARDWARE := true
@@ -48,6 +48,7 @@ BOARD_USES_GENERIC_AUDIO := false
 HAVE_HTC_AUDIO_DRIVER := false
 
 BOARD_USE_I7500_USB_FUNCTION_SWITCH := true
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 # Use libcamera2
 BOARD_USES_OLD_CAMERA_HACK := true
