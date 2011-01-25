@@ -134,7 +134,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
         device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
-        device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc
+        device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
 	$(LOCAL_KERNEL):kernel \
 	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
 	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
