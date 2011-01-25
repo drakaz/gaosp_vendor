@@ -79,6 +79,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+	vendor/cyanogen/prebuilt/common/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
 	device/samsung/I7500/open/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	device/samsung/I7500/open/etc/resolv.conf:system/etc/resolv.conf \
 	device/samsung/I7500/open/etc/sysctl.conf:system/etc/sysctl.conf \
@@ -153,6 +154,8 @@ PRODUCT_PACKAGES := \
     framework-res \
     AlarmClock \
     AlarmProvider \
+    Androidian \
+    AndroidTerm \
     AccountAndSyncSettings \
     ADWLauncher \
     AndroidTerm \
@@ -170,6 +173,7 @@ PRODUCT_PACKAGES := \
     Contacts \
     ContactsProvider \
     CustomLocale \
+    Cyanbread \
     DefaultContainerService \
     DownloadProvider \
     DeskClock \
@@ -200,6 +204,9 @@ PRODUCT_PACKAGES := \
     Stk \
     TelephonyProvider \
     Term \
+    ThemeManager \
+    ThemeChooser \
+    com.tmobile.themes \
     TtsService \
     Updater \
     UserDictionaryProvider \
