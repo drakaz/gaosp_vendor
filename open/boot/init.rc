@@ -16,11 +16,15 @@ loglevel 3
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /mnt/sdcard
+    export EXTERNAL_STORAGE2 /mnt/sdcard2    
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
     export SD_EXT_DIRECTORY /sd-ext
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/core-junit.jar
-
+    export TERMINFO /system/etc/terminfo
+    export HOME /root/
+    export TMPDIR /data/local/tmp
+    
 # Backward compatibility
     symlink /system/etc /etc
     symlink /sys/kernel/debug /d
@@ -43,10 +47,13 @@ loglevel 3
     symlink /mnt/sdcard /sdcard
     symlink /mnt/sdcard2 /sdcard2
 
+
     mkdir /system
     mkdir /data 0771 system system
+    mkdir /userdata 0771 system system
     mkdir /cache 0771 system cache
     mkdir /config 0500 root root
+    mkdir /dbdata 0771 system system
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root
@@ -104,13 +111,30 @@ on fs
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
+    
+    # Backward compatibility for libmodules
+    symlink /system/lib/modules /system/libmodules
+    
+    # Chmod before remount in ro
+    chmod 6777 /system/bin/wlservice
+    chown root root /system/bin/brcm_dutMode
+    chmod 6777 /system/bin/brcm_dutMode
+    chmod 0777 /system/etc/gaosp.conf
+    chmod 0777 /system/etc/
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-run-hooks
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/01-test
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/20-dns.conf
+    chmod 0777 /system/etc/dhcpcd/dhcpcd-hooks/95-configured
+    chmod 7777 /system/xbin/su
+	
     mount yaffs2 mtd@system /system ro remount
     mount yaffs2 mtd@cache /cache nosuid nodev
 
-    devwait /dev/block/mmcblk0p1
+    wait /dev/block/mmcblk0p1
     mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev noatime
-
-
+    mount yaffs2 mtd@userdata /userdata nosuid nodev noatime
+    mount yaffs2 mtd@data /dbdata nosuid nodev noatime
+    
 on post-fs
     # once everything is setup, no need to modify /
     mount rootfs rootfs / ro remount
@@ -121,9 +145,20 @@ on post-fs
     chown system system /data
     chmod 0771 /data
 
+    # Databases
+    mkdir /dbdata/databases
+    mkdir /dbdata/shared_prefs
+    chown system system /data
+    chown system system /dbdata
+    chown system system /dbdata/databases
+    chown system system /dbdata/shared_prefs
+    chmod 0777 /dbdata
+    chmod 0777 /dbdata/databases
+    chmod 0777 /dbdata/shared_prefs
+   
     # Mount compressed filesystems
-    mount squashfs loop@/system/lib/modules/modules.sqf /system/lib/modules ro
-    mount squashfs loop@/system/xbin/xbin.sqf /system/xbin ro
+    #mount squashfs loop@/system/lib/modules/modules.sqf /system/lib/modules ro
+    #mount squashfs loop@/system/xbin/xbin.sqf /system/xbin ro
 
     # Create dump dir and collect dumps.
     # Do this before we mount cache so eventually we can use cache for
@@ -204,8 +239,7 @@ on post-fs
     chown root net_raw /dev/socket
     chmod 0775 /dev/socket
 
-    # Backward compatibility for libmodules
-    symlink /system/lib/modules /system/libmodules
+
     # Symlink for camera device
     symlink /dev/msm_camera/msm_camera0 /dev/msm_camera0
 
@@ -258,6 +292,31 @@ on boot
 # Note that the driver only supports 6 slots, so we have combined some of
 # the classes into the same memory level; the associated processes of higher
 # classes will still be killed first.
+
+# CPU scaling permissions
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+# @drakaz : scaling definition
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+# @drakaz : tuning scaling
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 120000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 528000
+    
+# @drakaz : cpu ondemand scaling tweak
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 35
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/down_threshold 15
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 100000
+    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias 0
+
     write /sys/module/lowmemorykiller/parameters/adj 0,1,2,4,7,15
 
     write /proc/sys/vm/overcommit_memory 1
@@ -309,6 +368,34 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
+    chmod 0777 /dev/smb380
+    chmod 0777 /sys/class/power_supply/battery/capacity
+    chmod 0777 /sys/power/state
+    chmod 0777 /sys/class/sec/param/download_mode
+    chown root radio /proc/cmdline
+    chown bluetooth bluetooth /dev/ttyHS0
+    chown system system /dev/bma150
+    chown system system /dev/akm8973_daemon
+    chown system system /dev/akm8973_aot
+    chown system system /dev/proximity
+    chmod 0777 /dev/bma150
+    chmod 0777 /dev/akm8973_daemon
+    chmod 0777 /dev/akm8973_aot
+    chmod 0777 /dev/proximity
+    chmod 0660 /dev/ttyHS0
+    chown bluetooth bluetooth /dev/uinput
+    chmod 0666 /dev/uinput
+    chmod 0777 /sys/class/rfkill/rfkill0/state
+    chmod 0777 /sys/class/rfkill/rfkill1/state
+    chmod 0666 /dev/msm_snd
+        
+    # audioTuning
+    chmod 0666 /sys/etc/stream_speaker.txt
+    chmod 0666 /sys/etc/stream_headset.txt
+    chmod 0666 /sys/etc/situation.txt
+    chmod 0777 /data/stream_speaker.txt
+    chmod 0777 /data/stream_headset.txt
+    chmod 0777 /data/situation.txt    
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -317,6 +404,43 @@ on boot
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+
+# Sensor HAL
+    chown system system /dev/bma150
+    chown system system /dev/akm8973_daemon
+    chown system system /dev/akm8973_aot
+#   chown system system /dev/bma020
+#   chown system system /dev/proximity
+    chmod 0777 /dev/bma150
+    chmod 0777 /dev/akm8973_daemon
+    chmod 0777 /dev/akm8973_aot
+#   chmod 0777 /dev/bma020
+#   chmod 0777 /dev/proximity
+
+# Permissions for btld_testmode
+    chmod 0666 /dev/ttyHS0
+    chown bluetooth bluetooth /dev/uinput
+    chmod 0666 /dev/uinput
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
+    write /sys/class/rfkill/rfkill0/state 0
+    chmod 0777 /sys/class/rfkill/rfkill0/state
+    chmod 0777 /sys/class/rfkill/rfkill1/state
+    chmod 0666 /dev/msm_snd
+    chown system system /dev/smb380
+    chmod 0777 /dev/smb380
+# Permissions for the drexe
+    chmod 0777 /sys/class/power_supply/battery/capacity
+    chmod 0777 /sys/power/state
+    chmod 0777 /sys/class/sec/param/download_mod
+
+# wifi
+    mkdir /data/misc/wifi 0777 wifi wifi
+    mkdir /data/misc/dhcp 0777 dhcp dhcp
+    mkdir /data/misc/wifi/sockets 0777 wifi wifi
+    chown dhcp dhcp /data/misc/dhcp
 
 # Include extra init file
     import /system/etc/init.local.rc
