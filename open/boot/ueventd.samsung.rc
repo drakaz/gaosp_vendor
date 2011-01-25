@@ -1,0 +1,5 @@
+/dev/multipdp 0640 radio radio
+/dev/m4mo 0777 system system
+/dev/dpram* 0770 radio radio
+
+
