@@ -6,6 +6,13 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
 
 PACKAGES.Email.OVERRIDES := Provision LatinIME QuickSearchBox
 
+# Prebuilt kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_PREBUILT_KERNEL=device/samsung/I7500/open/boot/kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_DIR=gaosp-kernel
+PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_CONFIG=gaosp_msm_defconfig
+TARGET_PREBUILT_KERNEL := device/samsung/I7500/open/boot/kernel
+LOCAL_KERNEL := device/samsung/I7500/open/boot/kernel
+
 # Used by BusyBox
 KERNEL_MODULES_DIR:=/system/lib/modules
 
@@ -123,7 +130,11 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin
+        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
+	$(LOCAL_KERNEL):kernel \
+	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
+	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
+	device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko
 	
 
 # Sounds
