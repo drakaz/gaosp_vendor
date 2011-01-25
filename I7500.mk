@@ -142,13 +142,15 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
 	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
 	device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko \
+	device/samsung/I7500/open/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin
+        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
+        device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc
 	
 #device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
 
