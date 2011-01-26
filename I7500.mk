@@ -227,7 +227,11 @@ PRODUCT_PACKAGES := \
     libmm-adspsvc.so \
     libOmxH264Dec.so \
     libOmxMpeg4Dec.so \
-    libOmxVidEnc.so 
+    libOmxVidEnc.so \
+    akmd2 \
+    copybit.msm7k \
+    gralloc.samsung \
+    libGLES_qcom.so
 
 
 # Check : building for chinese people ?
