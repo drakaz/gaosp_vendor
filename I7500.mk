@@ -222,6 +222,10 @@ PRODUCT_PACKAGES := \
     Torch \
     libjni_flash \
     sensors.msm7k \
+    libcamera \
+    libmmcamera.so \
+    libmm-qcamera-tgt.so \
+    libmmjpeg.so \
     libterm \
     libOmxCore \
     libmm-adspsvc.so \

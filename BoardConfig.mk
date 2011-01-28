@@ -3,7 +3,7 @@
 # Product-specific compile-time definitions.
 #
 
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 TARGET_EMULATOR := false
 
 TARGET_BOARD_PLATFORM := msm7k
@@ -72,16 +72,6 @@ TARGET_SIMULATOR := false
 
 TARGET_PROVIDES_INIT_RC := true
 
-
-
-
-
-
-
-
-
-
-
-
-
+BOARD_USE_CUPCAKE_CHOCOLATE_CAMERA := true
+BOARD_USE_FROYO_LIBCAMERA := true
 
