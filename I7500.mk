@@ -231,7 +231,8 @@ PRODUCT_PACKAGES := \
     akmd2 \
     copybit.msm7k \
     gralloc.samsung \
-    libGLES_qcom.so
+    libGLES_qcom.so \
+    libjni_flashwidget
 
 
 # Check : building for chinese people ?
