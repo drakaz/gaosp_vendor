@@ -28,9 +28,10 @@ WITH_A2DP := true
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/samsung/I7500/open/lib/egl.cfg
 
-USE_QEMU_GPS_HARDWARE   := false
-BOARD_HAVE_GPS_HARDWARE := true
-BOARD_GPS_LIBRARIES :=  libloc_api
+# GPS Configuration
+BOARD_GPS_NEEDS_XTRA := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := samsung
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
 
 #Wifi
 WIFI_DRIVER_FW_AP_PATH = "/system/etc/rtecdc.bin"
