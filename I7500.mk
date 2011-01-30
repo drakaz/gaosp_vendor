@@ -133,6 +133,17 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
         device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
         device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
+	device/samsung/I7500/proprietary/lib/set_grp_id:system/bin/set_grp_id \
+	device/samsung/I7500/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
+	device/samsung/I7500/proprietary/lib/libGLES_android.so:system/lib/egl/libGLES_android.so \
+	device/samsung/I7500/proprietary/lib/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
+	device/samsung/I7500/proprietary/lib/libmm-qcamera-tgt.so:system/lib/libmm-qcamera-tgt.so \
+	device/samsung/I7500/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
+	device/samsung/I7500/proprietary/lib/libmmcamera.so:system/lib/libmmcamera.so \
+	device/samsung/I7500/proprietary/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
+	device/samsung/I7500/proprietary/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
+	device/samsung/I7500/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
+	device/samsung/I7500/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
 	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
 	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
 	device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko

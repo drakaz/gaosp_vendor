@@ -1,7 +1,9 @@
+include $(call all-named-subdir-makefiles, akmd2 libcamera sensors.samsung)
+
 #Android makefile to build kernel as a part of Android Build
 #Its here and not under gaosp-kernel/ for compatiblity with the froyo branch
 #The config for the kernel is arch/arm/configs/gaosp_msm_defconfig
-LOCAL_PATH := $(call my-dir)/../../../gaosp-kernel
+LOCAL_PATH := $(call my-dir)/../../gaosp-kernel
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 TARGET_PREBUILT_KERNEL := $(KERNEL_OUT)/arch/arm/boot/zImage
