@@ -56,7 +56,7 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
 /*****************************************************************************/
 
 #define AKM_DEVICE_NAME     "/dev/akm8973_aot"
-#define CM_DEVICE_NAME      "/dev/cm3602"
+#define CM_DEVICE_NAME      "/dev/proximity"
 #define LS_DEVICE_NAME      "/dev/lightsensor"
 
 #define EVENT_TYPE_ACCEL_X          ABS_X
