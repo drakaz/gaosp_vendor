@@ -22,7 +22,7 @@
 #include <dirent.h>
 #include <sys/select.h>
 
-#include <linux/capella_cm3602.h>
+#include "proximity.h"
 
 #include <cutils/log.h>
 
@@ -44,7 +44,7 @@ ProximitySensor::ProximitySensor()
     open_device();
 
     int flags = 0;
-    if (!ioctl(dev_fd, CAPELLA_CM3602_IOCTL_GET_ENABLED, &flags)) {
+    if (!ioctl(dev_fd, GP2AP_IOCTL_GET_ENABLED, &flags)) {
         mEnabled = 1;
         if (flags) {
             setInitialState();
@@ -76,9 +76,9 @@ int ProximitySensor::enable(int32_t, int en) {
             open_device();
         }
         int flags = newState;
-        err = ioctl(dev_fd, CAPELLA_CM3602_IOCTL_ENABLE, &flags);
+        err = ioctl(dev_fd, GP2AP_IOCTL_ENABLE, &flags);
         err = err<0 ? -errno : 0;
-        LOGE_IF(err, "CAPELLA_CM3602_IOCTL_ENABLE failed (%s)", strerror(-err));
+        LOGE_IF(err, "GP2AP_IOCTL_ENABLE failed (%s)", strerror(-err));
         if (!err) {
             mEnabled = newState;
             if (en) {
