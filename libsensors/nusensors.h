@@ -49,9 +49,13 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
  * The SENSORS Module
  */
 
-/* the CM3602 is a binary proximity sensor that triggers around 9 cm on
+/* light sensor empirical calibration */
+#define LIGHT_CALIB_FACTOR 47
+#define LIGHT_CALIB_OFFSET 0
+
+/* the gp2ap002 is a binary proximity sensor that triggers around 2 cm on
  * this hardware */
-#define PROXIMITY_THRESHOLD_CM  9.0f
+#define PROXIMITY_THRESHOLD_CM  2.0f
 
 /*****************************************************************************/
 
