@@ -125,17 +125,19 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
 	device/samsung/I7500/open/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
+        device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
+        device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
+        device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko \
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-        device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
-        device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
+    device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
+    device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
 	device/samsung/I7500/proprietary/lib/set_grp_id:system/bin/set_grp_id \
 	device/samsung/I7500/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
-	device/samsung/I7500/proprietary/lib/libGLES_android.so:system/lib/egl/libGLES_android.so \
 	device/samsung/I7500/proprietary/lib/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
 	device/samsung/I7500/proprietary/lib/libmm-qcamera-tgt.so:system/lib/libmm-qcamera-tgt.so \
 	device/samsung/I7500/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
@@ -143,23 +145,43 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/proprietary/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
 	device/samsung/I7500/proprietary/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
 	device/samsung/I7500/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
-	device/samsung/I7500/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
-	device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
-	device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
-	device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko
+	device/samsung/I7500/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so
 
-# Sounds
-#include frameworks/base/data/sounds/AudioPackage4.mk
-# TTS languages
-#include external/svox/pico/lang/PicoLangDeDeInSystem.mk
-#include external/svox/pico/lang/PicoLangEnGBInSystem.mk
-#include external/svox/pico/lang/PicoLangEnUsInSystem.mk
-#include external/svox/pico/lang/PicoLangEsEsInSystem.mk
-#include external/svox/pico/lang/PicoLangFrFrInSystem.mk
-#include external/svox/pico/lang/PicoLangItItInSystem.mk
 
 # Packages
 PRODUCT_PACKAGES := \
+    bouncycastle \
+    com.android.location.provider \
+    com.android.location.provider.xml \
+    core \
+    core-junit \
+    create_test_dmtrace \
+    dalvikvm \
+    dexdeps \
+    dexdump \
+    dexlist \
+    dexopt \
+    dmtracedump \
+    dvz \
+    dx \
+    ext \
+    hprof-conv \
+    icu.dat \
+    jasmin \
+    jasmin.jar \
+    libcrypto \
+    libdex \
+    libdvm \
+    libexpat \
+    libicui18n \
+    libicuuc \
+    libjavacore \
+    libnativehelper \
+    libnfc_ndef \
+    libsqlite_jni \
+    libssl \
+    libz \
+    sqlite-jdbc \
     azerty.kcm \
     framework-res \
     AlarmClock \
@@ -186,18 +208,25 @@ PRODUCT_PACKAGES := \
     Cyanbread \
     DefaultContainerService \
     DownloadProvider \
+    DownloadProviderUi \
     DeskClock \
+    DrmProvider \
     DSPManager \
     Email \
+    FileManager \
     Gallery \
     Gallery3D \
     GaospConf \
     GoogleContactsProvider \
     GoogleSearch \
+    Home \
     HTMLViewer \
     IM \
     ImProvider \
     klogtail \
+    LatinIME \
+    Launcher2 \
+    LiveWallpapersPicker \
     ManagementProvider \
     MediaProvider \
     Mms \
@@ -207,11 +236,15 @@ PRODUCT_PACKAGES := \
     Phone \
     PicoTts \
     Protips \
-    sensors.samsung \
+    QuickSearchBox \
     Settings \
     SettingsProvider \
     SoundRecoder \
     SubscribedFeedsProvider \
+    Superuser \
+    Sync \
+    SyncProvider \
+    SystemUI \
     Stk \
     TelephonyProvider \
     Term \
@@ -224,12 +257,14 @@ PRODUCT_PACKAGES := \
     VoiceDialer \
     VpnServices \
     WebSearchProvider \
-    LiveWallpapersPicker \
-    FileManager \
-    Superuser \
     Torch \
-    libjni_flash \
+    akmd2 \
     sensors.msm7k \
+    sensors.samsung \
+    copybit.msm7k \
+    gralloc.samsung \
+    gps.samsung \
+    lights.msm7k \
     libcamera \
     libmmcamera.so \
     libmm-qcamera-tgt.so \
@@ -240,10 +275,8 @@ PRODUCT_PACKAGES := \
     libOmxH264Dec.so \
     libOmxMpeg4Dec.so \
     libOmxVidEnc.so \
-    akmd2 \
-    copybit.msm7k \
-    gralloc.samsung \
     libGLES_qcom.so \
+    libjni_flash \
     libjni_flashwidget
 
 
@@ -251,6 +284,12 @@ PRODUCT_PACKAGES := \
 ifdef CHINESE
 	PRODUCT_PACKAGES += \
 	PinyinIME
+elseif JAPENESE
+	PRODUCT_PACKAGES += \
+	OpenWnn \
+    	libWnnEngDic \
+    	libWnnJpnDic \
+    	libwnndict
 else
 	PRODUCT_PACKAGES += \
 	LatinIME
@@ -324,7 +363,16 @@ vi_VN \
 zh_CN \
 zh_TW
  
-$(call inherit-product, build/target/product/full_base.mk)  
+
+# Pick up some sounds - stick with the short list to save space
+# on smaller devices.
+$(call inherit-product-if-exists, frameworks/base/data/sounds/OriginalAudio.mk)
+
+# Get the TTS language packs
+$(call inherit-product-if-exists, external/svox/pico/lang/all_pico_languages.mk)
+
+# Get the list of languages.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Overrides
 PRODUCT_BRAND := Samsung
