@@ -33,7 +33,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=160 \
     ro.telephony.default_network=0 \
     dalvik.vm.execution-mode=int:fast \
-    ro.opengles.version=65536 \
+    ro.opengles.version=65537 \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
     ro.com.google.clientidbase=android-google \
@@ -41,7 +41,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
-    net.bt.name=Galaxy 
+    net.bt.name=Galaxy \
+    debug.sf.hw=1
 
 # Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -138,7 +139,6 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
     device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
 	device/samsung/I7500/proprietary/lib/set_grp_id:system/bin/set_grp_id \
 	device/samsung/I7500/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
-	device/samsung/I7500/proprietary/lib/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
 	device/samsung/I7500/proprietary/lib/libmm-qcamera-tgt.so:system/lib/libmm-qcamera-tgt.so \
 	device/samsung/I7500/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
 	device/samsung/I7500/proprietary/lib/libmmcamera.so:system/lib/libmmcamera.so \
