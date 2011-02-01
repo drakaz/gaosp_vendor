@@ -8,7 +8,7 @@ sysclktz 0
 loglevel 3
 
 # setup the global environment
-    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export PATH /usr/bin:/usr/sbin:/bin:/sbin:/system/sbin:/system/bin:/system/xbin:/system/xbin/bb:/data/local/bin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_BOOTLOGO 1
     export ANDROID_CACHE /cache
@@ -278,15 +278,15 @@ on boot
 
 # Define the memory thresholds at which the above process classes will
 # be killed.  These numbers are in pages (4k).
-    setprop ro.FOREGROUND_APP_MEM 2048
-    setprop ro.VISIBLE_APP_MEM 3072
+    setprop ro.FOREGROUND_APP_MEM 1536
+    setprop ro.VISIBLE_APP_MEM 2048
     setprop ro.PERCEPTIBLE_APP_MEM 4096
     setprop ro.HEAVY_WEIGHT_APP_MEM 4096
-    setprop ro.SECONDARY_SERVER_MEM 6144
-    setprop ro.BACKUP_APP_MEM 6144
-    setprop ro.HOME_APP_MEM 6144
-    setprop ro.HIDDEN_APP_MEM 7168
-    setprop ro.EMPTY_APP_MEM 8192
+    setprop ro.SECONDARY_SERVER_MEM 4096
+    setprop ro.BACKUP_APP_MEM 4096
+    setprop ro.HOME_APP_MEM 4096
+    setprop ro.HIDDEN_APP_MEM 5120
+    setprop ro.EMPTY_APP_MEM 6144
 
 # Write value must be consistent with the above properties.
 # Note that the driver only supports 6 slots, so we have combined some of
@@ -321,14 +321,41 @@ on boot
 
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
-    write /sys/module/lowmemorykiller/parameters/minfree 2048,3072,4096,6144,7168,8192
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,9216,10240,10240
 
     # Set init its forked children's oom_adj.
     write /proc/1/oom_adj -16
 
-    # Tweak background writeout
-    write /proc/sys/vm/dirty_expire_centisecs 200
-    write /proc/sys/vm/dirty_background_ratio  5
+# @drakaz : EXPERIMENTAL : other tweaks kernel
+# Nombre de page à ecrire en swap 
+#     write /proc/sys/vm/page-cluster 0
+# Groupe les ecriture sur ssd par block (defaut : 0 : desactive)
+#     write /proc/sys/vm/laptop_mode 0
+# Delais d'attente pour l'ecriture des anciennes données sur disque (defaut : 3000, 500)
+#     write /proc/sys/vm/dirty_expire_centisecs 0
+#     write /proc/sys/vm/dirty_writeback_centisecs 0
+# % memoire avant ecriture par les apps (defaut : 10)
+#     write /proc/sys/vm/dirty_ratio 95
+# % memoire avant ecriture par pdflush (defaut : 5)
+#     write /proc/sys/vm/dirty_background_ratio 60
+# Kill en cas de depassement memoire 
+#     write /proc/sys/vm/panic_on_oom 0
+# Purge page_cache, dentrie, inode (default : 0 uniquement pagechache. 3 : all)  - Dangeureux
+#     write /proc/sys/vm/drop_caches 3
+# Memoire minimal dispo (si < valeur, oom) (Defaut : 1249)
+#     write /proc/sys/vm/min_free_kbytes 1249
+# Oom
+#     write /proc/sys/vm/oom_kill_allocating_task 1
+# Crache pressure
+#     write /proc/sys/vm/vfs_cache_pressure 10
+# Swapiness 
+#     write /proc/sys/vm/swappiness 0
+
+# enable insecure AGPS
+    setprop ro.ril.def.agps.mode 2
+    
+    
+    
 
     # Permissions for System Server and daemons.
     chown radio system /sys/android_power/state

@@ -16,6 +16,7 @@ cp -p device/samsung/I7500/open/bin/firstboot.sh out/target/product/I7500/dev_da
 mkdir out/target/product/I7500/dev_data/app/
 wget -O out/target/product/I7500/dev_data/app/yaam.apk http://yaam.mobi/apk/yaam.apk
 wget -O out/target/product/I7500/system/etc/rtecdc.bin http://obihoernchen.androidcodex.com/wifi_firmware/BCM4325_apsta.bin
+wget -O out/target/product/I7500/system/lib/egl/libGLES_qcom.so http://obihoernchen.androidcodex.com/gaosp/libGLES_qcom.so
 
 ### For future kernel generation, for now we just get prebuild boot.img from gcode download page
 #rm -rf out/target/product/I7500/ramdisk.gz
