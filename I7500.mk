@@ -23,6 +23,9 @@ WITH_WINDOWS_MEDIA:=true
 NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
 
+#Use v8 Javascript engine
+JS_ENGINE := v8
+
 # PROPERTIES
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
