@@ -262,12 +262,10 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     Torch \
     akmd2 \
-    sensors.msm7k \
     sensors.samsung \
     copybit.msm7k \
     gralloc.samsung \
     gps.samsung \
-    sensors.samsung \
     lights.msm7k \
     libcamera \
     libmmcamera.so \
