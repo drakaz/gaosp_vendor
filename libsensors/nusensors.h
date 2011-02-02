@@ -64,17 +64,17 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
 #define LS_DEVICE_NAME      "/dev/lightsensor"
 
 #define EVENT_TYPE_ACCEL_X          ABS_X
-#define EVENT_TYPE_ACCEL_Y          ABS_Z
-#define EVENT_TYPE_ACCEL_Z          ABS_Y
+#define EVENT_TYPE_ACCEL_Y          ABS_Y
+#define EVENT_TYPE_ACCEL_Z          ABS_Z
 #define EVENT_TYPE_ACCEL_STATUS     ABS_WHEEL
 
 #define EVENT_TYPE_YAW              ABS_RX
-#define EVENT_TYPE_PITCH            ABS_RY
-#define EVENT_TYPE_ROLL             ABS_RZ
+#define EVENT_TYPE_PITCH            ABS_RZ
+#define EVENT_TYPE_ROLL             ABS_RY
 #define EVENT_TYPE_ORIENT_STATUS    ABS_RUDDER
 
-#define EVENT_TYPE_MAGV_X           ABS_HAT0X
-#define EVENT_TYPE_MAGV_Y           ABS_HAT0Y
+#define EVENT_TYPE_MAGV_X           ABS_HAT0Y
+#define EVENT_TYPE_MAGV_Y           ABS_HAT0X
 #define EVENT_TYPE_MAGV_Z           ABS_BRAKE
 
 #define EVENT_TYPE_TEMPERATURE      ABS_THROTTLE
@@ -88,20 +88,20 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
 
 // conversion of acceleration data to SI units (m/s^2)
 #define CONVERT_A                   (GRAVITY_EARTH / LSG)
-#define CONVERT_A_X                 (-CONVERT_A)
+#define CONVERT_A_X                 (CONVERT_A)
 #define CONVERT_A_Y                 (CONVERT_A)
 #define CONVERT_A_Z                 (-CONVERT_A)
 
 // conversion of magnetic data to uT units
 #define CONVERT_M                   (1.0f/16.0f)
-#define CONVERT_M_X                 (-CONVERT_M)
-#define CONVERT_M_Y                 (-CONVERT_M)
-#define CONVERT_M_Z                 (CONVERT_M)
+#define CONVERT_M_X                 (CONVERT_M)
+#define CONVERT_M_Y                 (CONVERT_M)
+#define CONVERT_M_Z                 (-CONVERT_M)
 
 #define CONVERT_O                   (1.0f)
 #define CONVERT_O_Y                 (CONVERT_O)
 #define CONVERT_O_P                 (CONVERT_O)
-#define CONVERT_O_R                 (-CONVERT_O)
+#define CONVERT_O_R                 (CONVERT_O)
 
 #define SENSOR_STATE_MASK           (0x7FFF)
 
