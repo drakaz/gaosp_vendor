@@ -35,6 +35,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.media.dec.jpeg.memcap=10000000 \
     ro.config.ringtone=Playa.ogg \
     ro.config.notification_sound=regulus.ogg \
+    ro.config.alarm_alert=Alarm_Beep_03.ogg \
     ro.sf.lcd_density=160 \
     ro.telephony.default_network=0 \
     dalvik.vm.execution-mode=int:fast \
