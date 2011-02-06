@@ -187,6 +187,7 @@ PRODUCT_PACKAGES := \
     libsqlite_jni \
     libssl \
     libz \
+    openvpn \
     sqlite-jdbc \
     azerty.kcm \
     framework-res \
