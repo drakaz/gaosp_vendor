@@ -157,5 +157,8 @@
         <item>30</item>
     </integer-array>
 
+    <!-- Enables SIP on WIFI only -->
+    <bool name="config_sip_wifi_only">false</bool>
+
 </resources>
 
