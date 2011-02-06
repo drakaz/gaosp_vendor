@@ -182,6 +182,7 @@ PRODUCT_PACKAGES := \
     libicui18n \
     libicuuc \
     libjavacore \
+    libcyanogen-dsp \
     libnativehelper \
     libnfc_ndef \
     libsqlite_jni \
