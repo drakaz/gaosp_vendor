@@ -45,7 +45,10 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
     net.bt.name=Galaxy \
-    debug.sf.hw=1
+    dalvik.vm.dexopt-flags=m=y \
+    debug.sf.hw=1 \
+    video.accelerate.hw=1 \
+    debug.performance.tuning=1
 
 # Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
