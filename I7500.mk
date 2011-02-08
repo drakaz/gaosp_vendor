@@ -1,6 +1,6 @@
 WITH_GOOGLE := true
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRH78 BUILD_DISPLAY_ID=GRH78 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83D/75603:user/release-keys
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRH78C BUILD_DISPLAY_ID=GRH78 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83D/75603:user/release-keys
 PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83D 75603 release-keys"
 DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
 
@@ -23,6 +23,9 @@ WITH_WINDOWS_MEDIA:=true
 NO_DEFAULT_SOUNDS := true
 PRODUCT_POLICY := android.policy_phone
 
+#Use v8 Javascript engine
+JS_ENGINE := v8
+
 # PROPERTIES
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
@@ -30,6 +33,9 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.ril.hsxpa=2 \
     ro.ril.gprsclass=10 \
     ro.media.dec.jpeg.memcap=10000000 \
+    ro.config.ringtone=Playa.ogg \
+    ro.config.notification_sound=regulus.ogg \
+    ro.config.alarm_alert=Alarm_Beep_03.ogg \
     ro.sf.lcd_density=160 \
     ro.telephony.default_network=0 \
     dalvik.vm.execution-mode=int:fast \
@@ -42,7 +48,9 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
     net.bt.name=Galaxy \
-    debug.sf.hw=1
+    debug.sf.hw=1 \
+    video.accelerate.hw=1 \
+    debug.performance.tuning=1
 
 # Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -176,11 +184,13 @@ PRODUCT_PACKAGES := \
     libicui18n \
     libicuuc \
     libjavacore \
+    libcyanogen-dsp \
     libnativehelper \
     libnfc_ndef \
     libsqlite_jni \
     libssl \
     libz \
+    openvpn \
     sqlite-jdbc \
     azerty.kcm \
     framework-res \
@@ -259,7 +269,6 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     Torch \
     akmd2 \
-    sensors.msm7k \
     sensors.samsung \
     copybit.msm7k \
     gralloc.samsung \
