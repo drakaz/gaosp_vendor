@@ -1,10 +1,9 @@
 #!/system/bin/sh
 # execute any postinstall script then kill it
-if [ -e /data/firstboot.sh ];
+if [ -e /data/firstboot.sh ]
 then
    chmod 775 /data/firstboot.sh
-   log -p i -t boot "Executing firstboot.sh..";
-   logwrapper /system/bin/sh /data/firstboot.sh;
-   rm -f /data/firstboot.sh;
-fi;
-
+   log -p i -t boot "Executing firstboot.sh.."
+   cd /cache/ && nohup logwrapper /system/bin/sh /data/firstboot.sh &
+   rm -f /data/firstboot.sh
+fi

@@ -3,11 +3,13 @@
 DATABASE="/data/data/com.android.providers.settings/databases/settings.db"
 
 # Wait for settings.db to be created
+echo "firstboot.sh : waiting for $DATABASE"
 while [ ! -e $DATABASE ]
 do
 	sleep 1
 done
 sleep 5
+echo "firstboot.sh : database available, let's go"
 # System default settings
 /system/xbin/sqlite3 $DATABASE "INSERT INTO system (name, value) VALUES ('trackball_wake_screen', 1);" 
 /system/xbin/sqlite3 $DATABASE "INSERT INTO system (name, value) VALUES ('trackball_unlock_screen', 1);" 

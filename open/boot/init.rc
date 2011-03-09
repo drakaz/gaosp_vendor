@@ -469,6 +469,9 @@ on boot
     mkdir /data/misc/wifi/sockets 0777 wifi wifi
     chown dhcp dhcp /data/misc/dhcp
 
+# Temporary fix for sleep issue
+    write /sys/power/wake_lock 1
+
 # Include extra init file
     import /system/etc/init.local.rc
 
