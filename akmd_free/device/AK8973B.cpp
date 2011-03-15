@@ -12,7 +12,7 @@
 namespace akmd {
 
 AK8973B::AK8973B(int dgain, int again)
-: magnetometer(600)
+: magnetometer(600, true)
 {
     mbuf = Vector();
 
@@ -20,9 +20,9 @@ AK8973B::AK8973B(int dgain, int again)
     fixed_magnetometer_gain = again;
     
     //starting offset
-    analog_offset[0]= -2;
-    analog_offset[1]= -2;
-    analog_offset[2]= -2;
+    analog_offset[0]= 0;
+    analog_offset[1]= 0;
+    analog_offset[2]= 0;
  
     
     fd = open("/dev/akm8973_daemon", O_RDONLY);
@@ -172,17 +172,18 @@ void AK8973B::measure() {
     temperature = 110 - (unsigned char)akm_data[1]*0.625;
     
     //because every 2nd measure iz 0 0 0
-    if(akm_data[2]!=0 && akm_data[3]!=0 && akm_data[4]!=0 )
+    if(akm_data[2]!=0 && akm_data[3]!=0 && akm_data[4]!=0 ) {
     m = mbuf = mbuf.multiply(0.5f).add( Vector(
-                                     127 - (unsigned char)akm_data[2],
                                      127 - (unsigned char)akm_data[3],
+                                     127 - (unsigned char)akm_data[2],
                                      127 - (unsigned char)akm_data[4]
-                                     ).multiply(0.5f));
-    else m = mbuf;
+                                     ).multiply(0.5f));   
+    //LOGD("mbuf x=%d y=%d z=%d", (int)mbuf.x,(int)mbuf.y,(int)mbuf.z);
+    } else m = mbuf;
     
-//    LOGD("mf x=%d y=%d z=%d",(int)mbuf.x,(int)mbuf.y,(int)mbuf.z);
-    //calibrate_magnetometer_analog();
-    //calibrate();
+
+    calibrate_magnetometer_analog();
+    calibrate();
 }
 
 Vector AK8973B::read()

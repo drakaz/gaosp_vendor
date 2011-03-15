@@ -38,8 +38,8 @@ Vector OrientationAdapter::read() {
     Vector mag_filtered; 
     Vector m1;
 
-    m1.x = -m.y;
-    m1.y = -m.x;
+    m1.x = -m.x; //-m.y;
+    m1.y = -m.y; //-m.x;
     m1.z =  m.z;
 
     mag_filtered = mag.filter_lp2(m1);

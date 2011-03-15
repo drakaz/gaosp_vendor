@@ -26,7 +26,7 @@ Akmd::Akmd(ChipReader* orientation_reader,
     ChipReader* accelerometer_reader,
     ChipReader* temperature_reader,
     DataPublisher* result_writer)
-    : magnetometer(120)
+    : magnetometer(120,false)
 {
     this->orientation_reader = orientation_reader;
     this->magnetometer_reader = magnetometer_reader;
@@ -64,8 +64,8 @@ void Akmd::fill_result_vector(Vector o, Vector a, Vector m, short temperature, s
     out[7] = -roundf(a.x);
     out[8] =  roundf(a.z);
 
-    out[9] =  -roundf(m.x);
-    out[10] = -roundf(m.y);
+    out[9] =  -roundf(m.y);
+    out[10] = -roundf(m.x);
     out[11] = -roundf(m.z);
 }
 

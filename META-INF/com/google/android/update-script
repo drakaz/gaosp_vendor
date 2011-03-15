@@ -319,6 +319,12 @@ symlink /system/bin/toolbox SYSTEM:bin/setprop
 symlink /system/bin/toolbox SYSTEM:bin/getprop
 symlink /system/bin/toolbox SYSTEM:bin/newfs_msdos
 
+symlink /system/xbin/iwmulticall SYSTEM:xbin/iwconfig
+symlink /system/xbin/iwmulticall SYSTEM:xbin/iwlist 
+symlink /system/xbin/iwmulticall SYSTEM:xbin/iwpriv 
+symlink /system/xbin/iwmulticall SYSTEM:xbin/iwspy 
+symlink /system/xbin/iwmulticall SYSTEM:xbin/iwgetid
+
 copy_dir PACKAGE:dev_data INTERNAL:
 set_perm 1000 1000 0771 INTERNAL:app_s
 set_perm 1000 1000 0771 INTERNAL:app
