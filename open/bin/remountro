@@ -1,1 +1,1 @@
-/system/bin/mount -o remount,ro /dev/block/mtdblock1 /system
+/system/xbin/mount -o remount,ro /dev/block/mtdblock1 /system
