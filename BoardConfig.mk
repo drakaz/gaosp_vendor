@@ -8,7 +8,9 @@ TARGET_EMULATOR := false
 
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom
-TARGET_CPU_ABI := armeabi
+# ARMv6-compatible processor rev 5 (v6l)
+TARGET_CPU_ABI := armeabi-v6j
+TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv6j
 
 TARGET_PROVIDES_RELEASETOOLS := true
