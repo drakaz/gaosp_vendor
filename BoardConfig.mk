@@ -35,8 +35,11 @@ BOARD_EGL_CFG := device/samsung/I7500/open/lib/egl.cfg
 
 # GPS Configuration
 BOARD_GPS_NEEDS_XTRA := true
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := samsung
+BOARD_USE_QCOM_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7k
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
+
+BOARD_USES_QCOM_LIBRPC := true
 
 #Wifi
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/rtecdc.bin"
