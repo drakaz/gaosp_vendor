@@ -295,7 +295,8 @@ PRODUCT_PACKAGES := \
 ifdef CHINESE
 	PRODUCT_PACKAGES += \
 	PinyinIME
-elseif JAPENESE
+else
+ifdef JAPENESE
 	PRODUCT_PACKAGES += \
 	OpenWnn \
     	libWnnEngDic \
@@ -304,6 +305,7 @@ elseif JAPENESE
 else
 	PRODUCT_PACKAGES += \
 	LatinIME
+endif
 endif
 
 # Check if we build with google or not
