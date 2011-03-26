@@ -271,7 +271,7 @@ PRODUCT_PACKAGES := \
     akmd2 \
     sensors.samsung \
     copybit.msm7k \
-    gralloc.samsung \
+    gralloc.msm7k \
     gps.samsung \
     lights.msm7k \
     libcamera \
