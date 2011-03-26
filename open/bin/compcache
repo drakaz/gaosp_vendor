@@ -2,50 +2,36 @@
 #
 # Compcache manager
 # shade@chemlab.org (cyanogen)
-# Improved by Obihoernchen
+#
 
-DEV=/dev/block/ramzswap0
-MODULE=ramzswap.ko
-MODULES_DIR=/system/lib/modules/
+DEV=/dev/block/zram0
+SYSFS_PATH=/sys/block/zram0
+MODULE=zram
 
 case "$1" in
    start)
-      	echo 3 > /proc/sys/vm/drop_caches
-      	echo 30 > /proc/sys/vm/swappiness
-	echo 1 > /proc/sys/vm/oom_kill_allocating_task
-	# GaospConf Compcache tuning
-	#echo 20 > /proc/sys/vm/swappiness
-	#echo 1 > /proc/sys/vm/page-cluster
-	#echo 5 > /proc/sys/vm/laptop_mode
-	#echo 5000 > /proc/sys/vm/dirty_expire_centisecs
-	#echo 800 > /proc/sys/vm/dirty_writeback_centisecs
-	#echo 10 > /proc/sys/vm/dirty_background_ratio
-	#echo 16 > /proc/sys/vm/dirty_ratio
-      	#echo 3 > /proc/sys/vm/drop_caches
-      	insmod $MODULES_DIR/$MODULE
-      	# Check for backing swap
-	if [ -r /dev/block/mmcblk1p2 ]
-      	then
-      		mkswap /dev/block/mmcblk1p2
-       		rzscontrol $DEV --backing_swap=/dev/block/mmcblk1p2 --disksize_kb=$2 --init
-      	else
-		rzscontrol $DEV --disksize_kb=$2 --init
-	fi	
-	swapon $DEV
+      echo 3 > /proc/sys/vm/drop_caches
+      echo 30 > /proc/sys/vm/swappiness
+      modprobe $MODULE
+      echo "$2" > $SYSFS_PATH/disksize
+      mkswap $DEV >/dev/null
+      swapon $DEV
    ;;
 
    stop)
-      	swapoff $DEV >/dev/null 2>&1
-      	rmmod $MODULE >/dev/null 2>&1
+      swapoff $DEV >/dev/null 2>&1
+      rmmod $MODULE >/dev/null 2>&1
    ;;
    stats)
-      	rzscontrol $DEV --stats
+     cd $SYSFS_PATH && for i in * ; do
+         echo -n "$i:" 
+         cat $i
+     done
    ;;
    *)
-      	echo "Usage: $0 {start <size>|stop|stats}"
-      	exit 1
+      echo "Usage: $0 {start <size>|stop|stats}"
+      exit 1
 esac
 
 exit 0
-
 

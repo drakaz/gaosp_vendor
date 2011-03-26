@@ -104,6 +104,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/etc/zshrc:system/etc/zshrc \
 	device/samsung/I7500/open/etc/adb_shell.conf:system/etc/adb_shell.conf \
 	device/samsung/I7500/open/etc/gaosp.conf:system/etc/gaosp.conf \
+	device/samsung/I7500/open/etc/init.local.rc:system/etc/init.local.rc \
 	device/samsung/I7500/open/bin/rc:system/bin/rc \
 	device/samsung/I7500/open/bin/compcache:system/bin/compcache \
 	device/samsung/I7500/open/bin/handle_compcache:system/bin/handle_compcache \
@@ -132,7 +133,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/boot/bootanimation.zip:system/media/bootanimation.zip \
 	device/samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
 	device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
-	device/samsung/I7500/open/modules/ramzswap.ko:system/lib/modules/ramzswap.ko \
+	device/samsung/I7500/open/modules/zram.ko:system/lib/modules/zram.ko \
 	device/samsung/I7500/open/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
         device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
         device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
