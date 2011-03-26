@@ -39,13 +39,15 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := samsung
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
 
 #Wifi
-WIFI_DRIVER_FW_AP_PATH = "/system/etc/rtecdc.bin"
+WIFI_DRIVER_FW_STA_PATH     := "/system/etc/rtecdc.bin"
+#WIFI_DRIVER_FW_AP_PATH := "/system/etc/rtecdc.bin"
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcm4329.ko"
 #WIFI_DRIVER_MODULE_ARG := "iface_name=wlan0"
+WIFI_DRIVER_MODULE_ARG      :=  "firmware_path=/system/etc/rtecdc.bin nvram_path=/system/etc/nvram.txt"
 WIFI_DRIVER_MODULE_NAME := "bcm4329"
-WIFI_TEST_INTERFACE := eth0
+#WIFI_TEST_INTERFACE := eth0
 
 #BOARD_USES_ALSA_AUDIO   := true
 #BUILD_WITH_ALSA_UTILS := true
