@@ -11,6 +11,9 @@ TARGET_BOARD_PLATFORM_GPU := qcom
 TARGET_CPU_ABI := armeabi
 TARGET_ARCH_VARIANT := armv6j
 
+TARGET_PROVIDES_RELEASETOOLS := true
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/I7500/releasetools/ota_from_target_files
+
 # JIT
 WITH_JIT := true
 
