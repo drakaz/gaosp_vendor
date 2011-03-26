@@ -156,7 +156,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/proprietary/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
 	device/samsung/I7500/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
 	device/samsung/I7500/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
-	device/samsung/I7500/qcom/proprietary-open/libegl/proprietary/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so
+	device/samsung/I7500/proprietary/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so
 
 # Packages
 PRODUCT_PACKAGES := \
