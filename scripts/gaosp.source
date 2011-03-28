@@ -31,6 +31,7 @@ echo "-----------------------------------------------------------"
 }
 
 # Alias
+alias download='cd device/samsung/I7500/; ./download-files.sh; cd -'
 alias update_repo='device/samsung/I7500/scripts/update_repo.sh'
 alias build_repo='device/samsung/I7500/scripts/build_repo.sh'
 alias mkupdate='device/samsung/I7500/scripts/mkupdate.sh'
