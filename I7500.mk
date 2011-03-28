@@ -271,7 +271,7 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     Torch \
     akmd2 \
-    sensors.samsung \
+    sensors.I7500\
     copybit.msm7k \
     gralloc.msm7k \
     gps.msm7k \
