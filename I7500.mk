@@ -134,10 +134,6 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/boot/bootanimation_old.zip:system/media/bootanimation_old.zip \
 	device/samsung/I7500/open/boot/logo.rle:root/logo.rle \
 	device/samsung/I7500/open/modules/zram.ko:system/lib/modules/zram.ko \
-	device/samsung/I7500/open/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
-        device/samsung/I7500/open/modules/multipdp.ko:system/lib/modules/multipdp.ko \
-        device/samsung/I7500/open/modules/dpram.ko:system/lib/modules/dpram.ko \
-        device/samsung/I7500/open/modules/tun.ko:system/lib/modules/tun.ko \
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \

@@ -19,3 +19,8 @@ $(KERNEL_CONFIG): $(LOCAL_PATH)/arch/arm/configs/gaosp_msm_defconfig | $(ACP)
 
 $(TARGET_PREBUILT_KERNEL): $(KERNEL_OUT) $(KERNEL_CONFIG)
 	$(MAKE) -C cm-kernel O=../$(KERNEL_OUT) ARCH=arm CROSS_COMPILE=$(shell pwd)/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin/arm-eabi- INSTALL_MOD_STRIP=1
+
+	$(ACP) $(KERNEL_OUT)/drivers/net/wireless/bcm4329/bcm4329.ko $(TARGET_OUT)/lib/modules/
+	$(ACP) $(KERNEL_OUT)/drivers/dpram/dpram.ko $(TARGET_OUT)/lib/modules/
+	$(ACP) $(KERNEL_OUT)/drivers/dpram/multipdp.ko $(TARGET_OUT)/lib/modules/
+	$(ACP) $(KERNEL_OUT)/drivers/net/tun.ko $(TARGET_OUT)/lib/modules/
