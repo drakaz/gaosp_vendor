@@ -4,6 +4,7 @@ if [ -e /data/firstboot.sh ]
 then
    chmod 775 /data/firstboot.sh
    log -p i -t boot "Executing firstboot.sh.."
-   cd /cache/ && nohup logwrapper /system/bin/sh /data/firstboot.sh &
+   cd /cache/ && nohup /system/bin/logwrapper /system/bin/sh /data/firstboot.sh &
+   sleep 10
    rm -f /data/firstboot.sh
 fi
