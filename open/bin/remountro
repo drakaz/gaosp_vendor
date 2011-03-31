@@ -1,1 +1,9 @@
-/system/xbin/mount -o remount,ro /dev/block/mtdblock1 /system
+if [ -e /system/xbin/mount ]
+then
+        /system/xbin/mount -o remount,ro /dev/block/mtdblock1 /system
+else if [ -e /system/bin/mount ]
+then
+        /system/bin/mount -o remount,ro /dev/block/mtdblock1 /system
+fi
+fi
+
