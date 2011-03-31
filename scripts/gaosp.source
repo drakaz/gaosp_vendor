@@ -14,7 +14,7 @@ echo "-----------------------------------------------------------"
 echo " "
 echo "$ update_repo : update the google and gaosp repositories with latest manifest (step 1 on build process)"
 echo "$ build_repo : build gaosp (step 2 of build process, produce system.img image)"
-echo "$ mkupdate : make and update.zip with the latest builded system.img (step 3 on build process)"
+echo "$ make otapackage : make an update.zip with the latest builded system.img (step 3 on build process)"
 echo "$ clean : clean gaosp build"
 echo "$ build_all All in one (step 1, 2, 3 in one command)"
 echo "$ gaosp_help : print this help"
@@ -34,9 +34,8 @@ echo "-----------------------------------------------------------"
 alias download='cd device/samsung/I7500/; ./download-files.sh; cd -'
 alias update_repo='device/samsung/I7500/scripts/update_repo.sh'
 alias build_repo='device/samsung/I7500/scripts/build_repo.sh'
-alias mkupdate='device/samsung/I7500/scripts/mkupdate.sh'
 alias clean='device/samsung/I7500/scripts/clean.sh'
-alias build_all='device/samsung/I7500/scripts/update_repo.sh; device/samsung/I7500/scripts/build_repo.sh; device/samsung/I7500/scripts/mkupdate.sh '
+alias build_all='device/samsung/I7500/scripts/update_repo.sh; device/samsung/I7500/scripts/build_repo.sh; make otapackage '
 
 
 welcome
