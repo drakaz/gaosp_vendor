@@ -1,4 +1,13 @@
 #!/system/bin/sh
 
 export PATH=/sbin:/system/sbin:/system/bin:/system/xbin
-/system/bin/logwrapper /system/bin/run-parts /system/etc/init.d 
+if [ -e /system/bin/run-parts ]
+then
+	/system/bin/logwrapper /system/bin/run-parts /system/etc/init.d 
+else if [ -e /system/xbin/run-parts ]
+then
+	/system/bin/logwrapper /system/xbin/run-parts /system/etc/init.d
+else
+	/system/bin/logwrapper echo "run-parts not found, unable to load init.d scripts"
+fi
+fi
