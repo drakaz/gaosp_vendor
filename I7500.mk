@@ -284,7 +284,8 @@ PRODUCT_PACKAGES := \
     libOmxVidEnc.so \
     libGLES_qcom.so \
     libjni_flash \
-    libjni_flashwidget
+    libjni_flashwidget \
+    flash_image
 
 
 # Check : building for chinese people ?
