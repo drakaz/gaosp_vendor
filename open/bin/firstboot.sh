@@ -25,3 +25,8 @@ echo "firstboot.sh : database available, let's go"
 /system/xbin/sqlite3 $DATABASE "INSERT INTO secure (name, value) VALUES ('device_provisioned', 1);"
 /system/xbin/sqlite3 $DATABASE "INSERT INTO secure (name, value) VALUES ('install_non_market_apps', 1);"
 /system/xbin/sqlite3 $DATABASE "INSERT INTO secure (name, value) VALUES ('allow_move_all_apps_external', 1);"
+
+# Persist sysprop
+mkdir /data/property/
+echo 1 > /data/property/persist.sys.purgeable_assets
+echo 0 > /data/property/persist.sys.use_dithering
