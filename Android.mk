@@ -24,4 +24,3 @@ $(TARGET_PREBUILT_KERNEL): $(KERNEL_OUT) $(KERNEL_CONFIG)
 	$(ACP) $(KERNEL_OUT)/drivers/net/wireless/bcm4329/bcm4329.ko $(TARGET_OUT)/lib/modules/
 	$(ACP) $(KERNEL_OUT)/drivers/dpram/dpram.ko $(TARGET_OUT)/lib/modules/
 	$(ACP) $(KERNEL_OUT)/drivers/dpram/multipdp.ko $(TARGET_OUT)/lib/modules/
-	$(ACP) $(KERNEL_OUT)/drivers/net/tun.ko $(TARGET_OUT)/lib/modules/
