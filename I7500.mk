@@ -1,6 +1,6 @@
 WITH_GOOGLE := true
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRH78C BUILD_DISPLAY_ID=GRH78 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83D/75603:user/release-keys
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=I7500 BUILD_ID=GRH78C BUILD_DISPLAY_ID=GRH78 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83D/75603:user/release-keys
 PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83D 75603 release-keys"
 DEVICE_PACKAGE_OVERLAYS := device/samsung/I7500/overlay
 
@@ -267,7 +267,7 @@ PRODUCT_PACKAGES := \
     WebSearchProvider \
     Torch \
     akmd2 \
-    sensors.msm7k \
+    sensors.I7500 \
     copybit.msm7k \
     gralloc.msm7k \
     gps.msm7k \
