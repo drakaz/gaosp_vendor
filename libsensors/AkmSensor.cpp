@@ -247,6 +247,7 @@ int AkmSensor::readEvents(sensors_event_t* data, int count)
 
 void AkmSensor::processEvent(int code, int value)
 {
+    float convAzimuth;
     switch (code) {
         case EVENT_TYPE_ACCEL_X:
             mPendingMask |= 1<<Accelerometer;
@@ -276,7 +277,9 @@ void AkmSensor::processEvent(int code, int value)
 
         case EVENT_TYPE_YAW:
             mPendingMask |= 1<<Orientation;
-            mPendingEvents[Orientation].orientation.azimuth = value * CONVERT_O_Y;
+            // Apply a 180 shift on azimuth
+            convAzimuth = ((value * CONVERT_O_Y) + 180);
+            mPendingEvents[Orientation].orientation.azimuth = convAzimuth > 360 ? convAzimuth - 360 : convAzimuth;
             break;
         case EVENT_TYPE_PITCH:
             mPendingMask |= 1<<Orientation;
