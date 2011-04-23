@@ -153,7 +153,16 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
 	device/samsung/I7500/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
 	device/samsung/I7500/proprietary/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
-	device/samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2
+	device/samsung/I7500/proprietary/bin/akmd2:system/bin/akmd2 \
+	device/samsung/I7500/proprietary/lib/libgps.so:system/lib/libgps.so \
+	device/samsung/I7500/proprietary/lib/libloc_api.so:system/lib/libloc_api.so \
+	device/samsung/I7500/proprietary/lib/libloc.so:system/lib/libloc.so \
+	device/samsung/I7500/proprietary/lib/libloc-rpc.so:system/lib/libloc-rpc.so \
+	device/samsung/I7500/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so
+
+# Prebuilt libraries that are needed to build open-source libraries
+PRODUCT_COPY_FILES += \
+	device/samsung/I7500/proprietary/lib/libloc.so:obj/lib/libloc.so
 
 # Packages
 PRODUCT_PACKAGES := \
@@ -270,7 +279,7 @@ PRODUCT_PACKAGES := \
     sensors.I7500 \
     copybit.msm7k \
     gralloc.msm7k \
-    gps.msm7k \
+    gps.I7500 \
     lights.msm7k \
     libcamera \
     libmmcamera.so \
