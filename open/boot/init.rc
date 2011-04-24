@@ -645,3 +645,8 @@ service poweroff /system/xbin/shutdown
 service RebootRecovery /system/xbin/shutdown -e
     disabled
     oneshot
+
+# RC service
+service rc /system/bin/logwrapper /system/bin/bash /system/bin/rc
+user root
+oneshot
