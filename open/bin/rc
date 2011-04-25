@@ -78,49 +78,6 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
-###########################
-##### CPU Frequency #######
-###########################
-
-echo "GaospRC : Applying CPU Frequency..."
-minfreq=`grep "minfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-echo "GaospRC : setting min CPU frequency..."
-echo $minfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-maxfreq=`grep "maxfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-echo "GaospRC : Setting max CPU frequency..."
-echo $maxfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-
-##########################
-##### CPU sampling #######
-##########################
-
-echo "GaospRC : Applying CPU sampling..."
-if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
-	then
-	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-	case $cpu_sampling in
- 	0)
-		echo "GaospRC : setting cpufreq sampling to eco mode..."
-  		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
- 	1)
-		echo "GaospRC : setting cpufreq sampling to mixte mode..."
-  		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
- 	;;
- 	2)
-		echo "GaospRC : setting cpufreq sampling to performance mode..."
-  		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
- 	*)
-		echo "GaospRC : setting cpufreq sampling to default mode (mixte)..."
-  		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
-	esac
-	else
-		echo "GaospRC : setting cpufreq sampling to default mode (eco)..."
-  		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-fi
-
 ####################
 ##### Sensors ######
 ####################
@@ -219,15 +176,6 @@ fi
 if [ -e /sys/devices/virtual/bdi/180:0/read_ahead_kb ]
 then
 	echo $sdcache > /sys/devices/virtual/bdi/180:0/read_ahead_kb
-fi
-
-####################################
-###### Interactive governor ########
-####################################
-
-if [ `grep "interactive=yes" /system/etc/gaosp.conf` ]
-then
-	echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 fi
 
 # Remount in read only
