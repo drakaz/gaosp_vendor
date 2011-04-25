@@ -318,7 +318,7 @@ on boot
 
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
-    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,4096,9216,10240,10240
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,2048,3584,5632,6144,7680
 
     # Set init its forked children's oom_adj.
     write /proc/1/oom_adj -16
