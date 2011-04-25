@@ -7,6 +7,7 @@ LOCAL_PATH := $(call my-dir)/../../cm-kernel
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 TARGET_PREBUILT_KERNEL := $(KERNEL_OUT)/arch/arm/boot/zImage
+$(TARGET_PREBUILT_KERNEL): build_kernel
 
 $(INSTALLED_KERNEL_TARGET): $(TARGET_PREBUILT_KERNEL) | $(ACP)
 	$(transform-prebuilt-to-target)
