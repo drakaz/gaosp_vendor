@@ -50,7 +50,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
     net.bt.name=Galaxy \
     debug.sf.hw=1 \
     video.accelerate.hw=1 \
-    debug.performance.tuning=1
+    debug.performance.tuning=1 \
+    ro.additionalmounts=/mnt/sdcard2
 
 # Enable Compcache by default
 PRODUCT_PROPERTY_OVERRIDES += \
