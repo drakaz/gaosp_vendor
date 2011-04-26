@@ -163,12 +163,6 @@ fi
 
 if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
 then
-	if [ -r /dev/block/ramzswap0 ]
-	then
-		echo "GaospRC : Disabling compcache..."
-		swapoff /dev/block/ramzswap0
-		rmmod ramzswap
-	fi
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
 		# Swap tuning
