@@ -115,37 +115,6 @@ else
 fi
   
 ####################
-##### Sensors ######
-####################
-
-echo "GaospRC : Applying Sensors sampling..."
-if [ `grep "sensors_sampling=" /system/etc/gaosp.conf` ]
-then
-	cpu_sampling=`grep "sensors_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-	case $cpu_sampling in
- 	 0)
-		echo "GaospRC : setting sensors sampling to eco mode..."
-		echo 250 > /data/delay
-  	 ;;
- 	 1)
-	    echo "GaospRC : setting sensors sampling to mixte mode..."
-  		echo 500 > /data/delay
- 	 ;;
- 	 2)
-		echo "GaospRC : setting sensors sampling to performance mode..."
-  		echo 1000 > /data/delay
-  	 ;;
- 	 *)
-		echo "GaospRC : setting sensors sampling to default mode (mixte)..."
-  		echo 500 > /data/delay
-  	 ;;
-	esac
-else
-		echo "GaospRC : setting sensors sampling to default mode (eco)..."
-  		echo 250 > /data/delay
-fi
-
-####################
 ##### Renice #######
 ####################
 
