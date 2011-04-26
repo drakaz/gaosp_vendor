@@ -78,33 +78,69 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
+##########################
+##### CPU sampling #######
+##########################
+
+if [ `grep "ondemand"  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor` ]
+then
+  echo "GaospRC : Applying CPU sampling..."
+  if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
+  then
+    cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+    case $cpu_sampling in
+     0)
+		echo "GaospRC : setting cpufreq sampling to eco mode..."
+		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     1)
+		echo "GaospRC : setting cpufreq sampling to mixte mode..."
+		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     2)
+		echo "GaospRC : setting cpufreq sampling to performance mode..."
+		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     *)
+		echo "GaospRC : setting cpufreq sampling to default mode (mixte)..."
+		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+    esac
+  else
+		echo "GaospRC : setting cpufreq sampling to default mode (eco)..."
+		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+  fi
+else
+	echo "GaospRC : Set ondemand governor to change sampling!"
+fi
+  
 ####################
 ##### Sensors ######
 ####################
 
 echo "GaospRC : Applying Sensors sampling..."
 if [ `grep "sensors_sampling=" /system/etc/gaosp.conf` ]
-	then
+then
 	cpu_sampling=`grep "sensors_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 	case $cpu_sampling in
- 	0)
+ 	 0)
 		echo "GaospRC : setting sensors sampling to eco mode..."
-  		echo 250 > /data/delay
-  	;;
- 	1)
-		echo "GaospRC : setting sensors sampling to mixte mode..."
+		echo 250 > /data/delay
+  	 ;;
+ 	 1)
+	    echo "GaospRC : setting sensors sampling to mixte mode..."
   		echo 500 > /data/delay
- 	;;
- 	2)
+ 	 ;;
+ 	 2)
 		echo "GaospRC : setting sensors sampling to performance mode..."
   		echo 1000 > /data/delay
-  	;;
- 	*)
+  	 ;;
+ 	 *)
 		echo "GaospRC : setting sensors sampling to default mode (mixte)..."
   		echo 500 > /data/delay
-  	;;
+  	 ;;
 	esac
-	else
+else
 		echo "GaospRC : setting sensors sampling to default mode (eco)..."
   		echo 250 > /data/delay
 fi
