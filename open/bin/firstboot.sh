@@ -3,6 +3,12 @@
 DATABASE="/data/data/com.android.providers.settings/databases/settings.db"
 
 # Wait for settings.db to be created
+echo "firstboot.sh : waiting for system boot done"
+getprop sys.boot_completed
+while [ `getprop sys.boot_completed` = 0 ]
+do
+	sleep 1
+done
 echo "firstboot.sh : waiting for $DATABASE"
 while [ ! -e $DATABASE ]
 do
@@ -27,6 +33,5 @@ echo "firstboot.sh : database available, let's go"
 /system/xbin/sqlite3 $DATABASE "INSERT INTO secure (name, value) VALUES ('allow_move_all_apps_external', 1);"
 
 # Persist sysprop
-mkdir /data/property/
 echo 1 > /data/property/persist.sys.purgeable_assets
 echo 0 > /data/property/persist.sys.use_dithering
