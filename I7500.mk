@@ -295,7 +295,8 @@ PRODUCT_PACKAGES := \
     libGLES_qcom.so \
     libjni_flash \
     libjni_flashwidget \
-    flash_image
+    flash_image \
+    librs_jni
 
 
 # Check : building for chinese people ?
