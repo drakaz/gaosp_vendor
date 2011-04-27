@@ -34,6 +34,7 @@ then
 	/system/bin/logwrapper /system/xbin/dropbear &
 
 else
+	echo "GaospRC : SSHD server deactivated"
 	PID=`pidof dropbear` && kill -9 $PID
 fi
 
@@ -120,6 +121,7 @@ fi
 
 if [ `grep "renice=yes" /system/etc/gaosp.conf` ]
 then
+	echo "GaospRC : Renice"
 	renice -20 `pidof com.android.mms`
 	renice -19 `pidof com.android.phone`
 	renice -18 `pidof mediaserver`
@@ -155,6 +157,7 @@ fi
 ###### Memory thresholds ########
 #################################
 
+echo "GaospRC : Set memory thresholds"
 mem1=`grep "mem1=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 mem2=`grep "mem2=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 mem3=`grep "mem3=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
@@ -167,6 +170,7 @@ echo $mem1","$mem2","$mem3","$mem4","$mem5","$mem6 > /sys/module/lowmemorykiller
 ######## SD Cache Size  ##########
 ##################################
 
+echo "GaospRC : Set SD read cache!"
 sdcache=`grep "sdcache=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 if [ -e /sys/devices/virtual/bdi/179:8/read_ahead_kb ]
 then
@@ -252,5 +256,3 @@ then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 fi
-
-
