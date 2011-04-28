@@ -45,7 +45,7 @@ BOARD_USES_QCOM_LIBS := true
 
 #Wifi
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/rtecdc.bin"
-#WIFI_DRIVER_FW_AP_PATH := "/system/etc/rtecdc.bin"
+WIFI_DRIVER_FW_AP_PATH := "/system/etc/rtecdc_apsta.bin"
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcm4329.ko"
