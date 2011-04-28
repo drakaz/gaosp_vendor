@@ -34,6 +34,7 @@ then
 	/system/bin/logwrapper /system/xbin/dropbear &
 
 else
+	echo "GaospRC : SSHD server deactivated"
 	PID=`pidof dropbear` && kill -9 $PID
 fi
 
@@ -78,86 +79,49 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
-###########################
-##### CPU Frequency #######
-###########################
-
-echo "GaospRC : Applying CPU Frequency..."
-minfreq=`grep "minfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-echo "GaospRC : setting min CPU frequency..."
-echo $minfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-maxfreq=`grep "maxfreq=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-echo "GaospRC : Setting max CPU frequency..."
-echo $maxfreq > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-
 ##########################
 ##### CPU sampling #######
 ##########################
 
-echo "GaospRC : Applying CPU sampling..."
-if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
-	then
-	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-	case $cpu_sampling in
- 	0)
+if [ `grep "ondemand"  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor` ]
+then
+  echo "GaospRC : Applying CPU sampling..."
+  if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
+  then
+    cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+    case $cpu_sampling in
+     0)
 		echo "GaospRC : setting cpufreq sampling to eco mode..."
-  		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
- 	1)
+		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     1)
 		echo "GaospRC : setting cpufreq sampling to mixte mode..."
-  		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
- 	;;
- 	2)
+		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     2)
 		echo "GaospRC : setting cpufreq sampling to performance mode..."
-  		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
- 	*)
+		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+     *)
 		echo "GaospRC : setting cpufreq sampling to default mode (mixte)..."
-  		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  	;;
-	esac
-	else
+		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+     ;;
+    esac
+  else
 		echo "GaospRC : setting cpufreq sampling to default mode (eco)..."
-  		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+  fi
+else
+	echo "GaospRC : Set ondemand governor to change sampling!"
 fi
-
-####################
-##### Sensors ######
-####################
-
-echo "GaospRC : Applying Sensors sampling..."
-if [ `grep "sensors_sampling=" /system/etc/gaosp.conf` ]
-	then
-	cpu_sampling=`grep "sensors_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-	case $cpu_sampling in
- 	0)
-		echo "GaospRC : setting sensors sampling to eco mode..."
-  		echo 250 > /data/delay
-  	;;
- 	1)
-		echo "GaospRC : setting sensors sampling to mixte mode..."
-  		echo 500 > /data/delay
- 	;;
- 	2)
-		echo "GaospRC : setting sensors sampling to performance mode..."
-  		echo 1000 > /data/delay
-  	;;
- 	*)
-		echo "GaospRC : setting sensors sampling to default mode (mixte)..."
-  		echo 500 > /data/delay
-  	;;
-	esac
-	else
-		echo "GaospRC : setting sensors sampling to default mode (eco)..."
-  		echo 250 > /data/delay
-fi
-
+  
 ####################
 ##### Renice #######
 ####################
 
 if [ `grep "renice=yes" /system/etc/gaosp.conf` ]
 then
+	echo "GaospRC : Renice"
 	renice -20 `pidof com.android.mms`
 	renice -19 `pidof com.android.phone`
 	renice -18 `pidof mediaserver`
@@ -170,12 +134,6 @@ fi
 
 if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
 then
-	if [ -r /dev/block/ramzswap0 ]
-	then
-		echo "GaospRC : Disabling compcache..."
-		swapoff /dev/block/ramzswap0
-		rmmod ramzswap
-	fi
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
 		# Swap tuning
@@ -199,6 +157,7 @@ fi
 ###### Memory thresholds ########
 #################################
 
+echo "GaospRC : Set memory thresholds"
 mem1=`grep "mem1=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 mem2=`grep "mem2=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 mem3=`grep "mem3=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
@@ -211,6 +170,7 @@ echo $mem1","$mem2","$mem3","$mem4","$mem5","$mem6 > /sys/module/lowmemorykiller
 ######## SD Cache Size  ##########
 ##################################
 
+echo "GaospRC : Set SD read cache!"
 sdcache=`grep "sdcache=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
 if [ -e /sys/devices/virtual/bdi/179:8/read_ahead_kb ]
 then
@@ -219,15 +179,6 @@ fi
 if [ -e /sys/devices/virtual/bdi/180:0/read_ahead_kb ]
 then
 	echo $sdcache > /sys/devices/virtual/bdi/180:0/read_ahead_kb
-fi
-
-####################################
-###### Interactive governor ########
-####################################
-
-if [ `grep "interactive=yes" /system/etc/gaosp.conf` ]
-then
-	echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 fi
 
 # Remount in read only
@@ -305,5 +256,3 @@ then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 fi
-
-
