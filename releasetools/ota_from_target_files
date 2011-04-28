@@ -156,6 +156,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.FormatPartition("/dbdata")
     script.FormatPartition("/userdata")
 
+# /system mounted by default under Drakaz recovery
+  script.script.append('unmount("/system");')
   script.FormatPartition("/system")
   script.Mount("/system")
   script.Mount("/data")
