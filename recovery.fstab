@@ -1,0 +1,11 @@
+# mount point fstype device [device2]
+
+/boot	mtd boot
+/cache	yaffs2 cache
+/userdata yaffs2 userdata
+/dbdata yaffs2 data
+/recovery mtd recovery
+/system yaffs2 system
+/data ext3 /dev/block/mmcblk0p1
+/sdcard vfat /dev/block/mmcblk0p2
+/sd-ext vfat /dev/block/mmcblk1p1 /dev/block/mmcblk1
