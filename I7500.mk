@@ -74,7 +74,7 @@ endif
 # Nightly
 ifdef NIGHTLY
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=GAOSP-3-$(shell date +%m%d%Y)-NIGHTLY
+        ro.modversion=GAOSP-3-NIGHTLY-$(shell date +%m%d%Y)
 else
     PRODUCT_PROPERTY_OVERRIDES += \
         ro.modversion=GAOSP-3-PUBLIC-BETA-1
