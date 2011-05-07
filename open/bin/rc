@@ -144,6 +144,7 @@ then
 		echo 30 > /proc/sys/vm/dirty_background_ratio
 		echo 1 > /proc/sys/vm/oom_kill_allocating_task
 		echo 10 > /proc/sys/vm/vfs_cache_pressure
+		sync
 		echo 3 > /proc/sys/vm/drop_caches
 		echo "GaospRC : Mouting swap..."
 		mkswap /dev/block/mmcblk1p2
