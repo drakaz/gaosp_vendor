@@ -142,7 +142,7 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
-	device/samsung/I7500/proprietary/etc/rtecdc_apsta.bin:system/etc/rtecdc_apsta.bin \
+	device/samsung/I7500/proprietary/etc/rtecdc.bin:system/etc/rtecdc_apsta.bin \
 	device/samsung/I7500/proprietary/etc/rtecdc.bin:system/etc/rtecdc.bin \
 	device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
 	device/samsung/I7500/proprietary/lib/set_grp_id:system/bin/set_grp_id \
