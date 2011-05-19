@@ -14,7 +14,7 @@ while [ ! -e $DATABASE ]
 do
 	sleep 1
 done
-sleep 5
+sleep 30
 echo "firstboot.sh : database available, let's go"
 # System default settings
 /system/xbin/sqlite3 $DATABASE "INSERT INTO system (name, value) VALUES ('trackball_wake_screen', 1);" 
