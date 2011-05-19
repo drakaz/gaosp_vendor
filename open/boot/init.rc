@@ -131,7 +131,7 @@ on fs
     mount yaffs2 mtd@cache /cache nosuid nodev
 
     wait /dev/block/mmcblk0p1
-    mount ext3 /dev/block/mmcblk0p1 /data nosuid nodev noatime
+    mount ext4 /dev/block/mmcblk0p1 /data nosuid nodev noatime
     mount yaffs2 mtd@userdata /userdata nosuid nodev noatime
     mount yaffs2 mtd@data /dbdata nosuid nodev noatime
     
