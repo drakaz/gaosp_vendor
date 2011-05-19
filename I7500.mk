@@ -58,10 +58,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.compcache.default=18
 
-# Disable fs check on boot by default
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.checkfs.fat=false
-
 # Chinese specific
 ifdef CHINESE
     PRODUCT_PROPERTY_OVERRIDES += \
