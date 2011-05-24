@@ -3,6 +3,6 @@
 /dev/block/mtdblock4 /cache yaffs2 rw
 /dev/block/mtdblock5 /dbdata yaffs2 ro,nosuid,nodev 0 0
 /dev/block/mmcblk0p1 /data ext3 ro,nosuid,nodev,errors=remount-ro,debug,commit=2,data=journal 0 0
-/dev/block/mmcblk0p2 /sdcard vfat ro,dirsync,nosuid,nodev,noexec,uid=1000,gid=1000,fmask=0711,dmask=0000,allow_utime=0022,codepage=cp437,iocharset=iso8859-1,shortname=mixed,utf8 0 0
-/dev/block/mmcblk1   /sdcard/sd/ vfat ro,dirsync,nosuid,nodev,noexec,uid=1000,gid=1000,fmask=0711,dmask=0000,allow_utime=0022,codepage=cp437,iocharset=iso8859-1,shortname=mixed,utf8 0 0
+/dev/block/mmcblk0p2 /mnt/sdcard vfat ro,dirsync,nosuid,nodev,noexec,uid=1000,gid=1000,fmask=0711,dmask=0000,allow_utime=0022,codepage=cp437,iocharset=iso8859-1,shortname=mixed,utf8 0 0
+/dev/block/mmcblk1p1 /mnt/sdcard2 vfat ro,dirsync,nosuid,nodev,noexec,uid=1000,gid=1000,fmask=0711,dmask=0000,allow_utime=0022,codepage=cp437,iocharset=iso8859-1,shortname=mixed,utf8 0 0
 
