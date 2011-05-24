@@ -257,3 +257,9 @@ then
 	mv /data/data/com.android.providers.downloads /dbdata/data/com.android.providers.downloads
 	ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 fi
+
+#########################################
+### Temporary fix for Mediascanner ######
+#########################################
+sleep 120
+mount -o bind /mnt/sdcard2 /mnt/sdcard/sd
