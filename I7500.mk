@@ -135,7 +135,6 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
 	device/samsung/I7500/proprietary/etc/rtecdc.bin:system/etc/rtecdc_apsta.bin \

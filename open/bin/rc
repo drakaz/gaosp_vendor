@@ -7,6 +7,19 @@ echo "GaospRC : Remount in RW..."
 /system/bin/bash /system/xbin/remountrw
 
 ##################
+### Pers. Props ##
+##################
+
+if [ ! -e /data/property/persist.sys.purgeable_assets ];
+then
+  setprop persist.sys.purgeable_assets 1
+fi
+if [ ! -e /data/property/persist.sys.use_dithering ];
+then
+  setprop persist.sys.use_dithering 0
+fi
+
+##################
 ##### SSHD #######
 ##################
 
