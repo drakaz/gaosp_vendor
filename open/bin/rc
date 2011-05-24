@@ -272,3 +272,9 @@ else
 		ln -s /dbdata/data/com.android.providers.downloads /data/data/com.android.providers.downloads
 	fi
 fi
+
+#########################################
+### Temporary fix for Mediascanner ######
+#########################################
+sleep 120
+mount -o bind /mnt/sdcard2 /mnt/sdcard/sd
