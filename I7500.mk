@@ -1,4 +1,5 @@
 WITH_GOOGLE := true
+CYANOGEN_WITH_GOOGLE := true
 
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=I7500 BUILD_ID=GRJ22 BUILD_DISPLAY_ID=GRJ22 BUILD_FINGERPRINT=google/passion/passion:2.3.4/GRJ22/121341:user/release-keys
 PRIVATE_BUILD_DESC="passion-user 2.3.4 GRJ22 121341 release-keys"
@@ -57,10 +58,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.compcache.default=18
 
-# Disable fs check on boot by default
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.checkfs.fat=false
-
 # Chinese specific
 ifdef CHINESE
     PRODUCT_PROPERTY_OVERRIDES += \
@@ -73,7 +70,7 @@ endif
 # Nightly
 ifdef NIGHTLY
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=GAOSP-3-$(shell date +%m%d%Y)-NIGHTLY
+        ro.modversion=GAOSP-3-NIGHTLY-$(shell date +%m%d%Y)
 else
     PRODUCT_PROPERTY_OVERRIDES += \
         ro.modversion=GAOSP-3-PUBLIC-BETA-1
@@ -138,11 +135,10 @@ PRODUCT_COPY_FILES += device/samsung/I7500/open/etc/apns-conf.xml:system/etc/apn
 	device/samsung/I7500/open/lib/librun.so:system/lib/librun.so \
 	device/samsung/I7500/open/etc/init.d/00banner:system/etc/init.d/00banner \
 	device/samsung/I7500/open/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-	device/samsung/I7500/open/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
 	device/samsung/I7500/open/etc/init.d/04modules:system/etc/init.d/04modules \
 	device/samsung/I7500/open/etc/init.d/20userinit:system/etc/init.d/20userinit \
+	device/samsung/I7500/proprietary/etc/rtecdc.bin:system/etc/rtecdc_apsta.bin \
 	device/samsung/I7500/proprietary/etc/rtecdc.bin:system/etc/rtecdc.bin \
-	device/samsung/I7500/open/etc/rtecdc_adhoc.bin:system/etc/rtecdc.bin \
 	device/samsung/I7500/open/boot/ueventd.samsung.rc:root/ueventd.samsung.rc \
 	device/samsung/I7500/proprietary/lib/set_grp_id:system/bin/set_grp_id \
 	device/samsung/I7500/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
@@ -295,7 +291,8 @@ PRODUCT_PACKAGES := \
     libGLES_qcom.so \
     libjni_flash \
     libjni_flashwidget \
-    flash_image
+    flash_image \
+    librs_jni
 
 
 # Check : building for chinese people ?

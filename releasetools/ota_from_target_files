@@ -17,9 +17,12 @@ import i7500_common as common
 import re
 import copy
 import os, sys
+import commands
 
 LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
+KERNEL_VERSION = commands.getoutput('grep "Linux kernel version" cm-kernel/arch/arm/configs/gaosp_msm_defconfig | cut -d" " -f 5')
+KERNEL_LOCALVERSION = commands.getoutput('grep "CONFIG_LOCALVERSION=" cm-kernel/arch/arm/configs/gaosp_msm_defconfig | cut -d"\\"" -f 2')
 
 # Add releasetools directory to python path
 sys.path.append(RELEASETOOLS_DIR)
@@ -158,13 +161,13 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   script.FormatPartition("/system")
   script.Mount("/system")
-  script.Mount("/data")
-  script.UnpackPackageDir("recovery", "/system")
+  #script.UnpackPackageDir("recovery", "/system")
   script.UnpackPackageDir("system", "/system")
   script.UnpackPackageDir("data", "/data")
 
   script.SetPermissions("/data/app_s", 1000, 1000, 0771)
   script.MakeSymlinks([("/data/app_s","/system/app")])
+  script.MakeSymlinks([("/system/lib/modules","/system/lib/modules/" + KERNEL_VERSION + KERNEL_LOCALVERSION)])
 
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
@@ -197,7 +200,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
 
-  script.UnmountAll()
   script.AddToZip(input_zip, output_zip)
   WriteMetadata(metadata, output_zip)
 ota_from_target_files.WriteFullOTAPackage = WriteFullOTAPackage

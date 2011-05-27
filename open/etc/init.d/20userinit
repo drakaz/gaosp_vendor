@@ -3,7 +3,7 @@
 
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then
-    SD_EXT_DIRECTORY=/sdcard/sd;
+    SD_EXT_DIRECTORY=/sd-ext;
 fi;
 
 if [ -e $SD_EXT_DIRECTORY/userinit.sh ];
@@ -17,5 +17,19 @@ fi;
 if [ -d $SD_EXT_DIRECTORY/userinit.d ];
 then
    logwrapper busybox run-parts $SD_EXT_DIRECTORY/userinit.d;
+   setprop cm.userinit.active 1;
+fi;
+
+if [ -e /data/local/userinit.sh ];
+then
+   log -p i -t userinit "Executing /data/local/userinit.sh";
+   busybox chmod +x /data/local/userinit.sh;
+   logwrapper /system/bin/sh /data/local/userinit.sh;
+   setprop cm.userinit.active 1;
+fi;
+
+if [ -d /data/local/userinit.d ];
+then
+   logwrapper busybox run-parts /data/local/userinit.d;
    setprop cm.userinit.active 1;
 fi;

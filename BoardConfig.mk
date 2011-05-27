@@ -45,7 +45,7 @@ BOARD_USES_QCOM_LIBS := true
 
 #Wifi
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/rtecdc.bin"
-#WIFI_DRIVER_FW_AP_PATH := "/system/etc/rtecdc.bin"
+WIFI_DRIVER_FW_AP_PATH := "/system/etc/rtecdc_apsta.bin"
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcm4329.ko"
@@ -76,7 +76,7 @@ BOARD_NO_RGBX_8888 := true
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 USE_PV_WINDOWS_MEDIA := false
 
-TARGET_NO_RECOVERY := true
+TARGET_NO_RECOVERY := false
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_SIMULATOR := false
@@ -91,4 +91,4 @@ BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
 USE_16BPPSURFACE_FOR_OPAQUE := true
 
 # Vold use device node
-VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
