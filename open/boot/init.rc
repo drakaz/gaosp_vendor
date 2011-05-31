@@ -238,7 +238,8 @@ on post-fs
 
 
     # Symlink for camera device
-    symlink /dev/msm_camera/msm_camera0 /dev/msm_camera0
+    symlink /dev/msm_camera/control0 /dev/msm_camera0
+    symlink /dev/msm_camera/config0 /dev/msm_comera0
 
 # Devices chmod
     chmod 0771 /dev/dpram0
