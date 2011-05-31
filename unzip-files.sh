@@ -45,4 +45,5 @@ unzip -j -o $ZIP2 system/etc/pvasflocal.cfg -d proprietary/
 unzip -j -o $ZIP system/lib/libhgl.so system/bin/set_grp_id -d proprietary/lib/
 unzip -j -o $ZIP system/lib/libaudioeq.so -d proprietary/lib/
 unzip -j -o $ZIP  system/lib/libmmcamera.so system/lib/libmm-qcamera-tgt.so system/lib/libmmjpeg.so -d proprietary/lib/
+sed -i "s|msm_camera0|msm_comera0|" proprietary/lib/libmm-qcamera-tgt.so
 unzip -j -o $ZIP2 system/lib/libmm-adspsvc.so system/lib/libOmxH264Dec.so system/lib/libOmxMpeg4Dec.so system/lib/libOmxVidEnc.so -d proprietary/lib/
