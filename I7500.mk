@@ -292,7 +292,8 @@ PRODUCT_PACKAGES := \
     libjni_flash \
     libjni_flashwidget \
     flash_image \
-    librs_jni
+    librs_jni \
+    bootcmdutil
 
 
 # Check : building for chinese people ?
