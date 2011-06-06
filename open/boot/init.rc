@@ -430,6 +430,9 @@ on boot
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
 
+# Initial sms lock level must be 0
+    setprop phone.sms.lock 0
+
 # Sensor HAL
     chown system system /dev/bma150
     chown system system /dev/akm8973_daemon
