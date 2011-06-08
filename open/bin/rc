@@ -129,19 +129,6 @@ else
 fi
   
 ####################
-##### Renice #######
-####################
-
-if [ `grep "renice=yes" /system/etc/gaosp.conf` ]
-then
-	echo "GaospRC : Renice"
-	renice -20 `pidof com.android.mms`
-	renice -19 `pidof com.android.phone`
-	renice -18 `pidof mediaserver`
-	renice 0 `pidof com.google.process.gapps`
-fi
-
-####################
 ###### Swap ########
 ####################
 
