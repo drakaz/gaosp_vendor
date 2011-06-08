@@ -238,7 +238,8 @@ on post-fs
 
 
     # Symlink for camera device
-    symlink /dev/msm_camera/msm_camera0 /dev/msm_camera0
+    symlink /dev/msm_camera/control0 /dev/msm_camera0
+    symlink /dev/msm_camera/config0 /dev/msm_comera0
 
 # Devices chmod
     chmod 0771 /dev/dpram0
@@ -428,6 +429,9 @@ on boot
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+
+# Initial sms lock level must be 0
+    setprop phone.sms.lock 0
 
 # Sensor HAL
     chown system system /dev/bma150
