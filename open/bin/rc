@@ -92,17 +92,15 @@ else
 	PID=`pidof fbvncserver` && kill -9 $PID
 fi
 
-##########################
-##### CPU sampling #######
-##########################
+#######################################################################
+###### CPU Sampling, Ignore Nice Load, Powersave Bias, Threshold ######
+#######################################################################
 
 if [ `grep "ondemand"  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor` ]
 then
-  echo "GaospRC : Applying CPU sampling..."
-  if [ `grep "cpu_sampling=" /system/etc/gaosp.conf` ]
-  then
-    cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
-    case $cpu_sampling in
+	echo "GaospRC : Set CPU sampling..."
+	cpu_sampling=`grep "cpu_sampling=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}`
+	case $cpu_sampling in
      0)
 		echo "GaospRC : setting cpufreq sampling to eco mode..."
 		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
@@ -117,42 +115,55 @@ then
      ;;
      *)
 		echo "GaospRC : setting cpufreq sampling to default mode (mixte)..."
-		echo 500000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+		echo 100000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
      ;;
     esac
-  else
-		echo "GaospRC : setting cpufreq sampling to default mode (eco)..."
-		echo 2000000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
-  fi
+	
+	echo "GaospRC : Set Ignore Nice Load..."
+	if [ `grep "ignoreniceload=yes" /system/etc/gaosp.conf` ]
+	then
+		echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load
+	else
+		echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/ignore_nice_load
+	fi
+
+	echo "GaospRC : Set Powersave Bias..."
+	echo `grep "bias=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias
+	
+	echo "GaospRC : Set Threshold..."
+	echo `grep "threshold=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold
 else
 	echo "GaospRC : Set ondemand governor to change sampling!"
 fi
-  
+
 ####################
 ###### Swap ########
 ####################
 
-if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
+if [ -r /dev/block/mmcblk1p2 ]
 then
-	if [ -r /dev/block/mmcblk1p2 ]
-	then
-		# Swap tuning
-		echo `grep "swappiness" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /proc/sys/vm/swappiness
-		echo 700 > /proc/sys/vm/dirty_writeback_centisecs
-		echo 700 > /proc/sys/vm/dirty_expire_centisecs
-		echo 55 > /proc/sys/vm/dirty_ratio
-		echo 30 > /proc/sys/vm/dirty_background_ratio
-		echo 1 > /proc/sys/vm/oom_kill_allocating_task
-		echo 10 > /proc/sys/vm/vfs_cache_pressure
-		sync
-		echo 3 > /proc/sys/vm/drop_caches
-		echo "GaospRC : Mouting swap..."
-		mkswap /dev/block/mmcblk1p2
-		swapon /dev/block/mmcblk1p2
-	else
-		echo "GaospRC : No swap partition found!"
-	fi
+	# Swap tuning
+	echo `grep "swappiness=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /proc/sys/vm/swappiness
+	echo 700 > /proc/sys/vm/dirty_writeback_centisecs
+	echo 700 > /proc/sys/vm/dirty_expire_centisecs
+	echo 55 > /proc/sys/vm/dirty_ratio
+	echo 30 > /proc/sys/vm/dirty_background_ratio
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task
+	echo 30 > /proc/sys/vm/vfs_cache_pressure
+	sync
+	echo 3 > /proc/sys/vm/drop_caches
+	echo "GaospRC : Mouting swap..."
+	mkswap /dev/block/mmcblk1p2
+	swapon /dev/block/mmcblk1p2
+else
+	echo "GaospRC : No swap partition found!"
 fi
+
+#########################
+####### Fudgeswap #######
+#########################
+
+echo `grep "fudgeswap=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /sys/module/lowmemorykiller/parameters/fudgeswap
 
 #################################
 ###### Memory thresholds ########
