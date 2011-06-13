@@ -140,18 +140,21 @@ fi
 ###### Swap ########
 ####################
 
+# Swap tuning
+echo 700 > /proc/sys/vm/dirty_writeback_centisecs
+echo 700 > /proc/sys/vm/dirty_expire_centisecs
+echo 55 > /proc/sys/vm/dirty_ratio
+echo 30 > /proc/sys/vm/dirty_background_ratio
+echo 1 > /proc/sys/vm/oom_kill_allocating_task
+echo 30 > /proc/sys/vm/vfs_cache_pressure
+sync
+echo 3 > /proc/sys/vm/drop_caches
+
 if [ `grep "swap=yes" /system/etc/gaosp.conf` ]
 then
 	if [ -r /dev/block/mmcblk1p2 ]
 	then
-		# Swap tuning
 		echo `grep "swappiness=" /system/etc/gaosp.conf | awk -F"=" '{print $2'}` > /proc/sys/vm/swappiness
-		echo 700 > /proc/sys/vm/dirty_writeback_centisecs
-		echo 700 > /proc/sys/vm/dirty_expire_centisecs
-		echo 55 > /proc/sys/vm/dirty_ratio
-		echo 30 > /proc/sys/vm/dirty_background_ratio
-		echo 1 > /proc/sys/vm/oom_kill_allocating_task
-		echo 30 > /proc/sys/vm/vfs_cache_pressure
 		sync
 		echo 3 > /proc/sys/vm/drop_caches
 		echo "GaospRC : Mouting swap..."
