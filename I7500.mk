@@ -273,6 +273,7 @@ PRODUCT_PACKAGES := \
     copybit.msm7k \
     gralloc.samsung \
     gps.samsung \
+    sensors.samsung \
     lights.msm7k \
     libcamera \
     libmmcamera.so \
