@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="pref_trackball_wake_title">I7500 HOLD-Aufwachen</string>
-  <string name="pref_trackball_wake_summary">Aufwecken des Gerätes durch Drücken des HOLD.</string>
-  <string name="pref_trackball_unlock_title">I7500 HOLD-Entsperren</string>
-  <string name="pref_trackball_unlock_summary">Entsperren des Gerätes durch Drücken des HOLD</string>
-</resources>

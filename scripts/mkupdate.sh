@@ -2,7 +2,7 @@
 rm -rf out/target/product/I7500/unsigned.zip
 rm -rf out/target/product/I7500/update.zip
 #rm -rf out/target/product/I7500/boot.img
-cp -r device/Samsung/I7500/META-INF out/target/product/I7500/
+cp -r device/samsung/I7500/META-INF out/target/product/I7500/
 mkdir out/target/product/I7500/dev_data/
 mv out/target/product/I7500/system/app out/target/product/I7500/dev_data/app_s
 
@@ -10,7 +10,7 @@ mv out/target/product/I7500/system/app out/target/product/I7500/dev_data/app_s
 mv out/target/product/I7500/dev_data/app_s/Gallery.apk out/target/product/I7500/dev_data/app_s/Gallery.no
 
 # Addin firstboot.sh script to /data
-cp -p device/Samsung/I7500/open/bin/firstboot.sh out/target/product/I7500/dev_data/firstboot.sh
+cp -p device/samsung/I7500/open/bin/firstboot.sh out/target/product/I7500/dev_data/firstboot.sh
 
 # Addons
 mkdir out/target/product/I7500/dev_data/app/
